@@ -10,17 +10,28 @@
 <meta property="og:title" content="Tatort im Kiez – Ihr seid die Jury.">
 <meta property="og:description" content="Fall 24/12: Wer hat Weihnachten ruiniert? Sichere die Beweise – in 3D, VR oder als 2D-Akte.">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=League+Spartan:wght@600;800;900&display=swap">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%230A0F2B%27/%3E%3C/svg%3E">
+<!-- Keine Drittanbieter-Requests: Schriften (OFL) und A-Frame (MIT) liegen lokal in vendor/ -->
+<link rel="preload" href="vendor/fonts/league-spartan-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="vendor/fonts/courier-prime-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Lokale Schriften: League Spartan (variabel, 600–900) + Courier Prime – SIL Open Font License, siehe vendor/licenses/ */
+@font-face{font-family:'Courier Prime';font-style:italic;font-weight:400;font-display:swap;src:url(vendor/fonts/courier-prime-400-italic-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Courier Prime';font-style:italic;font-weight:400;font-display:swap;src:url(vendor/fonts/courier-prime-400-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:400;font-display:swap;src:url(vendor/fonts/courier-prime-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:400;font-display:swap;src:url(vendor/fonts/courier-prime-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:700;font-display:swap;src:url(vendor/fonts/courier-prime-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:700;font-display:swap;src:url(vendor/fonts/courier-prime-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'League Spartan';font-style:normal;font-weight:600 900;font-display:swap;src:url(vendor/fonts/league-spartan-var-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'League Spartan';font-style:normal;font-weight:600 900;font-display:swap;src:url(vendor/fonts/league-spartan-var-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 :root{
   --gold:#C7A065; --gold-l:#dcbf88; --red:#9C2113; --red-d:#7d190e; --burg:#2E0F0F; --navy:#0A0F2B; --navy-2:#121a45;
   --cream:#EFEBE6; --ink:#111111; --muted:rgba(239,235,230,.78);
   --font-h:'League Spartan','Arial Black',system-ui,sans-serif;
   --font-b:'Courier Prime','Courier New',ui-monospace,monospace;
   --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
+  --sl:env(safe-area-inset-left,0px); --sr:env(safe-area-inset-right,0px);
+  --ease-out:cubic-bezier(.2,.8,.2,1);
   --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 *{box-sizing:border-box}
@@ -41,13 +52,16 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 #bgSnow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .screen{position:relative;z-index:1;min-height:100vh;min-height:100dvh}
-.wrap{max-width:560px;margin:0 auto;padding:calc(14px + var(--st)) 18px calc(20px + var(--sb))}
+.wrap{max-width:560px;margin:0 auto;padding:calc(14px + var(--st)) calc(18px + var(--sr)) calc(24px + var(--sb)) calc(18px + var(--sl))}
 .h{font-family:var(--font-h);font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.95;margin:0}
 .kicker{font-family:var(--font-b);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
 .topline{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2px 2px 14px;font-weight:700}
 .topline b{font-family:var(--font-h);font-weight:800;letter-spacing:.08em}
-.foot{margin:22px 0 0;text-align:center;font-size:11px;letter-spacing:.08em;color:rgba(239,235,230,.66)}
-.foot span{display:inline-block;border:1px solid rgba(199,160,101,.35);border-radius:99px;padding:4px 10px}
+.foot{margin:26px 0 0;text-align:center;font-size:11.5px;line-height:1.45;letter-spacing:.04em;color:rgba(239,235,230,.74)}
+.foot span{display:inline-block;border:1px solid rgba(199,160,101,.4);border-radius:99px;padding:5px 12px}
+.foot small{display:block;margin:8px auto 0;max-width:34ch;font-size:11.5px;letter-spacing:.02em;color:rgba(239,235,230,.74)}
+.probe-note{display:flex;gap:8px;align-items:flex-start;margin:14px 0 0;padding:10px 12px;border-radius:10px;border:1px solid rgba(199,160,101,.35);background:rgba(8,12,36,.55);font-size:12.5px;line-height:1.4;color:var(--cream);text-align:left}
+.probe-note svg{width:18px;height:18px;flex:none;color:var(--gold);margin-top:1px}
 
 /* Paper */
 .paper{position:relative;background-color:#f1ede7;background-image:var(--noise),linear-gradient(180deg,#f5f2ed 0%,#ebe5dc 100%);
@@ -76,7 +90,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 /* ---------- START ---------- */
 .summons{padding:18px 18px 16px;transform:rotate(-.6deg);margin:0 2px}
-.summons-head{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;color:#3a3530;border-bottom:1.5px solid #222;padding-bottom:8px}
+.summons-head{display:flex;justify-content:space-between;gap:10px;font-size:11.5px;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;color:#3a3530;border-bottom:1.5px solid #222;padding-bottom:8px}
 .summons-head .tr{text-align:right}
 .summons h1{font-size:clamp(40px,12.6vw,64px);color:var(--navy);margin:16px 0 4px;letter-spacing:0}
 .summons .stamp-summons{position:absolute;right:16px;top:92px;transform:rotate(-7deg);font-size:14px}
@@ -88,11 +102,40 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .sig{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;font-size:11.5px;color:#3a3530}
 .sig .line{border-top:1px solid #444;padding-top:3px;font-style:italic}
 .sig svg{width:46px;height:56px;color:rgba(17,17,17,.42);flex:none}
-.cta-stack{display:grid;gap:10px;margin-top:18px}
-.hint{display:flex;gap:10px;align-items:flex-start;margin:14px 2px 0;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.cta-stack{display:grid;gap:10px;margin-top:20px}
+.hint{display:flex;gap:10px;align-items:flex-start;margin:14px 2px 0;font-size:13px;line-height:1.45;color:var(--muted)}
 .hint svg{width:26px;height:26px;flex:none;color:var(--gold);margin-top:1px}
-.showline{margin:14px 0 0;text-align:center;font-size:12px;line-height:1.5;color:var(--cream);letter-spacing:.03em}
+.showline{margin:18px 0 0;text-align:center;font-size:13px;line-height:1.55;color:var(--cream);letter-spacing:.02em}
 .showline b{font-family:var(--font-h);font-weight:800;letter-spacing:.06em;color:var(--gold);text-transform:uppercase}
+.showline em{display:block;margin-top:4px;font-style:italic;color:var(--gold-l)}
+
+/* AR-Teaser (Beweisstück #3) */
+.ar-card{position:relative;display:grid;grid-template-columns:88px minmax(0,1fr) 20px;align-items:center;gap:12px;width:100%;min-height:96px;padding:10px 12px 10px 10px;margin-top:2px;
+  border:0;border-radius:14px;text-align:left;color:var(--cream);background:linear-gradient(135deg,#3a0f0b 0%,#2E0F0F 55%,#150a14 100%);
+  box-shadow:inset 0 0 0 1.5px rgba(199,160,101,.55),0 12px 30px rgba(0,0,0,.35);transition:transform .15s ease,box-shadow .2s}
+.ar-card:active{transform:scale(.99)}
+.ar-card.attn{animation:attn 1.2s ease-in-out 3}
+@keyframes attn{50%{box-shadow:inset 0 0 0 2px var(--gold),0 0 0 6px rgba(199,160,101,.3)}}
+.ar-thumb{position:relative;width:88px;height:76px;border-radius:10px;overflow:hidden;background:radial-gradient(70% 70% at 50% 45%,#f4efe7,#cfc4b2);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.ar-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ar-thumb .cube{position:absolute;left:6px;bottom:6px;width:26px;height:26px;border-radius:7px;background:var(--red);color:var(--cream);display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.ar-thumb .cube svg{width:16px;height:16px}
+.ar-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ar-kicker{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.ar-title{font-family:var(--font-h);font-weight:800;text-transform:uppercase;font-size:19px;line-height:1;letter-spacing:.02em}
+.ar-sub{font-size:12.5px;line-height:1.3;color:var(--cream)}
+.ar-plat{display:inline-flex;align-self:flex-start;align-items:center;gap:5px;margin-top:3px;padding:3px 8px;border-radius:99px;background:rgba(239,235,230,.12);font-size:11.5px;font-weight:700;line-height:1.25;color:var(--cream)}
+.ar-plat::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none}
+.ar-card>svg{width:20px;height:20px;color:var(--gold)}
+.ar-plat{white-space:nowrap}
+@media (max-width:400px){
+  .ar-card{grid-template-columns:72px minmax(0,1fr) 16px;gap:10px;padding:10px 10px 10px 8px}
+  .ar-thumb{width:72px;height:72px}
+  .ar-title{font-size:17px}
+  .ar-sub{font-size:12px}
+  .ar-card>svg{width:16px;height:16px}
+}
+.row .btn{font-size:15px;padding:12px 10px}
 
 /* ---------- XR ---------- */
 .screen-xr{position:fixed;inset:0;height:100vh;height:100dvh;z-index:2;background:#04061a}
@@ -100,33 +143,65 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 #sceneHost canvas{touch-action:none}
 .hud{position:absolute;inset:0;pointer-events:none;z-index:5}
 .hud>*{pointer-events:auto}
-.hud-top{position:absolute;top:calc(10px + var(--st));left:10px;right:10px;display:flex;align-items:center;gap:8px}
+.hud-top{position:absolute;top:calc(10px + var(--st));left:calc(10px + var(--sl));right:calc(10px + var(--sr));display:flex;align-items:center;gap:8px}
 .glass{background:rgba(8,12,36,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(199,160,101,.38);color:var(--cream)}
 .ibtn{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;padding:0;flex:none}
 .ibtn svg{width:22px;height:22px}
 .progress{flex:1;min-width:0;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px}
-.progress .pl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;line-height:1.1}
-.progress .pv{font-family:var(--font-h);font-weight:800;font-size:22px;line-height:1;margin-top:2px}
+.progress .pl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;line-height:1.1;white-space:nowrap}
+.progress .pv{font-family:var(--font-h);font-weight:800;font-size:22px;line-height:1;margin-top:3px}
 .slots{display:flex;gap:4px}
-.slots i{width:12px;height:16px;border-radius:2px;border:1.5px solid rgba(199,160,101,.7);display:block;transition:background .3s,transform .3s}
+.slots i{width:13px;height:17px;border-radius:2px;border:1.5px solid rgba(199,160,101,.75);display:block;transition:background .3s,transform .3s}
 .slots i.on{background:var(--gold);border-color:var(--gold);transform:rotate(-6deg)}
+.slots i.pop{animation:slotpop .6s var(--ease-out)}
+@keyframes slotpop{0%{transform:scale(1.9) rotate(-18deg);background:#fff}100%{transform:rotate(-6deg)}}
 .pill{height:46px;border-radius:12px;padding:0 12px;display:flex;align-items:center;gap:6px;font-family:var(--font-h);font-weight:800;font-size:14px;letter-spacing:.06em;flex:none}
 .pill svg{width:22px;height:22px}
-.hud-bottom{position:absolute;left:10px;right:10px;bottom:calc(10px + var(--sb));max-width:600px;margin:0 auto;display:grid;gap:8px}
+.hud-bottom{position:absolute;left:calc(10px + var(--sl));right:calc(10px + var(--sr));bottom:calc(10px + var(--sb));max-width:600px;margin:0 auto;display:grid;gap:8px}
 .chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.chip{position:relative;height:56px;border-radius:12px;padding:5px 2px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.chip{position:relative;height:56px;border-radius:12px;padding:5px 2px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:background .25s,color .25s}
 .chip .n{font-family:var(--font-h);font-weight:800;font-size:20px;line-height:1;color:var(--gold)}
-.chip .t{font-family:var(--font-h);font-weight:600;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;line-height:1;opacity:.9}
-.chip.found{background:rgba(239,235,230,.94);color:var(--navy);border-color:var(--cream)}
+.chip .t{font-family:var(--font-h);font-weight:600;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.chip.found{background:rgba(239,235,230,.95);color:var(--navy);border-color:var(--cream)}
 .chip.found .n{color:var(--red)}
-.chip.found::after{content:"";position:absolute;top:5px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.chip.found::after{content:"✓";position:absolute;top:3px;right:5px;font:800 11px/1 var(--font-h);color:var(--red)}
+.chip.next:not(.found){box-shadow:inset 0 0 0 2px var(--gold)}
+.chip.pop{animation:chippop .55s var(--ease-out)}
+@keyframes chippop{0%{transform:scale(1.18)}100%{transform:none}}
 .actions{display:grid;grid-template-columns:1fr 1.15fr;gap:8px}
-.actions .btn{min-height:50px;font-size:14px;border-radius:12px;padding:8px 10px}
-.actions .btn small{font-size:10.5px}
-.btn-ar{justify-content:flex-start}
+.actions .btn{min-height:52px;font-size:14px;border-radius:12px;padding:8px 10px}
+.actions .btn small{font-size:11px}
+.btn-ar{justify-content:flex-start;gap:8px}
+.btn-ar svg{color:var(--gold)}
+
+/* Coach-Mark (erste 5 Sekunden) */
+.coach{position:absolute;inset:0;z-index:7;display:grid;place-items:center;padding:calc(76px + var(--st)) 18px calc(150px + var(--sb));pointer-events:none;
+  background:radial-gradient(70% 50% at 50% 50%,rgba(4,6,26,.15),rgba(4,6,26,.55));transition:opacity .35s ease}
+.coach.out{opacity:0}
+.coach-card{pointer-events:auto;width:min(100%,340px);border-radius:16px;padding:16px 16px 14px;text-align:center}
+.coach-anim{position:relative;width:132px;height:84px;margin:0 auto 6px;color:var(--gold)}
+.coach-anim .phone{position:absolute;left:50%;top:6px;width:38px;height:66px;margin-left:-19px;border:3px solid currentColor;border-radius:9px;animation:sway 2.4s ease-in-out infinite;transform-origin:50% 120%}
+.coach-anim .phone::after{content:"";position:absolute;left:50%;bottom:4px;width:10px;height:3px;margin-left:-5px;border-radius:2px;background:currentColor}
+.coach-anim .arc{position:absolute;inset:auto 0 2px;height:30px;border:2px dashed rgba(199,160,101,.55);border-top:0;border-radius:0 0 70px 70px}
+.coach-anim .l,.coach-anim .r{position:absolute;top:34px;font:800 18px/1 var(--font-h)}
+.coach-anim .l{left:2px}.coach-anim .r{right:2px}
+@keyframes sway{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
+.coach-t{margin:0;font-family:var(--font-h);font-weight:800;text-transform:uppercase;font-size:22px;line-height:1;letter-spacing:.02em}
+.coach ol{list-style:none;margin:12px 0 14px;padding:0;display:grid;gap:7px;text-align:left;font-size:13.5px;line-height:1.35}
+.coach li{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:start}
+.coach li span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy);font:800 13px/1 var(--font-h)}
+.coach li b{color:var(--gold-l)}
+.coach .btn{min-height:48px;font-size:15px}
+
+/* Richtungshinweis zum nächsten offenen Beweis (Bildschirmrand) */
+.cue{position:absolute;left:0;top:0;z-index:6;display:flex;align-items:center;gap:6px;height:48px;min-width:48px;padding:0 12px 0 6px;border-radius:24px;
+  font-family:var(--font-h);font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;will-change:transform;transition:opacity .25s}
+.cue .dir{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy);flex:none}
+.cue .dir svg{width:20px;height:20px;transition:none}
+.cue.off{opacity:0;pointer-events:none}
 #btnVerdict.ready{animation:glow 1.8s ease-in-out infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(199,160,101,.0),0 10px 28px rgba(199,160,101,.3)}50%{box-shadow:0 0 0 6px rgba(199,160,101,.25),0 10px 28px rgba(199,160,101,.45)}}
-.toast{position:fixed;left:50%;top:calc(66px + var(--st));transform:translate(-50%,-8px);z-index:30;max-width:min(92vw,460px);width:max-content;
+.toast{position:fixed;left:50%;top:calc(68px + var(--st));transform:translate(-50%,-8px);z-index:30;max-width:min(92vw,460px);width:max-content;
   padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast b{color:var(--gold)}
@@ -134,7 +209,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .loader .ring{width:74px;height:74px;border-radius:50%;border:3px solid rgba(199,160,101,.2);border-top-color:var(--gold);margin:0 auto 18px;animation:spin 1s linear infinite}
 .loader p{margin:6px 0 0;font-size:13px;color:var(--muted)}
 @keyframes spin{to{transform:rotate(360deg)}}
-body.in-vr .hud,body.in-vr .toast{display:none}
+body.in-vr .hud,body.in-vr .toast,body.in-vr .coach,body.in-vr .cue{display:none!important}
 
 /* ---------- AR overlay ---------- */
 #arOverlay{position:fixed;inset:0;z-index:40;pointer-events:none;font-family:var(--font-b);color:var(--cream)}
@@ -152,6 +227,11 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
 .file-head{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#4a443e;border-bottom:1.5px dashed #8a8178;padding-bottom:8px;margin-bottom:12px}
 .ev-top{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"photo stamp" "photo fact" "title title";gap:4px 16px;align-items:start}
 .ev-top .stamp{grid-area:stamp;justify-self:start;font-size:15px;transform:rotate(-4deg);margin:8px 0 6px}
+.ev-top .stamp.slam{animation:slam .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes slam{0%{transform:scale(2.4) rotate(-14deg);opacity:0}60%{opacity:1}100%{transform:rotate(-4deg);opacity:.88}}
+.secured{display:inline-flex;align-items:center;gap:6px;margin:0 0 10px;padding:4px 10px 3px;border-radius:99px;background:var(--navy);color:var(--cream);font:800 12px/1.2 var(--font-h);letter-spacing:.08em;text-transform:uppercase}
+.secured i{font-style:normal;color:var(--gold)}
+.ar-note{margin:-2px 2px 4px;font-size:12px;line-height:1.35;color:#3a3530;text-align:center}
 .ev-top .fact{grid-area:fact}
 .ev-top .ev-h{grid-area:title;font-size:clamp(26px,8.4vw,36px);color:var(--navy);line-height:.95;margin:16px 0 0;overflow-wrap:anywhere;hyphens:auto}
 .photo{grid-area:photo;flex:none;width:104px;background:#fff;padding:6px 6px 16px;box-shadow:0 4px 12px rgba(0,0,0,.22);transform:rotate(-3deg);position:relative;margin-top:4px}
@@ -175,9 +255,19 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
 .x svg{width:20px;height:20px}
 .info h2{font-family:var(--font-h);font-weight:800;text-transform:uppercase;color:var(--navy);font-size:24px;line-height:1;margin:6px 40px 10px 0}
 .info p{font-size:14.5px;margin:0 0 10px}
+.info .ar-prev{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:12px;align-items:center;margin:4px 0 12px}
+.info .ar-prev img{width:100%;height:auto;border-radius:8px;background:#e9e3d8;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.info .qr{width:132px;height:132px;display:grid;place-items:center;background:#fff;border-radius:8px;padding:6px;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.info .qr svg,.info .qr img{width:100%;height:100%;display:block}
+.info .qr-cap{grid-column:1/-1;margin:0;font-size:12.5px;color:#3a3530}
+.info .steps{margin:0 0 10px;padding-left:20px;font-size:14px;line-height:1.45}
+.info .linkbox{display:flex;gap:8px;align-items:center;margin:0 0 6px}
+.info .linkbox code{flex:1;min-width:0;overflow-wrap:anywhere;font:700 12.5px/1.3 var(--font-b);background:rgba(10,15,43,.07);padding:8px 10px;border-radius:6px}
+.info .linkbox .btn{width:auto;min-height:44px;font-size:13px;padding:8px 12px;color:var(--navy);background:transparent;box-shadow:inset 0 0 0 1.5px var(--navy)}
+@media (max-width:420px){.info .ar-prev{grid-template-columns:minmax(0,1fr) 116px}.info .qr{width:116px;height:116px}}
 
 /* ---------- AKTE (2D) ---------- */
-.akte-bar{position:sticky;top:0;z-index:5;padding:calc(8px + var(--st)) 14px 8px;display:flex;align-items:center;gap:10px;background:rgba(8,12,36,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid rgba(199,160,101,.3)}
+.akte-bar{position:sticky;top:0;z-index:5;padding:calc(8px + var(--st)) calc(14px + var(--sr)) 8px calc(14px + var(--sl));display:flex;align-items:center;gap:10px;background:rgba(8,12,36,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid rgba(199,160,101,.3)}
 .akte-bar .progress{height:44px}
 .akte-intro{padding:18px 18px 4px;max-width:640px;margin:0 auto}
 .akte-intro h1{font-size:clamp(34px,10vw,48px);color:var(--cream)}
@@ -230,9 +320,9 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
 .reward .note b{color:var(--cream)}
 .copy{height:44px;padding:0 14px;border-radius:10px;border:1.5px solid var(--gold);background:transparent;color:var(--cream);font-family:var(--font-h);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
 .baro{margin-top:16px;padding:14px;border-radius:12px;background:rgba(8,12,36,.65);border:1px solid rgba(239,235,230,.14)}
-.baro-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.baro-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 8px;margin-bottom:10px}
 .baro-head h2{font-family:var(--font-h);font-weight:800;text-transform:uppercase;font-size:16px;letter-spacing:.06em;margin:0}
-.demo{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:3px 7px;border-radius:4px;white-space:nowrap}
+.demo{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:3px 7px;border-radius:4px;white-space:nowrap}
 .bar{display:flex;height:30px;border-radius:8px;overflow:hidden;background:#222}
 .bar .be{background:var(--red);transition:width 1s cubic-bezier(.2,.8,.2,1)}
 .bar .bc{background:var(--gold);flex:1}
@@ -253,12 +343,17 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
   .actions{grid-template-columns:auto auto}
   .actions .btn{width:auto;min-width:170px}
   .toast{top:calc(64px + var(--st))}
+  .coach{padding:calc(64px + var(--st)) 18px calc(72px + var(--sb))}
+  .coach-card{display:grid;grid-template-columns:110px 1fr;gap:4px 14px;width:min(100%,560px);text-align:left;align-items:center}
+  .coach-anim{grid-row:1/4;width:110px;margin:0}
+  .coach ol{margin:6px 0 8px}
 }
 @media (min-width:900px){
   .hud-top{left:20px;right:20px;max-width:900px;margin:0 auto}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .coach-anim .phone{transform:none}
 }
 </style>
 </head>
@@ -288,17 +383,24 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h8"/></svg>
         <span class="lbl">2D-Akte lesen<small>barrierearm · ohne Bewegungssensor</small></span>
       </button>
-      <button id="btnStartAR" class="btn btn-red" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg>
-        <span class="lbl">AR: Beweisstück #3<small>Schlitten in deinen Raum · iPhone &amp; Android</small></span>
+      <button id="btnStartAR" class="ar-card" type="button" aria-describedby="arPlatStart">
+        <span class="ar-thumb" aria-hidden="true"><img src="ar/vorschau_schlitten.png" alt="" width="88" height="76" decoding="async"><span class="cube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg></span></span>
+        <span class="ar-txt">
+          <span class="ar-kicker">Augmented Reality</span>
+          <span class="ar-title">AR: Beweisstück #3</span>
+          <span class="ar-sub">Stell den Streik-Schlitten in Originalgröße in deinen Raum.</span>
+          <span class="ar-plat" id="arPlatStart" data-arplat>iPhone &amp; Android</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
     <p class="hint" id="gyroHint">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3" width="8" height="18" rx="2"/><path d="M11 18h2M4.5 8a8 8 0 0 0 0 8M19.5 8a8 8 0 0 1 0 8"/></svg>
-      <span>Tipp: Halte dein Handy hoch und bewege es, um dich am Tatort umzusehen (Gyroskop). Auf dem iPhone fragen wir dafür einmal nach Zugriff auf den Bewegungssensor. Wischen geht auch. AR läuft auf iPhone und Android.</span>
+      <span>Tipp: Handy hochhalten und bewegen – oder einfach wischen. Auf dem iPhone fragen wir einmal nach dem Bewegungssensor.</span>
     </p>
-    <p class="showline"><b>The Jury – Weihnachten vor Gericht</b><br>19.12.2026 &amp; 09.01.2027 · 16:00 &amp; 18:30 Uhr · Colosseum Berlin</p>
-    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+    <p class="probe-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Fall 24/12 ist ein Kampagnen-Probefall. Im Colosseum wird ein anderer Fall verhandelt.</span></p>
+    <p class="showline"><b>The Jury – Weihnachten vor Gericht</b><br>19.12.2026 &amp; 09.01.2027 · 16:00 &amp; 18:30 Uhr<br>Colosseum Berlin · Tickets ab 36 €<em>Dein echter Fall wartet live im Colosseum.</em></p>
+    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span><small>Studentisches Projekt – keine offizielle Seite von Colosseum Berlin oder Fever.</small></p>
   </div>
 </section>
 
@@ -311,7 +413,7 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
       <div class="progress glass" role="status" aria-live="polite">
-        <div><div class="pl">Beweise gesichert</div><div class="pv"><span class="foundN">0</span>/5</div></div>
+        <div><div class="pl">Beweise<span class="sr-only"> gesichert:</span></div><div class="pv"><span class="foundN">0</span>/5</div></div>
         <div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       </div>
       <button id="btnVR" class="pill glass" type="button" aria-label="VR-Modus starten (Cardboard oder Headset)">
@@ -323,12 +425,25 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
       <div class="actions">
         <button id="btnAR" class="btn btn-outline glass btn-ar" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg>
-          <span class="lbl">AR<small>Schlitten in deinen Raum · iPhone &amp; Android</small></span>
+          <span class="lbl">AR · Schlitten<small data-arplat-short>iPhone &amp; Android</small></span>
         </button>
         <button id="btnVerdict" class="btn btn-gold" type="button" aria-disabled="true">
           <span class="lbl">Zum Urteil<small id="verdictHint">ab 3 Beweisen</small></span>
         </button>
       </div>
+    </div>
+  </div>
+  <button class="cue glass off" id="cue" type="button" tabindex="-1" aria-hidden="true"><span class="dir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span><span class="cue-l" id="cueL">#2</span></button>
+  <div class="coach" id="coach" hidden>
+    <div class="coach-card glass" role="dialog" aria-modal="false" aria-labelledby="coachT">
+      <div class="coach-anim" aria-hidden="true"><span class="arc"></span><span class="l">‹</span><span class="phone"></span><span class="r">›</span></div>
+      <p class="coach-t" id="coachT">Schau dich um</p>
+      <ol>
+        <li><span>1</span><div><b>Handy bewegen</b> oder mit dem Finger wischen</div></li>
+        <li><span>2</span><div><b>Goldene Marker</b> antippen = Beweis sichern</div></li>
+        <li><span>3</span><div>Ab <b>3 von 5</b> Beweisen fällst du dein Urteil</div></li>
+      </ol>
+      <button class="btn btn-gold" type="button" id="btnCoach">Los geht’s</button>
     </div>
   </div>
   <div class="loader" id="loader" role="status" aria-live="polite">
@@ -352,6 +467,7 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
       <p class="kicker">Akte 24/12 · 2D-Fassung</p>
       <h1 id="akteTitle" class="h" tabindex="-1">Die Beweis&shy;aufnahme <span>in 5 Blättern</span></h1>
       <p>Zwei Tage vor Heiligabend legen 1.200 Elfen die Arbeit nieder. Der Schlitten steht still. Der Weihnachtsmann – „der Chef“ – klagt die Elfen-Gewerkschaft wegen Sabotage an. Die Gewerkschaft kontert: 300 Jahre Nachtschicht, null Urlaub, Bezahlung in Lebkuchen. Jedes Blatt, das Sie lesen, gilt als gesichert.</p>
+      <p class="probe-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Fall 24/12 ist ein Kampagnen-Probefall. Im Colosseum wird ein anderer Fall verhandelt.</span></p>
     </div>
     <ol class="ev-list" id="evList"></ol>
     <aside class="bonus" aria-labelledby="bonusTitle">
@@ -365,7 +481,7 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
         <button class="btn btn-gold" type="button" data-go="verdict">Zum Urteil</button>
         <button class="btn btn-outline" type="button" id="btnAkteTo3D">Lieber den Tatort in 3D betreten</button>
       </div>
-      <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+      <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span><small>Studentisches Projekt – keine offizielle Seite von Colosseum Berlin oder Fever.</small></p>
     </section>
   </main>
   <div style="height:calc(20px + var(--sb))"></div>
@@ -392,7 +508,7 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
     </div>
     <button class="btn-text" type="button" data-verdict="mehr">Ich brauche mehr Beweise</button>
     <p class="quote">„Ruhe im Saal, oder es schneit!“ – Frau Holle, Vorsitzende Richterin</p>
-    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span><small>Studentisches Projekt – keine offizielle Seite von Colosseum Berlin oder Fever.</small></p>
   </div>
 </section>
 
@@ -405,13 +521,13 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
     <div class="cardview"><canvas id="idCanvas" width="1080" height="1920" role="img" aria-label="Jury-Ausweis"></canvas></div>
     <div class="row">
       <button class="btn btn-outline" type="button" id="btnSave">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Ausweis speichern</button>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Speichern<span class="sr-only"> (Jury-Ausweis als Bild)</span></button>
       <button class="btn btn-outline" type="button" id="btnShare">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>Teilen</button>
     </div>
     <a class="btn btn-red ticket-cta" id="btnTicket" href="#" target="_blank" rel="noopener">
       Platz auf der Geschworenenbank sichern – Tickets
-      <small>19.12.2026 &amp; 09.01.2027 · je 16:00 &amp; 18:30 Uhr · ab 39 € · via Fever</small>
+      <small>19.12.2026 &amp; 09.01.2027 · je 16:00 &amp; 18:30 Uhr · ab 36 € · via Fever</small>
     </a>
     <div class="reward" aria-labelledby="rewardLbl">
       <div><div class="rl" id="rewardLbl">Belohnung fürs Beweise-Sichern</div><div class="code" id="rewardCode">BEWEIS5</div></div>
@@ -424,10 +540,11 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
       <div class="baro-legend"><div class="l"><b>TEAM ELFEN</b><br><span id="baroEL">–</span></div><div class="r"><b>TEAM CHEF</b><br><span id="baroCL">–</span></div></div>
       <p class="you" id="baroYou"></p>
     </section>
-    <p class="live">Das echte Urteil fällt live im Colosseum.</p>
-    <p class="facts"><strong>THE JURY – Weihnachten vor Gericht</strong><br>Sa 19.12.2026 &amp; Sa 09.01.2027 · jeweils 16:00 &amp; 18:30 Uhr · ab 39 €<br>Einlass 30 Min vorher, kein Späteinlass<br>Colosseum Berlin, Schönhauser Allee 123 (Eingang Gleimstraße 31–33)<br>U2 Eberswalder Straße · S+U Schönhauser Allee · Tram M1</p>
+    <p class="live">Dein echter Fall wartet live im Colosseum.</p>
+    <p class="probe-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Fall 24/12 ist ein Kampagnen-Probefall. Im Colosseum wird ein anderer Fall verhandelt.</span></p>
+    <p class="facts"><strong>THE JURY – Weihnachten vor Gericht</strong><br>Sa 19.12.2026 &amp; Sa 09.01.2027 · jeweils 16:00 &amp; 18:30 Uhr · ab 36 €<br>Einlass 30 Min vorher, kein Späteinlass<br>Colosseum Berlin, Schönhauser Allee 123 (Eingang Gleimstraße 31–33)<br>U2 Eberswalder Straße · S+U Schönhauser Allee · Tram M1</p>
     <div style="text-align:center"><button class="btn-text" type="button" id="btnRestart">Fall neu aufrollen</button></div>
-    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span><small>Studentisches Projekt – keine offizielle Seite von Colosseum Berlin oder Fever.</small></p>
   </div>
 </section>
 
@@ -460,7 +577,14 @@ dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
 /* =========================================================
    KONFIGURATION
    ========================================================= */
-const AFRAME_URL = 'https://cdn.jsdelivr.net/npm/aframe@1.6.0/dist/aframe-master.min.js';
+// Alles lokal (vendor/): keine Requests an jsDelivr oder Google Fonts.
+const AFRAME_URL = 'vendor/aframe-1.6.0.min.js';          // A-Frame 1.6.0 (MIT), unverändert von npm
+const QR_URL = 'vendor/qrcode-generator-1.4.4.js';        // QR-Code für den Desktop-AR-Hinweis (MIT)
+// Datenschutz: A-Frames Cardboard-Polyfill (nur iOS ohne WebXR) würde sonst eine Geräte-Datenbank
+// von dpdb.webvr.rocks nachladen. Wir blocken das – die eingebaute Standard-Datenbank reicht.
+(() => { const P = XMLHttpRequest.prototype, o = P.open, s = P.send;
+  P.open = function(m, u){ this.__akteBlocked = /dpdb\.webvr\.rocks/.test(String(u)); return o.apply(this, arguments); };
+  P.send = function(){ if (this.__akteBlocked) return; return s.apply(this, arguments); }; })();
 const CONFIG = {
   // Platzhalter: durch die echte Fever-Event-URL ersetzen.
   ticketBase: 'https://feverup.com/de/berlin',
@@ -523,7 +647,7 @@ const EV = {
 const VERDICTS = {
   elfen: { label:'Die Elfen-Gewerkschaft', line:'Die Elfen-Gewerkschaft hat Weihnachten ruiniert.', team:'TEAM CHEF', short:'SCHULDIG: DIE ELFEN' },
   chef:  { label:'Der Chef', line:'Der Chef hat Weihnachten ruiniert.', team:'TEAM ELFEN', short:'SCHULDIG: DER CHEF' },
-  vertagt:{ label:'Vertagt', line:'Urteil vertagt – ich entscheide live im Saal.', team:'UNENTSCHLOSSEN', short:'URTEIL VERTAGT' }
+  vertagt:{ label:'Vertagt', line:'Urteil vertagt – ich wäge die Beweise noch ab.', team:'UNENTSCHLOSSEN', short:'URTEIL VERTAGT' }
 };
 
 /* =========================================================
@@ -637,7 +761,7 @@ function texStrike(){
   const g = x.createLinearGradient(0, 0, 0, 512); g.addColorStop(0, '#d2b07e'); g.addColorStop(1, '#b8915e'); x.fillStyle = g; x.fillRect(0, 0, 768, 512);
   for (let i = 0; i < 40; i++) { x.strokeStyle = 'rgba(90,60,30,.12)'; x.beginPath(); const yy = r() * 512; x.moveTo(0, yy); x.lineTo(768, yy + (r() - .5) * 20); x.stroke(); }
   x.save(); x.translate(384, 260); x.rotate(-0.035); x.textAlign = 'center';
-  x.fillStyle = '#0A0F2B'; x.font = FH(900, 104); x.fillText('KEINE GESCHENKE', 0, -78);
+  x.fillStyle = '#0A0F2B'; fitFont(x, 'KEINE GESCHENKE', 690, 104, s => FH(900, s)); x.fillText('KEINE GESCHENKE', 0, -78);
   x.fillStyle = '#9C2113'; x.font = FH(900, 82); x.fillText('OHNE', 0, 10);
   x.fillStyle = '#0A0F2B'; fitFont(x, 'GERECHTIGKEIT!', 690, 112, s => FH(900, s)); x.fillText('GERECHTIGKEIT!', 0, 112);
   x.restore();
@@ -732,12 +856,15 @@ function texGraffiti(lines, colors, seed, w = 1024, h = 384){
   return c;
 }
 function texNum(n, found){
-  const c = mkCanvas(256, 256), x = c.getContext('2d');
-  x.beginPath(); x.arc(128, 128, 120, 0, 7); x.fillStyle = found ? '#EFEBE6' : '#C7A065'; x.fill();
-  x.lineWidth = 8; x.strokeStyle = found ? '#9C2113' : '#0A0F2B'; x.beginPath(); x.arc(128, 128, 104, 0, 7); x.stroke();
+  // Außen: halbtransparenter Navy-Rand (Kontrast hinter dem Goldring), innen: Nummern-Scheibe (Radius 0,21 von 0,30)
+  const c = mkCanvas(256, 256), x = c.getContext('2d'), R = 89;
+  x.translate(128, 128);
+  x.beginPath(); x.arc(0, 0, 127, 0, 7); x.fillStyle = 'rgba(10,15,43,.62)'; x.fill();
+  x.beginPath(); x.arc(0, 0, R, 0, 7); x.fillStyle = found ? '#EFEBE6' : '#C7A065'; x.fill();
+  x.lineWidth = 6; x.strokeStyle = found ? '#9C2113' : '#0A0F2B'; x.beginPath(); x.arc(0, 0, R - 12, 0, 7); x.stroke();
   x.fillStyle = found ? '#9C2113' : '#0A0F2B'; x.textAlign = 'center'; x.textBaseline = 'middle';
-  if (found) { x.lineWidth = 22; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = '#9C2113'; x.beginPath(); x.moveTo(78, 132); x.lineTo(114, 168); x.lineTo(182, 92); x.stroke(); }
-  else { x.font = FH(900, 150); x.fillText(String(n), 128, 140); }
+  if (found) { x.lineWidth = 16; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = '#9C2113'; x.beginPath(); x.moveTo(-36, 3); x.lineTo(-10, 29); x.lineTo(38, -26); x.stroke(); }
+  else { x.font = FH(900, 112); x.fillText(String(n), 0, 9); }
   return c;
 }
 function texGlow(){ const c = mkCanvas(64, 64), x = c.getContext('2d'); const g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(.25, 'rgba(255,255,255,.55)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, 64, 64); return c; }
@@ -790,11 +917,13 @@ function show(name, opts = {}){
 window.addEventListener('popstate', e => { $$('dialog[open]').forEach(d => d.close()); const s = (e.state && e.state.s) || 'start'; if (s === 'xr') enter3D(false); else show(s, { push: false }); });
 let toastT;
 function toast(html, ms = 3800){ const t = $('#toast'); t.innerHTML = html; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), ms); }
-function updateProgress(){
-  const n = state.found.size;
+let shownN = 0;
+function updateProgress(justFound){
+  const n = state.found.size, grew = n > shownN; shownN = n;
   $$('.foundN').forEach(e => e.textContent = n);
-  $$('.slots').forEach(s => $$('i', s).forEach((i, k) => i.classList.toggle('on', k < n)));
-  $$('.chip').forEach(c => { const id = +c.dataset.ev; const f = state.found.has(id); c.classList.toggle('found', f); c.setAttribute('aria-label', `Beweisstück ${id}: ${EV[id].title}${f ? ' – gesichert' : ' – noch nicht gesichert'}`); });
+  $$('.slots').forEach(s => $$('i', s).forEach((i, k) => { i.classList.toggle('on', k < n); if (grew && !REDUCED && k === n - 1) { i.classList.remove('pop'); void i.offsetWidth; i.classList.add('pop'); } }));
+  $$('.chip').forEach(c => { const id = +c.dataset.ev; const f = state.found.has(id); c.classList.toggle('found', f); c.setAttribute('aria-label', `Beweisstück ${id}: ${EV[id].title}${f ? ' – gesichert' : ' – noch nicht gesichert'}`);
+    if (justFound === id && !REDUCED) { c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); } });
   const vb = $('#btnVerdict'); const ready = n >= 3;
   vb.setAttribute('aria-disabled', ready ? 'false' : 'true'); vb.classList.toggle('ready', n === 5);
   $('#verdictHint').textContent = ready ? (n === 5 ? 'alle Beweise gesichert' : `${n}/5 – oder weiter ermitteln`) : `ab 3 Beweisen (${n}/3)`;
@@ -808,8 +937,17 @@ function secure(id, mode){
     state.allTracked = true;
     track('all_evidence', { mode, seconds: Math.round((performance.now() - state.t0) / 1000) });
   }
-  updateProgress(); if (sceneApi.markFound) sceneApi.markFound(id);
+  updateProgress(first ? id : null); if (sceneApi.markFound) sceneApi.markFound(id);
+  if (first) haptic(state.found.size === 5 ? [20, 60, 20, 60, 40] : [16, 40, 24]);
   return first;
+}
+/* Haptik: kurzes „Stempel“-Muster, wo verfügbar (Android Chrome; iOS ignoriert vibrate) */
+function haptic(p){ try { if (navigator.vibrate) navigator.vibrate(p); } catch(e) {} }
+/* Plattform-Hinweise für den AR-Einstieg */
+function arPlatform(){
+  if (IS_IOS) return { long: 'iPhone/iPad: öffnet AR Quick Look', pill: 'iPhone · AR Quick Look', short: 'AR Quick Look' };
+  if (IS_ANDROID) return { long: 'Android: öffnet Google Scene Viewer', pill: 'Android · Scene Viewer', short: 'Scene Viewer' };
+  return { long: 'Am Smartphone öffnen – hier per QR-Code', pill: 'Am Handy · QR-Code', short: 'am Smartphone' };
 }
 
 /* =========================================================
@@ -827,18 +965,20 @@ function evidenceInner(id, hTag, idPrefix){
     <div class="pro elfen"><h4>Für die Elfen spricht …</h4><p>${e.elfen}</p></div>
     <div class="pro chef"><h4>Für den Chef spricht …</h4><p>${e.chef}</p></div>`;
 }
-function openCard(id){
+function openCard(id, fresh){
   const dlg = $('#cardDlg'), n = state.found.size, all = n === 5;
   $('#cardSheet').innerHTML = `<button class="x" type="button" data-close aria-label="Akte schließen">${ICON_X}</button>
     <div class="file-head"><span>Akte 24/12 · Blatt ${id}/5</span><span>Asservat</span></div>
+    <p class="secured"><i aria-hidden="true">✓</i> ${fresh ? 'Beweis gesichert' : 'Bereits gesichert'} · ${n}/5</p>
     ${evidenceInner(id, 'h2', 'cardTitle-')}
     <div class="dlg-actions">
-      ${id === 3 ? '<button class="btn btn-red" type="button" data-act="ar">Den Schlitten in AR ansehen</button>' : ''}
+      ${id === 3 ? `<button class="btn btn-red" type="button" data-act="ar">Den Schlitten in AR ansehen</button><p class="ar-note">${arPlatform().long}</p>` : ''}
       ${all ? '<button class="btn btn-gold" type="button" data-act="verdict">Alle Beweise gesichert – zum Urteil</button><button class="btn btn-outline" type="button" data-close>Weiter umsehen</button>'
             : `<button class="btn btn-gold" type="button" data-close>Beweis gesichert · weiter ermitteln</button>${n >= 3 ? '<button class="btn btn-outline" type="button" data-act="verdict">Schon jetzt zum Urteil</button>' : ''}`}
     </div>
     <p class="dlg-progress">Beweise gesichert: ${n}/5</p>`;
   dlg.setAttribute('aria-labelledby', 'cardTitle-' + id);
+  if (fresh && !REDUCED) { const st = $('#cardSheet .ev-top .stamp'); if (st) st.classList.add('slam'); }
   if (!dlg.open) dlg.showModal();
   dlg.scrollTop = 0; $('#cardSheet').scrollTop = 0;
   $('#cardSheet').focus({ preventScroll: true });
@@ -856,9 +996,13 @@ $('#cardDlg').addEventListener('close', () => {
 const infoDlg = $('#infoDlg');
 infoDlg.addEventListener('click', e => { if (e.target === infoDlg || e.target.closest('[data-close]')) infoDlg.close(); });
 function openInfo(kind){
+  const arLink = location.origin + location.pathname + '?src=desktop_qr&ar=1';
   const T = {
-    ar: ['AR auf dem Smartphone', 'AR',
-      '<p>Das AR-Beweisstück öffnet sich auf dem <strong>Smartphone</strong>: am <strong>iPhone/iPad</strong> per AR Quick Look (Safari oder Chrome), auf <strong>Android</strong> per Google Scene Viewer bzw. WebXR (Google Play Services for AR).</p><p>Scanne einfach den QR-Code auf dem Plakat mit der Handykamera und tippe auf „AR: Beweisstück #3“. Am Computer bleibt der 360°-Tatort: mit gedrückter Maus ziehen.</p>'],
+    ar: ['Beweisstück #3 in AR', 'AR',
+      `<div class="ar-prev"><img src="ar/vorschau_schlitten.png" alt="Vorschau: der rote Streik-Schlitten mit Asservaten-Anhänger, Beweisstück #3" width="300" height="200"><div class="qr" id="arQr" role="img" aria-label="QR-Code zum Öffnen dieser Seite auf dem Smartphone"></div><p class="qr-cap">AR ist ein Smartphone-Feature. Scanne den QR-Code mit der Handykamera:</p></div>
+      <ol class="steps"><li><strong>iPhone/iPad</strong> (Safari, iOS 12+): öffnet <strong>AR Quick Look</strong> – Schlitten auf den Boden stellen, mit zwei Fingern skalieren.</li><li><strong>Android</strong> (Chrome, ARCore): öffnet <strong>Google Scene Viewer</strong> bzw. WebXR im Tatort.</li></ol>
+      <div class="linkbox"><code id="arLink">${arLink}</code><button class="btn btn-outline" type="button" id="btnCopyArLink">Link kopieren</button></div>
+      <p style="font-size:13px;color:#3a3530;margin:8px 0 0">Am Computer bleibt der 360°-Tatort: mit gedrückter Maus ziehen und Marker anklicken.</p>`],
     arios: ['AR öffnet nicht?', 'iPhone', '<p>Falls sich AR nicht öffnet: Seite in <strong>Safari</strong> öffnen (Teilen → In Safari öffnen) und erneut auf „AR“ tippen. AR Quick Look braucht iOS 12 oder neuer.</p>'],
     arfail: ['AR konnte nicht starten', 'Fehler', '<p>Die AR-Sitzung wurde abgelehnt oder abgebrochen. Prüfe die Kamera-Berechtigung und versuche es erneut – oder ermittle im 360°-Modus weiter.</p>'],
     vr: ['Kein VR-Headset erkannt', 'VR', '<p>Der VR-Modus funktioniert mit Cardboard-Brillen (Smartphone) und Headsets wie Meta Quest. Am Desktop ohne Headset bleibt der 360°-Modus: Mit gedrückter Maus ziehen, um dich umzusehen.</p>'],
@@ -867,6 +1011,17 @@ function openInfo(kind){
   $('#infoTitle').textContent = T[0]; $('#infoStamp').textContent = T[1]; $('#infoBody').innerHTML = T[2];
   if (!infoDlg.open) infoDlg.showModal();
   $('[data-close].btn', infoDlg).focus();
+  if (kind === 'ar') {
+    loadScript(QR_URL).then(() => { const q = window.qrcode(0, 'M'); q.addData(arLink); q.make(); const box = $('#arQr'); if (box) box.innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); })
+      .catch(() => { const box = $('#arQr'); if (box) box.hidden = true; });
+    const cb = $('#btnCopyArLink');
+    if (cb) cb.addEventListener('click', async () => { try { await navigator.clipboard.writeText(arLink); cb.textContent = 'Kopiert ✓'; } catch(e) { cb.textContent = 'Bitte markieren'; } });
+  }
+}
+const scriptCache = {};
+function loadScript(src){
+  if (!scriptCache[src]) scriptCache[src] = new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => { scriptCache[src] = null; rej(new Error('load ' + src)); }; document.head.appendChild(s); });
+  return scriptCache[src];
 }
 
 /* =========================================================
@@ -899,7 +1054,7 @@ function goVerdict(){
 }
 function renderVerdict(){
   const n = state.found.size;
-  $('#verdictSub').textContent = `Sie haben ${n} von 5 Beweisen gesichert. Frau Holle bittet um Ruhe im Saal – oder es schneit.`;
+  $('#verdictSub').textContent = `Sie haben ${n} von 5 Beweisen gesichert. Wägen Sie ab: Wer trägt die Schuld am Streik?`;
   $('#verdictBackLbl').textContent = state.lastScene === 'akte' ? 'Zurück zur Akte' : (state.lastScene === 'xr' ? 'Zurück zum Tatort' : 'Zur Vorladung');
 }
 $('#btnVerdictBack').addEventListener('click', () => { if (state.lastScene === 'xr') enter3D(false); else show(state.lastScene === 'akte' ? 'akte' : 'start'); });
@@ -937,9 +1092,9 @@ async function renderResult(){
   $('#baroE').style.width = '50%'; requestAnimationFrame(() => setTimeout(() => $('#baroE').style.width = pe + '%', 60));
   $('#baroEL').textContent = `${pe} % · ${e.toLocaleString('de-DE')}`; $('#baroCL').textContent = `${100 - pe} % · ${c.toLocaleString('de-DE')}`;
   $('#baroBar').setAttribute('aria-label', `Demo-Daten: Team Elfen ${pe} Prozent, Team Chef ${100 - pe} Prozent`);
-  $('#baroYou').textContent = state.verdict === 'vertagt' ? 'Ihre Stimme: noch unentschlossen – zählt erst live im Saal.' : `Ihre Stimme zählt für ${v.team}.`;
+  $('#baroYou').textContent = state.verdict === 'vertagt' ? 'Ihre Stimme: noch unentschlossen.' : `Ihre Stimme zählt für ${v.team}.`;
   await fontsReady; drawIdCard($('#idCanvas'));
-  $('#idCanvas').setAttribute('aria-label', `Jury-Ausweis. Geschworene*r Nr. ${state.jurorNr}. Fall 24/12, Nordpol gegen die Elfen-Gewerkschaft. Mein Urteil: ${v.line} Lager: ${v.team}. Beweise gesichert: ${state.found.size} von 5. THE JURY – Weihnachten vor Gericht, 19.12.2026 und 09.01.2027, Colosseum Berlin. Das echte Urteil fällt live im Colosseum. ${CONFIG.hashtags}`);
+  $('#idCanvas').setAttribute('aria-label', `Jury-Ausweis. Geschworene*r Nr. ${state.jurorNr}. Fall 24/12, Nordpol gegen die Elfen-Gewerkschaft. Mein Urteil: ${v.line} Lager: ${v.team}. Beweise gesichert: ${state.found.size} von 5. THE JURY – Weihnachten vor Gericht, 19.12.2026 und 09.01.2027, Colosseum Berlin, ab 36 Euro. Dein echter Fall wartet live im Colosseum. Fall 24/12 ist ein Kampagnen-Probefall. ${CONFIG.hashtags}`);
 }
 function drawIdCard(cv){
   const x = cv.getContext('2d'), W = 1080, H = 1920, r = mulberry32(+state.jurorNr);
@@ -983,12 +1138,13 @@ function drawIdCard(cv){
   x.restore();
   // Show-Infos
   x.textAlign = 'center';
-  x.fillStyle = '#C7A065'; x.font = FH(900, 54); x.fillText('THE JURY – WEIHNACHTEN VOR GERICHT', W / 2, 1656, 980);
-  x.fillStyle = '#EFEBE6'; x.font = FH(800, 44); x.fillText('19.12.2026 & 09.01.2027 · COLOSSEUM BERLIN', W / 2, 1712, 980);
-  x.font = FB(700, 30); x.fillText('jeweils 16:00 & 18:30 Uhr · Schönhauser Allee 123 · ab 39 €', W / 2, 1756, 980);
-  x.font = FB(400, 36, true); x.fillText('Das echte Urteil fällt live im Colosseum.', W / 2, 1806);
-  x.fillStyle = '#C7A065'; x.font = FB(700, 34); x.fillText(CONFIG.hashtags, W / 2, 1850);
-  x.fillStyle = 'rgba(239,235,230,.6)'; x.font = FB(400, 22); x.fillText('Prototyp · Hochschulprojekt · KI-gestützt erstellt', W / 2, 1896);
+  x.fillStyle = '#C7A065'; x.font = FH(900, 54); x.fillText('THE JURY – WEIHNACHTEN VOR GERICHT', W / 2, 1640, 980);
+  x.fillStyle = '#EFEBE6'; x.font = FH(800, 44); x.fillText('19.12.2026 & 09.01.2027 · COLOSSEUM BERLIN', W / 2, 1694, 980);
+  x.font = FB(700, 30); x.fillText('jeweils 16:00 & 18:30 Uhr · Schönhauser Allee 123 · ab 36 €', W / 2, 1738, 980);
+  x.font = FB(400, 36, true); x.fillText('Dein echter Fall wartet live im Colosseum.', W / 2, 1786, 980);
+  x.fillStyle = '#C7A065'; x.font = FB(700, 34); x.fillText(CONFIG.hashtags, W / 2, 1830);
+  x.fillStyle = 'rgba(239,235,230,.78)'; x.font = FB(400, 23); x.fillText('Fall 24/12 ist ein Kampagnen-Probefall. Im Colosseum wird ein anderer Fall verhandelt.', W / 2, 1872, 1000);
+  x.fillStyle = 'rgba(239,235,230,.6)'; x.font = FB(400, 21); x.fillText('Prototyp · Hochschulprojekt · KI-gestützt · keine offizielle Seite von Colosseum/Fever', W / 2, 1904, 1000);
 }
 function cardBlob(){ return new Promise(res => $('#idCanvas').toBlob(b => res(b), 'image/png')); }
 $('#btnSave').addEventListener('click', async () => {
@@ -999,7 +1155,7 @@ $('#btnSave').addEventListener('click', async () => {
 $('#btnShare').addEventListener('click', async () => {
   const v = VERDICTS[state.verdict] || VERDICTS.vertagt;
   const shareUrl = location.origin + location.pathname + '?utm_source=share&utm_medium=social&utm_campaign=akte_weihnachten';
-  const text = `Ich bin Geschworene*r Nr. ${state.jurorNr} im Fall 24/12. Mein Urteil: ${v.line} Das echte Urteil fällt live im Colosseum Berlin (19.12. & 09.01.). ${CONFIG.hashtags}`;
+  const text = `Ich bin Geschworene*r Nr. ${state.jurorNr} im Fall 24/12. Mein Urteil: ${v.line} Dein echter Fall wartet live im Colosseum Berlin (19.12. & 09.01.). ${CONFIG.hashtags}`;
   let method = 'clipboard';
   try {
     const b = await cardBlob(); const file = new File([b], `jury-ausweis-${state.jurorNr}.png`, { type: 'image/png' });
@@ -1039,7 +1195,7 @@ let aframePromise = null, scene = null, sceneReady = false, gyroGranted = null, 
 const sceneApi = {};
 function loadAFrame(){
   if (window.AFRAME) return Promise.resolve();
-  if (!aframePromise) aframePromise = new Promise((res, rej) => { const s = document.createElement('script'); s.src = AFRAME_URL; s.crossOrigin = 'anonymous'; s.onload = res; s.onerror = () => { aframePromise = null; rej(new Error('A-Frame load failed')); }; document.head.appendChild(s); });
+  if (!aframePromise) aframePromise = new Promise((res, rej) => { const s = document.createElement('script'); s.src = AFRAME_URL; s.onload = res; s.onerror = () => { aframePromise = null; rej(new Error('A-Frame load failed')); }; document.head.appendChild(s); });
   return aframePromise;
 }
 function hasWebGL(){ try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch(e) { return false; } }
@@ -1078,14 +1234,31 @@ async function enter3D(fresh){
 function buildChips(){
   const box = $('#chips'); if (box.childElementCount) return;
   box.innerHTML = [1, 2, 3, 4, 5].map(id => `<button class="chip glass" type="button" data-ev="${id}"><span class="n">${id}</span><span class="t">${EV[id].short}</span></button>`).join('');
-  $$('.chip', box).forEach(c => c.addEventListener('click', () => { const id = +c.dataset.ev; if (sceneApi.turnTo) sceneApi.turnTo(id, () => { secure(id, '3d'); openCard(id); }); else { secure(id, '3d'); openCard(id); } }));
+  $$('.chip', box).forEach(c => c.addEventListener('click', () => { const id = +c.dataset.ev; dismissCoach('chip');
+    const go = () => { const f = secure(id, '3d'); openCard(id, f); };
+    if (sceneApi.turnTo) sceneApi.turnTo(id, go); else go(); }));
   updateProgress();
 }
+/* ---------- Coach-Mark: die ersten 5 Sekunden ---------- */
+let coachT0 = 0;
+function showCoach(){
+  const c = $('#coach'); if (!c || state.coachDone) return;
+  c.hidden = false; c.classList.remove('out'); coachT0 = performance.now(); state.coachYaw = null;
+  track('coach_shown', {});
+}
+function dismissCoach(how){
+  const c = $('#coach'); if (!c || c.hidden || state.coachDone) { state.coachDone = true; return; }
+  state.coachDone = true; c.classList.add('out');
+  setTimeout(() => { c.hidden = true; }, REDUCED ? 0 : 350);
+  track('coach_dismissed', { how, ms: Math.round(performance.now() - coachT0) });
+}
+$('#btnCoach').addEventListener('click', () => dismissCoach('button'));
+$('#cue').addEventListener('click', () => { const id = +$('#cue').dataset.ev; if (id && sceneApi.turnTo) { dismissCoach('cue'); sceneApi.turnTo(id); track('cue_used', { id }); } });
 $('#btnExit').addEventListener('click', () => show('start'));
 $('#btnVerdict').addEventListener('click', goVerdict);
 const UA = navigator.userAgent || '';
-const IS_IOS = /iPad|iPhone|iPod/.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const IS_ANDROID = /Android/i.test(UA);
+const IS_IOS = !IS_ANDROID && (/iPad|iPhone|iPod/.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
 const AR_GLB = new URL('ar/beweis_schlitten.glb', location.href).href;
 const AR_USDZ = new URL('ar/beweis_schlitten.usdz', location.href).href;
 function arQuickLook(origin){
@@ -1132,8 +1305,8 @@ function resumeScene(){
   if (scene.renderer && scene.render) scene.renderer.setAnimationLoop(scene.render);
   scene.play();
   setFov();
-  track('xr_start', { gyro: String(gyroGranted), webxr_ar: arSupported, found: state.found.size, reduced_motion: REDUCED });
-  if (!state.hintShown) { state.hintShown = true; setTimeout(() => toast('<b>Schau dich um:</b> Handy bewegen oder wischen. Tippe auf die <b>goldenen Marker</b>, um Beweise zu sichern.', 5200), 500); }
+  track('xr_start', { gyro: String(gyroGranted), webxr_ar: arSupported, found: state.found.size, reduced_motion: REDUCED, pixel_ratio: scene.renderer ? scene.renderer.getPixelRatio() : null });
+  if (!state.hintShown) { state.hintShown = true; if (qs.get('toast') !== '0' && qs.get('state') !== 'evidence') showCoach(); else state.coachDone = true; }
 }
 function leaveScene(){
   if (!scene) return;
@@ -1145,8 +1318,19 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && cur
 function setFov(){ const cam = document.getElementById('cam'); if (!cam) return; cam.setAttribute('camera', 'fov', innerHeight > innerWidth ? 82 : 62); }
 addEventListener('resize', setFov);
 
-/* Positionen (Weltkoordinaten) der Marker */
-const MARK = { 1: [-5.4, 2.65, -2.0], 2: [1.1, 2.3, -3.2], 3: [3.35, 2.0, -0.7], 4: [2.55, 1.75, 3.35], 5: [-3.1, 1.85, 3.0] };
+/* Positionen (Weltkoordinaten) der Marker und der Beweisstücke darunter (Ziel der Führungslinie / Lichtinsel) */
+const MARK = { 1: [-5.3, 2.9, -2.0], 2: [0.3, 2.12, -3.0], 3: [3.35, 2.25, -0.7], 4: [2.55, 1.8, 3.35], 5: [-3.1, 2.1, 3.0] };
+const TGT  = { 1: [-5.7, 2.18, -2.2], 2: [0.3, 1.8, -3.0], 3: [3.45, 1.46, -0.62], 4: [2.55, 0.74, 3.35], 5: [-3.05, 1.36, 3.0] };
+const MOBILE = window.matchMedia ? matchMedia('(pointer: coarse)').matches : false;
+/* Pixel-Ratio-Deckel: Mittelklasse-Handys rendern mit max. 1,5× statt 3× (≈ 75 % weniger Pixel), Desktop max. 2× */
+const PR_CAP = qs.get('hq') === '1' ? 3 : (MOBILE ? 1.5 : 2);
+let prNow = 1;
+function applyPixelCap(pr){
+  if (!scene || !scene.renderer || scene.is('vr-mode')) return;
+  prNow = Math.min(window.devicePixelRatio || 1, pr || PR_CAP);
+  scene.renderer.setPixelRatio(prNow); if (scene.resize) scene.resize();
+}
+const FOG = { color: '#060920', density: 0.085 };
 
 function registerComponents(){
   const A = window.AFRAME, T = A.THREE;
@@ -1155,36 +1339,158 @@ function registerComponents(){
 
   A.registerComponent('face-origin', { init(){ const o = this.el.object3D; o.lookAt(0, o.position.y, 0); } });
 
+  const tmpV = new T.Vector3(), tmpC = new T.Vector3();
   A.registerComponent('ev-marker', {
     schema: { n: { type: 'int', default: 1 } },
     init(){
       const n = this.data.n, g = new T.Group();
-      this.ringMat = new T.MeshBasicMaterial({ color: 0xC7A065, transparent: true, opacity: .95, fog: false });
-      this.haloMat = new T.MeshBasicMaterial({ color: 0xC7A065, transparent: true, opacity: .3, fog: false, depthWrite: false, side: T.DoubleSide });
-      this.ring = new T.Mesh(new T.TorusGeometry(.27, .022, 8, 48), this.ringMat);
+      // depthTest aus + hohe renderOrder: Marker werden nie von Möbeln verdeckt (Auffindbarkeit)
+      const base = { transparent: true, fog: false, depthTest: false, depthWrite: false };
+      this.ringMat = new T.MeshBasicMaterial(Object.assign({ color: 0xC7A065, opacity: .95 }, base));
+      this.haloMat = new T.MeshBasicMaterial(Object.assign({ color: 0xffd998, opacity: .3, side: T.DoubleSide }, base));
+      this.burstMat = new T.MeshBasicMaterial(Object.assign({ color: 0xffd998, opacity: 0, side: T.DoubleSide }, base));
+      this.ring = new T.Mesh(new T.TorusGeometry(.27, .024, 8, 48), this.ringMat);
       this.halo = new T.Mesh(new T.RingGeometry(.31, .37, 48), this.haloMat);
+      this.burst = new T.Mesh(new T.RingGeometry(.3, .34, 48), this.burstMat); this.burst.visible = false;
       const mk = c => { const t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; return t; };
       this.texN = mk(texNum(n, false)); this.texF = mk(texNum(n, true));
-      this.discMat = new T.MeshBasicMaterial({ map: this.texN, transparent: true, fog: false });
-      const disc = new T.Mesh(new T.CircleGeometry(.21, 40), this.discMat); disc.position.z = .005;
-      g.add(this.halo, this.ring, disc); this.g = g; this.el.setObject3D('marker', g);
-      this.phase = n * 1.3; this.found = false; this.baseY = this.el.object3D.position.y;
+      // Scheibe inkl. dunklem Kontrast-Rand (Navy) in EINER Textur → Marker lesbar vor hellen und dunklen Flächen
+      this.discMat = new T.MeshBasicMaterial(Object.assign({ map: this.texN }, base));
+      const disc = new T.Mesh(new T.CircleGeometry(.3, 40), this.discMat); disc.position.z = -.003;
+      [disc, this.halo, this.burst, this.ring].forEach((m, i) => { m.renderOrder = 10 + i; g.add(m); });
+      this.g = g; this.el.setObject3D('marker', g);
+      this.phase = n * 1.3; this.found = false; this.baseY = this.el.object3D.position.y; this.burstT = -1;
     },
-    setFound(){ this.found = true; this.discMat.map = this.texF; this.discMat.needsUpdate = true; this.ringMat.color.set(0x9C2113); this.haloMat.opacity = 0; this.g.scale.setScalar(.8); },
-    tick(t){
+    setFound(){
+      if (this.found) return; this.found = true;
+      this.discMat.map = this.texF; this.discMat.needsUpdate = true; this.ringMat.color.set(0x9C2113); this.haloMat.opacity = 0; this.g.scale.setScalar(.8);
+      this.burstT = REDUCED ? -1 : 0; this.burst.visible = !REDUCED;
+    },
+    tick(t, dt){
       const cam = this.el.sceneEl.camera; if (!cam) return;
-      cam.getWorldQuaternion(tmpQ); this.el.object3D.quaternion.copy(tmpQ);
+      const o = this.el.object3D;
+      cam.getWorldQuaternion(tmpQ); o.quaternion.copy(tmpQ);
+      // Distanzausgleich: weit entfernte Marker wachsen mit (min. ~6° Sehwinkel), nahe bleiben 1:1
+      cam.getWorldPosition(tmpC); o.getWorldPosition(tmpV);
+      o.scale.setScalar(Math.min(1.8, Math.max(1, tmpV.distanceTo(tmpC) / 3.2)));
+      if (this.burstT >= 0) { this.burstT += dt || 16; const k = Math.min(1, this.burstT / 700);
+        this.burst.scale.setScalar(1 + k * 2.2); this.burstMat.opacity = .9 * (1 - k); if (k >= 1) { this.burstT = -1; this.burst.visible = false; } }
       if (REDUCED || this.found) return;
       const s = Math.sin(t * .0035 + this.phase);
-      this.halo.scale.setScalar(1 + .28 * (s * .5 + .5)); this.haloMat.opacity = .38 - .28 * (s * .5 + .5);
-      this.el.object3D.position.y = this.baseY + Math.sin(t * .0016 + this.phase) * .05;
+      this.halo.scale.setScalar(1 + .28 * (s * .5 + .5)); this.haloMat.opacity = .42 - .3 * (s * .5 + .5);
+      o.position.y = this.baseY + Math.sin(t * .0016 + this.phase) * .05;
     }
   });
 
+  /* Führungslinien Marker → Beweisstück + warme Lichtinseln am Boden (2 Draw-Calls für alle 5) */
+  A.registerComponent('evidence-guides', {
+    init(){
+      const ids = [1, 2, 3, 4, 5], gold = new T.Color(0xC7A065), pos = [], col = [];
+      this.seg = {};
+      ids.forEach(id => {
+        const m = MARK[id], t = TGT[id], s = Math.min(1.8, Math.max(1, Math.hypot(m[0], m[1] - 1.6, m[2]) / 3.2)), y0 = m[1] - .34 * s;
+        if (y0 - t[1] < .15) return;
+        this.seg[id] = pos.length / 6; pos.push(m[0], y0, m[2], t[0], t[1], t[2]); col.push(gold.r, gold.g, gold.b, gold.r * .5, gold.g * .5, gold.b * .5);
+      });
+      const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); lg.setAttribute('color', new T.Float32BufferAttribute(col, 3));
+      this.lines = new T.LineSegments(lg, new T.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .8, fog: false, depthWrite: false }));
+      const glowTex = new T.CanvasTexture(TEX.glow);
+      this.pools = new T.InstancedMesh(new T.CircleGeometry(1, 28), new T.MeshBasicMaterial({ map: glowTex, transparent: true, opacity: .32, depthWrite: false, blending: T.AdditiveBlending, fog: false }), ids.length);
+      const mm = new T.Matrix4(), q = new T.Quaternion().setFromEuler(new T.Euler(-Math.PI / 2, 0, 0)), sc = new T.Vector3(1.15, 1.15, 1.15), p = new T.Vector3(), c = new T.Color(0xffb35c);
+      ids.forEach((id, i) => { p.set(TGT[id][0], .015, TGT[id][2]); mm.compose(p, q, sc); this.pools.setMatrixAt(i, mm); this.pools.setColorAt(i, c); });
+      this.pools.instanceMatrix.needsUpdate = true;
+      const g = new T.Group(); g.add(this.pools, this.lines); this.el.setObject3D('guides', g);
+    },
+    setFound(id){
+      const c = new T.Color(0x6b1a10); this.pools.setColorAt(id - 1, c); this.pools.instanceColor.needsUpdate = true;
+      const k = this.seg[id]; if (k === undefined) return;
+      const a = this.lines.geometry.attributes.color; a.setXYZ(k * 2, .45, .1, .06); a.setXYZ(k * 2 + 1, .3, .07, .04); a.needsUpdate = true;
+    }
+  });
+
+  /* Richtungshinweis + Coach-Abschluss per Blickbewegung + adaptive Qualität */
+  A.registerComponent('hud-cue', {
+    init(){ this.cue = $('#cue'); this.lbl = $('#cueL'); this.arr = $('.dir svg', this.cue); this.v = new T.Vector3(); this.last = ''; this.frames = 0; this.acc = 0; this.adapted = qs.get('hq') === '1';
+      this.rect = null; this.onResize = () => { this.rect = null; }; addEventListener('resize', this.onResize); },
+    remove(){ removeEventListener('resize', this.onResize); },
+    hide(){ if (this.last !== 'off') { this.cue.classList.add('off'); this.last = 'off'; $$('.chip.next').forEach(c => c.classList.remove('next')); } },
+    tick(t, dt){
+      const sc = this.el, cam = sc.camera;
+      // Adaptive Qualität: 90 Frames messen; unter ~30 fps → Pixel-Ratio 1 und weniger Schnee
+      if (!this.adapted && dt) { this.frames++; if (this.frames > 20) this.acc += dt; if (this.frames === 110) { this.adapted = true; const avg = this.acc / 90;
+        if (avg > 33 && prNow > 1) { applyPixelCap(1); const sn = $('[snowfall]'); if (sn && sn.components.snowfall) sn.components.snowfall.thin(); track('quality_adapted', { avg_ms: Math.round(avg), pixel_ratio: 1 }); } } }
+      if (!cam || current !== 'xr' || sc.is('vr-mode') || $('#cardDlg').open) { this.hide(); return; }
+      // Coach automatisch beenden, sobald sich der Blick deutlich bewegt (Gyro oder Wischen)
+      const lc = $('#cam').components['look-controls'];
+      if (!state.coachDone && lc) { const yaw = lc.yawObject.rotation.y + ((lc.magicWindowDeltaEuler && lc.magicWindowDeltaEuler.y) || 0);
+        if (state.coachYaw == null) state.coachYaw = yaw; else if (Math.abs(yaw - state.coachYaw) > .6 && performance.now() - coachT0 > 1200) dismissCoach('look'); }
+      const open = [1, 2, 3, 4, 5].filter(i => !state.found.has(i));
+      if (!open.length) { this.hide(); return; }
+      cam.updateMatrixWorld(); const inv = cam.matrixWorldInverse;
+      let best = null, bestA = 9;
+      for (const id of open) { this.v.fromArray(MARK[id]).applyMatrix4(inv); const a = Math.atan2(Math.hypot(this.v.x, this.v.y), -this.v.z); if (a < bestA) { bestA = a; best = id; } }
+      this.v.fromArray(MARK[best]).applyMatrix4(inv);
+      const cx = this.v.x, cy = this.v.y, cz = this.v.z;
+      this.v.fromArray(MARK[best]).project(cam);
+      const on = cz < 0 && Math.abs(this.v.x) < .86 && this.v.y > -.62 && this.v.y < .8;
+      $$('.chip').forEach(c => c.classList.toggle('next', +c.dataset.ev === best));
+      if (on || !state.coachDone) { this.hide(); return; }
+      if (!this.rect) { const hb = $('.hud-bottom').getBoundingClientRect(), ht = $('.hud-top').getBoundingClientRect(); this.rect = { l: ht.left + 4, r: ht.right - 4, t: ht.bottom + 14, b: hb.top - 14 }; }
+      const R = this.rect, mx = (R.l + R.r) / 2, my = (R.t + R.b) / 2;
+      let ang = Math.atan2(cz > 0 ? cy * .25 : cy, cx); if (cz > 0 && Math.abs(cx) < .2) ang = cx < 0 ? Math.PI : 0;
+      const dx = Math.cos(ang), dy = -Math.sin(ang), hw = (R.r - R.l) / 2 - 30, hh = (R.b - R.t) / 2 - 30;
+      const k = Math.min(hw / Math.max(1e-3, Math.abs(dx)), hh / Math.max(1e-3, Math.abs(dy)));
+      const txt = `#${best} ${EV[best].short}`; if (this.lbl.textContent !== txt) { this.lbl.textContent = txt; this.w = 0; }
+      const w = this.w || (this.w = this.cue.offsetWidth || 120);
+      const x = Math.round(Math.max(R.l, Math.min(R.r - w, mx + dx * k - (dx < 0 ? 24 : w - 24)))), y = Math.round(Math.max(R.t, Math.min(R.b - 48, my + dy * k - 24)));
+      const deg = Math.round(-ang * 180 / Math.PI);
+      const key = best + '|' + x + '|' + y + '|' + deg;
+      if (key === this.last) return; this.last = key;
+      this.cue.classList.remove('off'); this.cue.dataset.ev = best;
+      this.cue.style.transform = `translate3d(${x}px,${y}px,0)`; this.arr.style.transform = `rotate(${deg}deg)`;
+    }
+  });
+
+  /* Statische Geometrie zusammenfassen: gleiche Material-Parameter → 1 Mesh mit Vertex-Farben.
+     Originale bleiben unsichtbar für den Raycaster erhalten (Klicks auf Beweise funktionieren weiter). */
+  sceneApi.mergeStatic = root => {
+    root.updateMatrixWorld(true);
+    const inv = new T.Matrix4().copy(root.matrixWorld).invert(), groups = new Map(), m4 = new T.Matrix4();
+    root.traverse(o => {
+      if (!o.isMesh || o.isInstancedMesh || !o.visible || Array.isArray(o.material)) return;
+      const mat = o.material, el = o.el;
+      if (!mat || mat.map || mat.transparent || mat.opacity < 1 || !o.geometry.attributes.normal) return;
+      if (el && el.components && (el.components['ev-marker'] || el.components.animation)) return;
+      // Cluster = direktes Kind des Raums (Werkbank, Schreibtisch, Schlitten …) → bleibt einzeln frustum-cullbar
+      let p = o.parent, hidden = false, cluster = o; while (p && p !== root) { if (!p.visible) hidden = true; cluster = p; p = p.parent; } if (hidden) return;
+      const key = [cluster.uuid, mat.type, mat.roughness, mat.metalness, mat.side, mat.fog, mat.emissive ? mat.emissive.getHex() : '', mat.emissiveIntensity].join('|');
+      if (!groups.has(key)) groups.set(key, { mat, list: [] }); groups.get(key).list.push(o);
+    });
+    let before = 0, after = 0;
+    groups.forEach(({ mat, list }) => {
+      if (list.length < 2) return;
+      const P = [], N = [], C = [];
+      list.forEach(o => {
+        let g = o.geometry.index ? o.geometry.toNonIndexed() : o.geometry.clone();
+        m4.multiplyMatrices(inv, o.matrixWorld); g.applyMatrix4(m4);
+        const pa = g.attributes.position.array, na = g.attributes.normal.array, c = o.material.color;
+        for (let i = 0; i < pa.length; i++) { P.push(pa[i]); N.push(na[i]); }
+        for (let i = 0; i < pa.length / 3; i++) C.push(c.r, c.g, c.b);
+        g.dispose(); o.visible = false; before++;
+      });
+      const geo = new T.BufferGeometry();
+      geo.setAttribute('position', new T.Float32BufferAttribute(P, 3)); geo.setAttribute('normal', new T.Float32BufferAttribute(N, 3)); geo.setAttribute('color', new T.Float32BufferAttribute(C, 3));
+      const m = mat.clone(); m.vertexColors = true; m.color.setRGB(1, 1, 1);
+      const mesh = new T.Mesh(geo, m); mesh.name = 'merged-static'; root.add(mesh); after++;
+    });
+    return { before, after };
+  };
+
   A.registerComponent('snowfall', {
     schema: { count: { default: 320 } },
+    thin(){ this.n = Math.round(this.n / 2); this.pts.geometry.setDrawRange(0, this.n); },
     init(){
-      const n = REDUCED ? 140 : this.data.count, r = mulberry32(2), pos = new Float32Array(n * 3); this.sp = new Float32Array(n);
+      const n = REDUCED ? 140 : (MOBILE ? Math.round(this.data.count * .7) : this.data.count), r = mulberry32(2), pos = new Float32Array(n * 3); this.sp = new Float32Array(n);
       for (let i = 0; i < n; i++) { pos[i * 3] = (r() - .5) * 11.6; pos[i * 3 + 1] = r() * 5; pos[i * 3 + 2] = (r() - .5) * 11.6; this.sp[i] = .25 + r() * .45; }
       const geo = new T.BufferGeometry(); geo.setAttribute('position', new T.BufferAttribute(pos, 3));
       const tex = new T.CanvasTexture(TEX.snow);
@@ -1200,7 +1506,7 @@ function registerComponents(){
 
   A.registerComponent('string-lights', {
     init(){
-      const strands = [[[-5.9, 4.35, -5.6], [5.9, 4.35, -5.6], .55], [[-5.9, 4.4, -2.2], [5.9, 4.4, 0.6], .8], [[-5.9, 4.4, 2.4], [5.9, 4.4, 3.4], .8], [[-4.2, 4.45, -5.9], [-2.6, 4.45, 5.9], .9], [[4.6, 4.45, -5.9], [3.2, 4.45, 5.9], .9]];
+      const strands = [[[-5.9, 4.8, -5.6], [5.9, 4.8, -5.6], .3], [[-5.9, 4.4, -2.2], [5.9, 4.4, 0.6], .8], [[-5.9, 4.4, 2.4], [5.9, 4.4, 3.4], .8], [[-4.2, 4.45, -5.9], [-2.6, 4.45, 5.9], .9], [[4.6, 4.45, -5.9], [3.2, 4.45, 5.9], .9]];
       const pal = [0xC7A065, 0xff4a30, 0xffe2a8, 0xffb347, 0xd8ecff];
       const pts = [], cols = [], line = [];
       const c = new T.Color();
@@ -1239,7 +1545,7 @@ function registerComponents(){
       const boxes = new T.InstancedMesh(box, new T.MeshStandardMaterial({ roughness: .55, metalness: .1 }), n);
       const ribs = new T.InstancedMesh(box, new T.MeshStandardMaterial({ roughness: .3, metalness: .7 }), n * 2);
       const pal = [0x9C2113, 0xb3291a, 0xC7A065, 0x2E0F0F, 0xEFEBE6, 0x1b2a6b, 0x9C2113];
-      const avoid = [[-5, -2], [1.1, -3.2], [4, -0.6], [2.6, 3.4], [-3.2, 3], [0, -3.4], [-0.5, 5.2]];
+      const avoid = [[-5, -2], [0.3, -3.0], [1.2, -3.3], [4, -0.6], [2.6, 3.4], [-3.2, 3], [0, -3.4], [-0.5, 5.2], [0.7, 5.3]];
       const m = new T.Matrix4(), q = new T.Quaternion(), s = new T.Vector3(), p = new T.Vector3(), e = new T.Euler(), c = new T.Color();
       let i = 0, tries = 0;
       while (i < n && tries < 800) {
@@ -1306,15 +1612,15 @@ function sceneMarkup(){
   const anim = !REDUCED;
   return `
 <a-scene id="scene" embedded
-  renderer="antialias: true; colorManagement: true; maxCanvasWidth: 1600; maxCanvasHeight: 1600; highRefreshRate: false"
+  renderer="antialias: true; colorManagement: true; maxCanvasWidth: 1920; maxCanvasHeight: 1920; highRefreshRate: false"
   xr-mode-ui="enabled: true; enterVRButton: #btnVR; enterAREnabled: false; cardboardModeEnabled: true"
   webxr="requiredFeatures: local-floor; optionalFeatures: hit-test, anchors, dom-overlay; overlayElement: #arOverlay"
   device-orientation-permission-ui="enabled: false"
   loading-screen="enabled: false"
-  background="color: #04061a"
-  fog="type: exponential; color: #070b22; density: 0.06"
+  background="color: ${FOG.color}"
+  fog="type: exponential; color: ${FOG.color}; density: ${FOG.density}"
   cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .clickable; far: 30; interval: 80"
-  ar-hit-test="target: #arSleigh; type: footprint; enabled: true">
+  ar-hit-test="target: #arSleigh; type: footprint; enabled: true" hud-cue>
 
   <a-entity id="rig">
     <a-entity id="cam" camera="fov: 80" position="0 1.6 0" look-controls="magicWindowTrackingEnabled: true; touchEnabled: true" wasd-controls="enabled: false">
@@ -1326,14 +1632,14 @@ function sceneMarkup(){
     </a-entity>
   </a-entity>
 
-  <a-entity light="type: ambient; color: #5b5486; intensity: 0.32"></a-entity>
-  <a-entity light="type: hemisphere; color: #3a4a9a; groundColor: #2E0F0F; intensity: 0.42"></a-entity>
-  <a-entity light="type: directional; color: #9fb2ff; intensity: 0.3" position="1.5 6 2"></a-entity>
+  <!-- Licht-Konzept: kühler Raum (Mondlicht durchs Oberlicht + Navy/Burgund-Hemisphäre) vs. warme Inseln der Lichterketten an den Beweisen -->
+  <a-entity light="type: hemisphere; color: #4a5bb0; groundColor: #2E0F0F; intensity: 0.62"></a-entity>
+  <a-entity light="type: directional; color: #8fa6ff; intensity: 0.42" position="0.6 6 0.4"></a-entity>
 
   <a-entity id="room">
-    <a-entity light="type: point; color: #ffb56b; intensity: 1.5; distance: 9; decay: 1.4" position="0 3.0 -2.6"></a-entity>
-    <a-entity light="type: point; color: #ff5040; intensity: 1.2; distance: 7; decay: 1.4" position="3 2.6 0.4"></a-entity>
-    <a-entity light="type: point; color: #ffd18a; intensity: 1.1; distance: 6; decay: 1.4" position="-2.6 2.2 2.4"></a-entity>
+    <a-entity light="type: point; color: #ffb468; intensity: 1.55; distance: 8.5; decay: 1.3" position="0.4 3.3 -2.3"></a-entity>
+    <a-entity light="type: point; color: #ffc27a; intensity: 1.35; distance: 8; decay: 1.3" position="3.1 3.1 1.3"></a-entity>
+    <a-entity light="type: point; color: #ffcf8a; intensity: 1.3; distance: 8; decay: 1.3" position="-3.7 2.9 0.6"></a-entity>
 
     <!-- Raum -->
     <a-plane width="12" height="12" rotation="-90 0 0" material="src: #tex-wood; repeat: 5 5; roughness: 0.85; color: #c9a8a0"></a-plane>
@@ -1342,10 +1648,11 @@ function sceneMarkup(){
     <a-plane width="12" height="5" position="0 2.5 6" rotation="0 180 0" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
     <a-plane width="12" height="5" position="-6 2.5 0" rotation="0 90 0" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
     <a-plane width="12" height="5" position="6 2.5 0" rotation="0 -90 0" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
-    <a-plane width="3.2" height="1.6" position="0 4.99 0" rotation="90 0 0" material="color: #1a2a6a; shader: flat; opacity: 0.9; transparent: true"></a-plane>
+    <a-plane width="3.2" height="1.6" position="0 4.99 0" rotation="90 0 0" material="color: #2a3d8a; shader: flat; fog: false"></a-plane>
 
-    <!-- Banner FALL 24/12 -->
-    <a-plane width="4.0" height="1.5" position="0 3.3 -5.95" material="src: #tex-banner; roughness: 0.8; emissive: #3a0a05; emissiveIntensity: 0.35"></a-plane>
+    <!-- Banner FALL 24/12 (höher gehängt, damit Marker #2 nicht davor schwebt) -->
+    <a-plane width="3.6" height="1.35" position="0 3.92 -5.95" material="src: #tex-banner; roughness: 0.8; emissive: #3a0a05; emissiveIntensity: 0.35"></a-plane>
+    <a-entity evidence-guides></a-entity>
     <a-entity graffiti-1 position="5.95 2.5 2.6" rotation="0 -90 0"><a-plane width="4.2" height="1.58" material="src: #tex-graf1; transparent: true; alphaTest: 0.08; shader: flat; opacity: 0.92"></a-plane></a-entity>
     <a-plane width="4.4" height="1.65" position="-1.4 2.7 5.95" rotation="0 180 0" material="src: #tex-graf2; transparent: true; alphaTest: 0.08; shader: flat; opacity: 0.85"></a-plane>
     <a-plane width="0.9" height="0.56" position="-4.6 1.0 4.2" rotation="-8 140 4" material="src: #tex-sign2; roughness: 0.9"></a-plane>
@@ -1383,29 +1690,29 @@ function sceneMarkup(){
       <a-circle radius="0.17" position="0 1.62 0.245" material="color: #EFEBE6; shader: flat"></a-circle>
       <a-box width="0.012" height="0.13" depth="0.01" position="0 1.67 0.25" material="color: #111; shader: flat"></a-box>
       <a-box width="0.1" height="0.012" depth="0.01" position="0.04 1.62 0.25" rotation="0 0 -20" material="color: #9C2113; shader: flat"></a-box>
-      <a-plane class="clickable" data-ev="1" width="0.34" height="0.48" position="0.56 1.35 0.03" rotation="0 0 -4" material="src: #tex-stempel; roughness: 0.9"></a-plane>
+      <a-plane class="clickable" data-ev="1" width="0.34" height="0.48" position="0.56 1.35 0.03" rotation="0 0 -4" material="src: #tex-stempel; shader: flat; fog: false"></a-plane>
       <a-box width="0.44" height="0.62" depth="0.03" position="0.56 1.33 0.01" material="color: #3d2418"></a-box>
       <a-plane width="0.3" height="0.42" position="-0.55 1.3 0.02" rotation="0 0 3" material="color: #d9cfbb"></a-plane>
       <a-plane width="0.3" height="0.42" position="-0.62 1.26 0.015" rotation="0 0 -5" material="color: #cbbfa8"></a-plane>
     </a-entity>
 
-    <!-- #2 Streikplakat -->
-    <a-entity position="1.1 0 -3.2" face-origin>
-      <a-cylinder radius="0.035" height="1.7" position="0 0.85 -0.04" rotation="6 0 0" material="color: #6b3a1f"></a-cylinder>
-      <a-plane class="clickable" data-ev="2" width="1.15" height="0.77" position="0 1.5 0" rotation="0 0 -4" material="src: #tex-strike; roughness: 0.9; side: double"></a-plane>
+    <!-- #2 Streikplakat (näher an die Blickachse gerückt: im Startblick vollständig sichtbar) -->
+    <a-entity position="0.3 0 -3.0" face-origin>
+      <a-cylinder radius="0.035" height="1.6" position="0 0.8 -0.07" material="color: #6b3a1f"></a-cylinder>
+      <a-plane class="clickable" data-ev="2" width="1.15" height="0.77" position="0 1.42 0" rotation="0 0 -4" material="src: #tex-strike; shader: flat; fog: false; side: double"></a-plane>
     </a-entity>
 
     <!-- #3 Schlitten + Fahrtenschreiber -->
     <a-entity position="4.1 0 -0.6" rotation="0 90 0"><a-entity sleigh class="clickable" data-ev="3"></a-entity></a-entity>
     <a-entity position="3.45 1.28 -0.6" face-origin>
       <a-box class="clickable" data-ev="3" width="0.5" height="0.34" depth="0.12" material="color: #111; metalness: 0.6; roughness: 0.4"></a-box>
-      <a-plane class="clickable" data-ev="3" width="0.44" height="0.275" position="0 0 0.062" material="src: #tex-tacho; shader: flat"></a-plane>
+      <a-plane class="clickable" data-ev="3" width="0.44" height="0.275" position="0 0 0.062" material="src: #tex-tacho; shader: flat; fog: false"></a-plane>
     </a-entity>
 
     <!-- #4 Wunschzettel-Kiste -->
     <a-entity position="2.55 0 3.35" face-origin>
       <a-box class="clickable" data-ev="4" width="1.0" height="0.7" depth="0.7" position="0 0.35 0" material="src: #tex-wood; repeat: 1 1; color: #e0a070; roughness: 0.9"></a-box>
-      <a-plane width="0.92" height="0.46" position="0 0.38 0.352" material="src: #tex-crateLabel; transparent: true; alphaTest: 0.1; shader: flat"></a-plane>
+      <a-plane width="0.92" height="0.46" position="0 0.38 0.352" material="src: #tex-crateLabel; transparent: true; alphaTest: 0.1; shader: flat; fog: false"></a-plane>
       <a-entity letter-pile></a-entity>
     </a-entity>
 
@@ -1416,7 +1723,7 @@ function sceneMarkup(){
       <a-box width="0.06" height="0.74" depth="0.06" position="0.74 0.37 0.34" material="color: #2e170c"></a-box>
       <a-box width="0.06" height="0.74" depth="0.06" position="0.74 0.37 -0.34" material="color: #2e170c"></a-box>
       <a-box width="0.5" height="0.12" depth="0.04" position="-0.3 0.88 0.3" material="color: #C7A065; metalness: 0.8; roughness: 0.3"></a-box>
-      <a-plane class="clickable" data-ev="5" width="0.24" height="0.57" position="0.2 1.08 0.05" rotation="-14 0 6" material="src: #tex-receipt; roughness: 0.9; side: double"></a-plane>
+      <a-plane class="clickable" data-ev="5" width="0.24" height="0.57" position="0.2 1.08 0.05" rotation="-14 0 6" material="src: #tex-receipt; shader: flat; fog: false; side: double"></a-plane>
       <a-cylinder radius="0.11" height="0.03" position="0.55 0.83 -0.15" material="color: #C7A065; metalness: 0.8"></a-cylinder>
       <a-cylinder radius="0.015" height="0.4" position="0.55 1.02 -0.15" material="color: #C7A065; metalness: 0.8"></a-cylinder>
       <a-cone radius-bottom="0.15" radius-top="0.07" height="0.16" position="0.55 1.24 -0.08" rotation="20 0 0" material="color: #1b5e3a; side: double"></a-cone>
@@ -1437,12 +1744,12 @@ function sceneMarkup(){
       <a-cylinder radius="0.02" height="0.22" position="-0.32 1.78 -0.05" rotation="0 0 70" material="color: #8a6a4a"></a-cylinder>
       <a-cylinder radius="0.02" height="0.22" position="0.32 1.78 -0.05" rotation="0 0 -70" material="color: #8a6a4a"></a-cylinder>
       <a-cylinder radius="0.18" height="0.95" position="0 0.48 0" material="color: #3a2010"></a-cylinder>
-      <a-sphere class="clickable" data-ev="R" radius="0.5" position="0 1.2 0.2" material="opacity: 0; transparent: true; depthWrite: false; shader: flat"></a-sphere>
+      <a-sphere class="clickable" data-ev="R" radius="0.5" position="0 1.2 0.2" visible="false" material="shader: flat"></a-sphere>
     </a-entity>
 
     <!-- Beweis-Marker -->
     ${[1, 2, 3, 4, 5].map(n => `<a-entity class="marker" ev-marker="n: ${n}" position="${MARK[n].join(' ')}">
-      <a-circle class="clickable" data-ev="${n}" radius="0.46" material="opacity: 0; transparent: true; depthWrite: false; shader: flat"></a-circle></a-entity>`).join('')}
+      <a-circle class="clickable" data-ev="${n}" radius="0.46" visible="false" material="shader: flat"></a-circle></a-entity>`).join('')}
   </a-entity>
 
   <!-- AR-Schlitten (nur im AR-Modus sichtbar) -->
@@ -1495,6 +1802,10 @@ function buildScene(){
       clearTimeout(timeout);
       sceneReady = true; $('#loader').hidden = true;
       applyGyro();
+      applyPixelCap();
+      // Hitboxen sind unsichtbar (kein Draw-Call), bleiben aber für Raycaster/Gaze aktiv
+      try { const r = sceneApi.mergeStatic(room.object3D); state.merge = r; } catch(e) { console.warn('merge', e); }
+      if (qs.get('debug') === '1') window.__akte = { scene, state, info: () => ({ calls: scene.renderer.info.render.calls, triangles: scene.renderer.info.render.triangles, pixelRatio: scene.renderer.getPixelRatio(), merge: state.merge }) };
       const cv = scene.canvas;
       cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, moved: false, t: performance.now() }; });
       cv.addEventListener('pointermove', e => { if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 12) drag.moved = true; });
@@ -1510,18 +1821,22 @@ function buildScene(){
       if (!el || !el.closest) return;
       if (!scene.is('vr-mode') && drag.moved && performance.now() - drag.t < 4000) return;
       const act = el.closest('[data-action]');
-      if (act && act.dataset.action === 'vr-close') { vrCard.object3D.position.set(0, -100, 0); return; }
+      if (act && act.dataset.action === 'vr-close') { vrCard.object3D.position.set(0, -100, 0); markersVisible(true); return; }
       const holder = el.closest('[data-ev]'); if (!holder) return;
       const raw = holder.dataset.ev, now = performance.now();
       if (lastClick.id === raw && now - lastClick.t < 600) return; lastClick = { id: raw, t: now };
       if (raw === 'R') { track('evidence_opened', { id: 'bonus_rudolph', mode: scene.is('vr-mode') ? 'vr' : '3d', bonus: true });
         if (scene.is('vr-mode')) { drawVrCard('R'); showVrCard(); } else toast('<b>Zeugenaussage Rudolph:</b> „…“ – Rudolph schweigt. Die rote Nase leuchtet.', 5000); return; }
       const id = +raw; const vr = scene.is('vr-mode');
-      secure(id, vr ? 'vr' : '3d');
-      if (vr) { drawVrCard(id); showVrCard(); } else openCard(id);
+      dismissCoach('tap');
+      const fresh = secure(id, vr ? 'vr' : '3d');
+      if (vr) { drawVrCard(id); showVrCard(); } else openCard(id, fresh);
     });
 
+    // Marker zeichnen ohne Tiefentest (immer sichtbar) – während die VR-Akte offen ist, blenden wir sie aus
+    function markersVisible(v){ $$('.marker', room).forEach(m => { m.object3D.visible = v; }); }
     function showVrCard(){
+      markersVisible(false);
       const mesh = $('#vrCardPlane').getObject3D('mesh'); if (mesh && mesh.material.map) mesh.material.map.needsUpdate = true;
       const c3 = scene.camera, p = new T.Vector3(), d = new T.Vector3();
       c3.getWorldPosition(p); c3.getWorldDirection(d); d.y = 0; if (d.lengthSq() < 1e-4) d.set(0, 0, -1); d.normalize();
@@ -1529,7 +1844,8 @@ function buildScene(){
       vrCard.object3D.position.copy(pos); vrCard.object3D.lookAt(p.x, pos.y, p.z);
     }
 
-    sceneApi.markFound = id => { const m = room.querySelector(`.marker[ev-marker="n: ${id}"]`) || $$('.marker', room).find(e => e.getAttribute('ev-marker').n === id); if (m && m.components['ev-marker']) m.components['ev-marker'].setFound(); };
+    sceneApi.markFound = id => { const m = room.querySelector(`.marker[ev-marker="n: ${id}"]`) || $$('.marker', room).find(e => e.getAttribute('ev-marker').n === id); if (m && m.components['ev-marker']) m.components['ev-marker'].setFound();
+      const gd = room.querySelector('[evidence-guides]'); if (gd && gd.components['evidence-guides']) gd.components['evidence-guides'].setFound(id); };
     sceneApi.turnTo = (id, cb) => {
       const lc = cam.components['look-controls']; if (!lc) { cb && cb(); return; }
       const [x, y, z] = MARK[id];
@@ -1563,11 +1879,12 @@ function buildScene(){
     scene.addEventListener('exit-vr', () => {
       document.body.classList.remove('in-vr');
       gaze.setAttribute('visible', false); gaze.setAttribute('raycaster', 'enabled', false);
-      vrCard.object3D.position.set(0, -100, 0);
+      vrCard.object3D.position.set(0, -100, 0); markersVisible(true);
       room.object3D.visible = true; $('#arLight').object3D.visible = false; $('#arSleigh').object3D.visible = false;
-      scene.setAttribute('background', 'color', '#04061a'); scene.object3D.background = new T.Color('#04061a');
-      scene.setAttribute('fog', 'density', 0.06); scene.setAttribute('raycaster', 'enabled', true);
+      scene.setAttribute('background', 'color', FOG.color); scene.object3D.background = new T.Color(FOG.color);
+      scene.setAttribute('fog', 'density', FOG.density); scene.setAttribute('raycaster', 'enabled', true);
       $('#arOverlay').hidden = true; updateProgress();
+      setTimeout(() => applyPixelCap(prNow), 50);   // A-Frame setzt beim VR-Ende devicePixelRatio zurück
       if (state.found.size >= 3) toast(`<b>${state.found.size}/5 Beweise gesichert.</b> Bereit für Ihr Urteil?`);
     });
     scene.addEventListener('ar-hit-test-select', () => {
@@ -1584,6 +1901,10 @@ function buildScene(){
 (async function init(){
   track('landing', { referrer: document.referrer ? new URL(document.referrer).hostname : '', reduced_motion: REDUCED });
   try { history.replaceState({ s: 'start' }, ''); } catch(e) {}
+  // Plattform-Hinweise am AR-Einstieg
+  const plat = arPlatform();
+  $$('[data-arplat]').forEach(e => e.textContent = plat.pill); $$('[data-arplat-short]').forEach(e => e.textContent = plat.short);
+  if (qs.get('ar') === '1') { const c = $('#btnStartAR'); c.classList.add('attn'); setTimeout(() => { c.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' }); toast('Tippe auf <b>AR: Beweisstück #3</b>, um den Schlitten in deinen Raum zu holen.', 6000); }, 600); }
   const st = qs.get('state'); if (!st) { setTimeout(() => { const l = document.createElement('link'); l.rel = 'prefetch'; l.as = 'script'; l.href = AFRAME_URL; document.head.appendChild(l); }, 1500); return; }
   const nFound = Math.max(0, Math.min(5, +(qs.get('found') || 0)));
   for (let i = 1; i <= nFound; i++) state.found.add(i);
@@ -1593,9 +1914,8 @@ function buildScene(){
   if (st === 'xr' || st === 'evidence') {
     await enter3D(true);
     const yaw = qs.get('yaw'); if (yaw && scene) { const lc = $('#cam').components['look-controls']; if (lc) lc.yawObject.rotation.y = +yaw * Math.PI / 180; }
-    if (st === 'evidence') { const id = +(qs.get('id') || 3); setTimeout(() => { secure(id, '3d'); openCard(id); }, 400); }
+    if (st === 'evidence') { const id = +(qs.get('id') || 3); setTimeout(() => { const f = secure(id, '3d'); openCard(id, f); }, 400); }
     else if (qs.get('toast') === '0') { clearTimeout(toastT); $('#toast').classList.remove('show'); }
-    else setTimeout(() => toast('<b>Schau dich um:</b> Handy bewegen oder wischen. Tippe auf die <b>goldenen Marker</b>, um Beweise zu sichern.', 9000), 700);
   }
 })();
 })();

@@ -1,0 +1,1604 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tatort im Kiez – Akte Weihnachten</title>
+<meta name="description" content="Fall 24/12: Nordpol gegen die Elfen-Gewerkschaft. Sichere 5 Beweisstücke in der 360°-Weihnachtswerkstatt und fälle dein Urteil. XR-Prototyp zur Kampagne AKTE WEIHNACHTEN für THE JURY – Weihnachten vor Gericht im Colosseum Berlin.">
+<meta name="theme-color" content="#0A0F2B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%230A0F2B%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial Black%27 font-size=%2722%27 text-anchor=%27middle%27 fill=%27%23C7A065%27%3E24/12%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Tatort im Kiez – Ihr seid die Jury.">
+<meta property="og:description" content="Fall 24/12: Wer hat Weihnachten ruiniert? Sichere die Beweise – in 3D, VR oder als 2D-Akte.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=League+Spartan:wght@600;800;900&display=swap">
+<style>
+:root{
+  --gold:#C7A065; --gold-l:#dcbf88; --red:#9C2113; --red-d:#7d190e; --burg:#2E0F0F; --navy:#0A0F2B; --navy-2:#121a45;
+  --cream:#EFEBE6; --ink:#111111; --muted:rgba(239,235,230,.78);
+  --font-h:'League Spartan','Arial Black',system-ui,sans-serif;
+  --font-b:'Courier Prime','Courier New',ui-monospace,monospace;
+  --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
+  --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .27  0 0 0 0 .18  0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;background:var(--navy)}
+body{min-height:100vh;min-height:100dvh;font-family:var(--font-b);color:var(--cream);line-height:1.45;
+  background:radial-gradient(120% 70% at 50% -10%,#1b2257 0%,var(--navy) 55%,#060918 100%) fixed;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body[data-screen="verdict"]{background:radial-gradient(110% 70% at 50% 0%,#4a1712 0%,var(--burg) 50%,#170707 100%) fixed}
+body[data-screen="xr"]{overflow:hidden}
+button,a{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus{outline:none}
+:focus-visible{outline:3px solid #ffd998;outline-offset:3px;border-radius:6px}
+[tabindex="-1"]:focus,[tabindex="-1"]:focus-visible{outline:none}
+.paper :focus-visible,.dlg :focus-visible{outline-color:var(--navy)}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+#bgSnow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.screen{position:relative;z-index:1;min-height:100vh;min-height:100dvh}
+.wrap{max-width:560px;margin:0 auto;padding:calc(14px + var(--st)) 18px calc(20px + var(--sb))}
+.h{font-family:var(--font-h);font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.95;margin:0}
+.kicker{font-family:var(--font-b);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.topline{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:2px 2px 14px;font-weight:700}
+.topline b{font-family:var(--font-h);font-weight:800;letter-spacing:.08em}
+.foot{margin:22px 0 0;text-align:center;font-size:11px;letter-spacing:.08em;color:rgba(239,235,230,.66)}
+.foot span{display:inline-block;border:1px solid rgba(199,160,101,.35);border-radius:99px;padding:4px 10px}
+
+/* Paper */
+.paper{position:relative;background-color:#f1ede7;background-image:var(--noise),linear-gradient(180deg,#f5f2ed 0%,#ebe5dc 100%);
+  color:var(--ink);border-radius:4px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 18px 40px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3)}
+.paper::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.05),transparent 8%,transparent 92%,rgba(0,0,0,.05))}
+.stamp{display:inline-block;font-family:var(--font-h);font-weight:800;text-transform:uppercase;color:var(--red);
+  border:3px solid var(--red);border-radius:6px;padding:6px 10px 3px;letter-spacing:.06em;line-height:1;
+  box-shadow:inset 0 0 0 2px rgba(241,237,231,.9),inset 0 0 0 4px var(--red);mix-blend-mode:multiply;opacity:.88}
+
+/* Buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:54px;border:0;border-radius:12px;
+  font-family:var(--font-h);font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:17px;text-decoration:none;
+  padding:12px 16px;transition:transform .15s ease,box-shadow .2s ease,background .2s}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn svg{width:22px;height:22px;flex:none}
+.btn small{display:block;font-family:var(--font-b);font-weight:700;text-transform:none;letter-spacing:.02em;font-size:12px;opacity:.85;margin-top:3px}
+.btn .lbl{display:flex;flex-direction:column;align-items:flex-start;text-align:left;line-height:1.05}
+.btn-gold{background:linear-gradient(180deg,#dcbd85 0%,var(--gold) 60%,#b88f55 100%);color:var(--navy);
+  box-shadow:0 10px 28px rgba(199,160,101,.32),inset 0 1px 0 rgba(255,255,255,.45)}
+.btn-outline{background:rgba(10,15,43,.45);color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(239,235,230,.55)}
+.btn-red{background:linear-gradient(180deg,#b3291a,var(--red) 60%,#841b0f);color:var(--cream);box-shadow:0 10px 30px rgba(156,33,19,.45),inset 0 1px 0 rgba(255,255,255,.2)}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;box-shadow:none}
+.btn-text{background:none;border:0;color:var(--cream);text-decoration:underline;text-underline-offset:4px;font-family:var(--font-b);font-weight:700;font-size:15px;padding:12px;min-height:44px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ---------- START ---------- */
+.summons{padding:18px 18px 16px;transform:rotate(-.6deg);margin:0 2px}
+.summons-head{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;color:#3a3530;border-bottom:1.5px solid #222;padding-bottom:8px}
+.summons-head .tr{text-align:right}
+.summons h1{font-size:clamp(40px,12.6vw,64px);color:var(--navy);margin:16px 0 4px;letter-spacing:0}
+.summons .stamp-summons{position:absolute;right:16px;top:92px;transform:rotate(-7deg);font-size:14px}
+.case{margin:6px 0 0;font-size:14px;font-weight:700}
+.case strong{display:block;font-family:var(--font-h);font-weight:800;text-transform:uppercase;color:var(--red);font-size:clamp(20px,6vw,25px);line-height:1;margin-top:4px;letter-spacing:.01em}
+.selected{margin:12px 0 0;padding:9px 11px;background:var(--navy);color:var(--cream);font-weight:700;font-size:15px;border-radius:3px;line-height:1.3}
+.selected b{color:var(--gold)}
+.lead{margin:10px 0 0;font-size:13.5px;line-height:1.45;color:#2b2724}
+.sig{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;font-size:11.5px;color:#3a3530}
+.sig .line{border-top:1px solid #444;padding-top:3px;font-style:italic}
+.sig svg{width:46px;height:56px;color:rgba(17,17,17,.42);flex:none}
+.cta-stack{display:grid;gap:10px;margin-top:18px}
+.hint{display:flex;gap:10px;align-items:flex-start;margin:14px 2px 0;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.hint svg{width:26px;height:26px;flex:none;color:var(--gold);margin-top:1px}
+.showline{margin:14px 0 0;text-align:center;font-size:12px;line-height:1.5;color:var(--cream);letter-spacing:.03em}
+.showline b{font-family:var(--font-h);font-weight:800;letter-spacing:.06em;color:var(--gold);text-transform:uppercase}
+
+/* ---------- XR ---------- */
+.screen-xr{position:fixed;inset:0;height:100vh;height:100dvh;z-index:2;background:#04061a}
+#sceneHost,#sceneHost a-scene{position:absolute!important;inset:0;width:100%!important;height:100%!important}
+#sceneHost canvas{touch-action:none}
+.hud{position:absolute;inset:0;pointer-events:none;z-index:5}
+.hud>*{pointer-events:auto}
+.hud-top{position:absolute;top:calc(10px + var(--st));left:10px;right:10px;display:flex;align-items:center;gap:8px}
+.glass{background:rgba(8,12,36,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(199,160,101,.38);color:var(--cream)}
+.ibtn{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;padding:0;flex:none}
+.ibtn svg{width:22px;height:22px}
+.progress{flex:1;min-width:0;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px}
+.progress .pl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;line-height:1.1}
+.progress .pv{font-family:var(--font-h);font-weight:800;font-size:22px;line-height:1;margin-top:2px}
+.slots{display:flex;gap:4px}
+.slots i{width:12px;height:16px;border-radius:2px;border:1.5px solid rgba(199,160,101,.7);display:block;transition:background .3s,transform .3s}
+.slots i.on{background:var(--gold);border-color:var(--gold);transform:rotate(-6deg)}
+.pill{height:46px;border-radius:12px;padding:0 12px;display:flex;align-items:center;gap:6px;font-family:var(--font-h);font-weight:800;font-size:14px;letter-spacing:.06em;flex:none}
+.pill svg{width:22px;height:22px}
+.hud-bottom{position:absolute;left:10px;right:10px;bottom:calc(10px + var(--sb));max-width:600px;margin:0 auto;display:grid;gap:8px}
+.chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.chip{position:relative;height:56px;border-radius:12px;padding:5px 2px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.chip .n{font-family:var(--font-h);font-weight:800;font-size:20px;line-height:1;color:var(--gold)}
+.chip .t{font-family:var(--font-h);font-weight:600;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;line-height:1;opacity:.9}
+.chip.found{background:rgba(239,235,230,.94);color:var(--navy);border-color:var(--cream)}
+.chip.found .n{color:var(--red)}
+.chip.found::after{content:"";position:absolute;top:5px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.actions{display:grid;grid-template-columns:1fr 1.15fr;gap:8px}
+.actions .btn{min-height:50px;font-size:14px;border-radius:12px;padding:8px 10px}
+.actions .btn small{font-size:10.5px}
+.btn-ar{justify-content:flex-start}
+#btnVerdict.ready{animation:glow 1.8s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(199,160,101,.0),0 10px 28px rgba(199,160,101,.3)}50%{box-shadow:0 0 0 6px rgba(199,160,101,.25),0 10px 28px rgba(199,160,101,.45)}}
+.toast{position:fixed;left:50%;top:calc(66px + var(--st));transform:translate(-50%,-8px);z-index:30;max-width:min(92vw,460px);width:max-content;
+  padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast b{color:var(--gold)}
+.loader{position:absolute;inset:0;z-index:8;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(80% 60% at 50% 40%,#16205a,#05081a)}
+.loader .ring{width:74px;height:74px;border-radius:50%;border:3px solid rgba(199,160,101,.2);border-top-color:var(--gold);margin:0 auto 18px;animation:spin 1s linear infinite}
+.loader p{margin:6px 0 0;font-size:13px;color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+body.in-vr .hud,body.in-vr .toast{display:none}
+
+/* ---------- AR overlay ---------- */
+#arOverlay{position:fixed;inset:0;z-index:40;pointer-events:none;font-family:var(--font-b);color:var(--cream)}
+#arOverlay .ar-top{pointer-events:auto;position:absolute;top:calc(12px + var(--st));left:12px;right:12px;display:flex;gap:8px;align-items:center}
+#arOverlay .ar-msg{flex:1;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.35}
+#arOverlay .ar-msg b{font-family:var(--font-h);color:var(--gold);letter-spacing:.06em;text-transform:uppercase;display:block;font-size:14px}
+
+/* ---------- Dialogs ---------- */
+dialog.dlg{border:0;padding:0;background:transparent;color:var(--ink);max-width:min(560px,100vw);width:100%;max-height:100dvh;margin:auto auto 0;overflow:visible}
+dialog.dlg::backdrop{background:rgba(3,5,18,.62);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+dialog.dlg[open]{animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheet{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.sheet{max-height:calc(92dvh - var(--st));overflow:auto;border-radius:14px 14px 0 0;padding:16px 18px calc(18px + var(--sb));-webkit-overflow-scrolling:touch}
+@media (min-width:700px){dialog.dlg{margin:auto}.sheet{border-radius:6px;max-height:88vh}}
+.file-head{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#4a443e;border-bottom:1.5px dashed #8a8178;padding-bottom:8px;margin-bottom:12px}
+.ev-top{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"photo stamp" "photo fact" "title title";gap:4px 16px;align-items:start}
+.ev-top .stamp{grid-area:stamp;justify-self:start;font-size:15px;transform:rotate(-4deg);margin:8px 0 6px}
+.ev-top .fact{grid-area:fact}
+.ev-top .ev-h{grid-area:title;font-size:clamp(26px,8.4vw,36px);color:var(--navy);line-height:.95;margin:16px 0 0;overflow-wrap:anywhere;hyphens:auto}
+.photo{grid-area:photo;flex:none;width:104px;background:#fff;padding:6px 6px 16px;box-shadow:0 4px 12px rgba(0,0,0,.22);transform:rotate(-3deg);position:relative;margin-top:4px}
+.photo img{display:block;width:100%;height:auto;max-height:150px;object-fit:contain;background:#ddd}
+.photo::before{content:"";position:absolute;top:-8px;left:42%;width:22px;height:14px;background:rgba(199,160,101,.75);transform:rotate(4deg)}
+.ev-title{flex:1;min-width:0}
+.ev-title .stamp{font-size:15px;transform:rotate(-4deg);margin:4px 0 10px}
+.ev-title h2,.ev-title h3.h{font-size:clamp(24px,7.2vw,32px);color:var(--navy);line-height:.95}
+.fact{margin:8px 0 0;font-weight:700;font-size:13px;color:var(--red);line-height:1.3}
+.ev-text{font-size:15px;line-height:1.5;margin:14px 0 12px;color:#1d1a17}
+.pro{border-left:4px solid var(--red);background:rgba(156,33,19,.07);padding:10px 12px;margin:0 0 10px;border-radius:0 6px 6px 0}
+.pro.chef{border-left-color:var(--navy);background:rgba(10,15,43,.07)}
+.pro h3,.pro h4{margin:0 0 4px;font-family:var(--font-h);font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:13px;color:var(--red)}
+.pro.chef h3,.pro.chef h4{color:var(--navy)}
+.pro p{margin:0;font-size:14px;line-height:1.45}
+.dlg-actions{display:grid;gap:8px;margin-top:14px}
+.dlg-actions .btn-outline{color:var(--navy);background:transparent;box-shadow:inset 0 0 0 1.5px var(--navy)}
+.dlg-progress{text-align:center;font-size:12.5px;margin:10px 0 0;color:#3a3530;font-weight:700;letter-spacing:.04em}
+.file-head{padding-right:46px}
+.x{position:absolute;top:8px;right:8px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(10,15,43,.08);color:var(--navy);display:grid;place-items:center}
+.x svg{width:20px;height:20px}
+.info h2{font-family:var(--font-h);font-weight:800;text-transform:uppercase;color:var(--navy);font-size:24px;line-height:1;margin:6px 40px 10px 0}
+.info p{font-size:14.5px;margin:0 0 10px}
+
+/* ---------- AKTE (2D) ---------- */
+.akte-bar{position:sticky;top:0;z-index:5;padding:calc(8px + var(--st)) 14px 8px;display:flex;align-items:center;gap:10px;background:rgba(8,12,36,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid rgba(199,160,101,.3)}
+.akte-bar .progress{height:44px}
+.akte-intro{padding:18px 18px 4px;max-width:640px;margin:0 auto}
+.akte-intro h1{font-size:clamp(34px,10vw,48px);color:var(--cream)}
+.akte-intro h1 span{color:var(--gold)}
+.akte-intro p{font-size:15px;line-height:1.5;color:var(--muted);margin:12px 0 0}
+.ev-list>li{min-width:0}
+.ev-list{list-style:none;margin:0 auto;padding:10px 14px 0;max-width:640px;display:grid;gap:22px}
+.ev-card{padding:16px 16px 14px;scroll-margin-top:80px}
+.ev-card.found .file-head .st{color:var(--red);font-weight:700}
+.bonus{margin:22px auto 0;max-width:612px;padding:14px 16px;border:1.5px dashed rgba(199,160,101,.55);border-radius:10px;font-size:14px}
+.bonus h2{font-family:var(--font-h);font-weight:800;text-transform:uppercase;color:var(--gold);font-size:16px;margin:0 0 4px;letter-spacing:.05em}
+.bonus p{margin:0}
+.akte-end{max-width:612px;margin:26px auto 0;padding:0 14px}
+.akte-end h2{font-size:28px}
+
+/* ---------- VERDICT ---------- */
+.verdict-wrap{text-align:center}
+.backlink{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--cream);font-weight:700;font-size:14px;padding:10px 4px;min-height:44px;text-decoration:none}
+.backlink svg{width:18px;height:18px}
+.gavel{width:76px;height:76px;margin:18px auto 6px;color:var(--gold);display:block}
+.verdict-wrap h1{font-size:clamp(40px,12vw,58px);margin:6px 0 12px}
+.verdict-wrap h1 em{font-style:normal;color:var(--gold)}
+.verdict-wrap .sub{font-size:14.5px;color:var(--muted);margin:0 auto 20px;max-width:420px}
+.choices{display:grid;gap:12px;text-align:left}
+.choice{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:14px;width:100%;border:0;border-radius:14px;padding:16px;min-height:88px;text-align:left}
+.choice .who{display:block;font-family:var(--font-h);font-weight:800;text-transform:uppercase;font-size:clamp(18px,5.6vw,23px);overflow-wrap:anywhere;line-height:1;letter-spacing:.01em}
+.choice .why{display:block;font-size:12.5px;margin-top:6px;opacity:.9;line-height:1.3}
+.choice .tag{display:inline-block;margin-top:9px;font-family:var(--font-h);font-weight:800;font-size:11px;letter-spacing:.1em;padding:5px 8px 4px;border-radius:6px;white-space:nowrap}
+.choice .ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-h);font-weight:900;font-size:18px}
+.choice.elfen{background:var(--cream);color:var(--navy);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.choice.elfen .ico{background:var(--navy);color:var(--gold)}
+.choice.elfen .tag{background:var(--gold);color:var(--navy)}
+.choice.chef{background:linear-gradient(180deg,#b3291a,var(--red));color:var(--cream);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.choice.chef .ico{background:var(--cream);color:var(--red)}
+.choice.chef .tag{background:var(--navy);color:var(--gold)}
+.choice:active{transform:scale(.99)}
+.quote{margin:18px auto 0;font-style:italic;font-size:13px;color:var(--muted);max-width:360px}
+
+/* ---------- RESULT ---------- */
+.result-wrap h1{font-size:clamp(34px,10vw,46px);margin:2px 0 6px}
+.result-wrap .sub{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.cardview{display:flex;justify-content:center;margin:4px 0 14px}
+#idCanvas{width:min(66vw,280px);height:auto;aspect-ratio:9/16;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.55),0 0 0 1px rgba(199,160,101,.35);background:#0A0F2B}
+.ticket-cta{margin-top:12px;flex-direction:column;gap:2px;min-height:68px;font-size:16.5px;line-height:1.1;text-align:center}
+.ticket-cta small{font-size:12px}
+.reward{margin-top:14px;padding:14px;border-radius:12px;border:1.5px dashed var(--gold);background:rgba(199,160,101,.08);display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+.reward .rl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.reward .code{font-family:var(--font-h);font-weight:900;font-size:32px;letter-spacing:.12em;line-height:1}
+.reward .note{grid-column:1/-1;font-size:11.5px;color:var(--muted);margin:0}
+.reward .note b{color:var(--cream)}
+.copy{height:44px;padding:0 14px;border-radius:10px;border:1.5px solid var(--gold);background:transparent;color:var(--cream);font-family:var(--font-h);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+.baro{margin-top:16px;padding:14px;border-radius:12px;background:rgba(8,12,36,.65);border:1px solid rgba(239,235,230,.14)}
+.baro-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.baro-head h2{font-family:var(--font-h);font-weight:800;text-transform:uppercase;font-size:16px;letter-spacing:.06em;margin:0}
+.demo{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:3px 7px;border-radius:4px;white-space:nowrap}
+.bar{display:flex;height:30px;border-radius:8px;overflow:hidden;background:#222}
+.bar .be{background:var(--red);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.bar .bc{background:var(--gold);flex:1}
+.baro-legend{display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px}
+.baro-legend b{font-family:var(--font-h);font-weight:800;letter-spacing:.04em;font-size:14px}
+.baro-legend .l b{color:#ff8a7a}
+.baro-legend .r{text-align:right}
+.baro-legend .r b{color:var(--gold)}
+.baro .you{margin:8px 0 0;font-size:12px;color:var(--muted)}
+.facts{margin:16px 0 0;font-size:12.5px;line-height:1.55;color:var(--muted);text-align:center}
+.facts strong{color:var(--cream)}
+.live{margin:14px 0 0;text-align:center;font-family:var(--font-h);font-weight:800;text-transform:uppercase;color:var(--gold);letter-spacing:.05em;font-size:15px}
+
+@media (orientation:landscape) and (max-height:520px){
+  .hud-bottom{grid-template-columns:1fr auto;align-items:end;max-width:none;left:12px;right:12px}
+  .chips{grid-template-columns:repeat(5,64px)}
+  .chip{height:50px}
+  .actions{grid-template-columns:auto auto}
+  .actions .btn{width:auto;min-width:170px}
+  .toast{top:calc(64px + var(--st))}
+}
+@media (min-width:900px){
+  .hud-top{left:20px;right:20px;max-width:900px;margin:0 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body data-screen="start">
+<canvas id="bgSnow" aria-hidden="true"></canvas>
+
+<!-- ============ 1. START / VORLADUNG ============ -->
+<section id="screen-start" class="screen" aria-labelledby="startTitle">
+  <div class="wrap">
+    <div class="topline"><b>The Jury</b><span>Colosseum Berlin</span></div>
+    <article class="summons paper">
+      <div class="summons-head"><span>Landgericht Nordpol<br>Geschäftsstelle Kiez</span><span class="tr">Az. 24/12<br>Prenzlauer Berg</span></div>
+      <p class="stamp stamp-summons" aria-hidden="true">Dringend</p>
+      <h1 id="startTitle" class="h" tabindex="-1">Vorladung</h1>
+      <p class="case">Fall 24/12: <strong>Nordpol gegen die Elfen&#8209;Gewerkschaft</strong></p>
+      <p class="selected">Sie wurden als <b>Geschworene*r</b> ausgewählt.</p>
+      <p class="lead">Zwei Tage vor Heiligabend legen 1.200 Elfen die Arbeit nieder. Sichern Sie die <strong>5 Beweisstücke</strong> am Tatort – der Weihnachtswerkstatt nach dem Streik – und fällen Sie Ihr Urteil.</p>
+      <div class="sig"><span class="line">gez. Frau Holle, Vorsitzende Richterin</span><span id="fpSmall" aria-hidden="true"></span></div>
+    </article>
+
+    <div class="cta-stack">
+      <button id="btnEnter3D" class="btn btn-gold" type="button" aria-describedby="gyroHint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4.2"/><path d="M12 2a10 10 0 0 1 0 20M12 2a10 10 0 0 0 0 20"/><path d="M19 9.5l2.5 2.5-2.5 2.5"/></svg>
+        <span class="lbl">Tatort betreten<small>360° · 3D · VR / AR</small></span>
+      </button>
+      <button id="btnEnter2D" class="btn btn-outline" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h8"/></svg>
+        <span class="lbl">2D-Akte lesen<small>barrierearm · ohne Bewegungssensor</small></span>
+      </button>
+      <button id="btnStartAR" class="btn btn-red" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg>
+        <span class="lbl">AR: Beweisstück #3<small>Schlitten in deinen Raum · iPhone &amp; Android</small></span>
+      </button>
+    </div>
+    <p class="hint" id="gyroHint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3" width="8" height="18" rx="2"/><path d="M11 18h2M4.5 8a8 8 0 0 0 0 8M19.5 8a8 8 0 0 1 0 8"/></svg>
+      <span>Tipp: Halte dein Handy hoch und bewege es, um dich am Tatort umzusehen (Gyroskop). Auf dem iPhone fragen wir dafür einmal nach Zugriff auf den Bewegungssensor. Wischen geht auch. AR läuft auf iPhone und Android.</span>
+    </p>
+    <p class="showline"><b>The Jury – Weihnachten vor Gericht</b><br>19.12.2026 &amp; 09.01.2027 · 16:00 &amp; 18:30 Uhr · Colosseum Berlin</p>
+    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+  </div>
+</section>
+
+<!-- ============ 2. XR SCENE ============ -->
+<section id="screen-xr" class="screen screen-xr" aria-label="3D-Tatort: Weihnachtswerkstatt nach dem Streik" hidden>
+  <div id="sceneHost" aria-hidden="true"></div>
+  <div class="hud" id="hud">
+    <div class="hud-top">
+      <button id="btnExit" class="ibtn glass" type="button" aria-label="Tatort verlassen, zurück zur Vorladung">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="progress glass" role="status" aria-live="polite">
+        <div><div class="pl">Beweise gesichert</div><div class="pv"><span class="foundN">0</span>/5</div></div>
+        <div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <button id="btnVR" class="pill glass" type="button" aria-label="VR-Modus starten (Cardboard oder Headset)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h18v9h-6l-3-3-3 3H3z"/><circle cx="7.5" cy="12.5" r="1.3"/><circle cx="16.5" cy="12.5" r="1.3"/></svg>VR
+      </button>
+    </div>
+    <div class="hud-bottom">
+      <div class="chips" id="chips" role="group" aria-label="Beweisstücke – antippen, um hinzusehen"></div>
+      <div class="actions">
+        <button id="btnAR" class="btn btn-outline glass btn-ar" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg>
+          <span class="lbl">AR<small>Schlitten in deinen Raum · iPhone &amp; Android</small></span>
+        </button>
+        <button id="btnVerdict" class="btn btn-gold" type="button" aria-disabled="true">
+          <span class="lbl">Zum Urteil<small id="verdictHint">ab 3 Beweisen</small></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="loader" id="loader" role="status" aria-live="polite">
+    <div><div class="ring" aria-hidden="true"></div><p class="h" style="font-size:22px;color:var(--cream)">Tatort wird gesichert …</p><p id="loaderMsg">Die Spurensicherung baut die Weihnachtswerkstatt auf.</p></div>
+  </div>
+</section>
+
+<!-- ============ 6. 2D AKTE ============ -->
+<section id="screen-akte" class="screen" aria-labelledby="akteTitle" hidden>
+  <div class="akte-bar">
+    <button class="ibtn glass" type="button" data-go="start" aria-label="Zurück zur Vorladung">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <div class="progress glass" role="status" aria-live="polite">
+      <div><div class="pl">Beweise gesichert</div><div class="pv"><span class="foundN">0</span>/5</div></div>
+      <div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+  <main>
+    <div class="akte-intro">
+      <p class="kicker">Akte 24/12 · 2D-Fassung</p>
+      <h1 id="akteTitle" class="h" tabindex="-1">Die Beweis&shy;aufnahme <span>in 5 Blättern</span></h1>
+      <p>Zwei Tage vor Heiligabend legen 1.200 Elfen die Arbeit nieder. Der Schlitten steht still. Der Weihnachtsmann – „der Chef“ – klagt die Elfen-Gewerkschaft wegen Sabotage an. Die Gewerkschaft kontert: 300 Jahre Nachtschicht, null Urlaub, Bezahlung in Lebkuchen. Jedes Blatt, das Sie lesen, gilt als gesichert.</p>
+    </div>
+    <ol class="ev-list" id="evList"></ol>
+    <aside class="bonus" aria-labelledby="bonusTitle">
+      <h2 id="bonusTitle">Joker: Zeugenaussage Rudolph</h2>
+      <p>„…“ – Rudolph schweigt. Die rote Nase leuchtet.</p>
+    </aside>
+    <section class="akte-end" aria-labelledby="akteEndTitle">
+      <h2 id="akteEndTitle" class="h">Bereit für Ihr Urteil?</h2>
+      <p style="color:var(--muted);font-size:14.5px">Sie haben <strong class="foundN">0</strong> von 5 Beweisen gesichert.</p>
+      <div class="cta-stack">
+        <button class="btn btn-gold" type="button" data-go="verdict">Zum Urteil</button>
+        <button class="btn btn-outline" type="button" id="btnAkteTo3D">Lieber den Tatort in 3D betreten</button>
+      </div>
+      <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+    </section>
+  </main>
+  <div style="height:calc(20px + var(--sb))"></div>
+</section>
+
+<!-- ============ 4. VERDICT ============ -->
+<section id="screen-verdict" class="screen" aria-labelledby="verdictTitle" hidden>
+  <div class="wrap verdict-wrap">
+    <div style="text-align:left"><button class="backlink" type="button" id="btnVerdictBack">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span id="verdictBackLbl">Zurück zum Tatort</span></button></div>
+    <svg class="gavel" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10l16 16M16 16l16 16"/><rect x="17.5" y="11" width="18" height="12" rx="2" transform="rotate(45 26.5 17)"/><path d="M33 29l17 17"/><path d="M10 54h26M14 48h18"/></svg>
+    <p class="kicker">Die Urteilsfindung · Fall 24/12</p>
+    <h1 id="verdictTitle" class="h" tabindex="-1">Wer hat Weihnachten <em>ruiniert?</em></h1>
+    <p class="sub" id="verdictSub">Sie haben 0 von 5 Beweisen gesichert. Frau Holle bittet um Ruhe im Saal – oder es schneit.</p>
+    <div class="choices" role="group" aria-label="Ihr Urteil">
+      <button class="choice elfen" type="button" data-verdict="elfen">
+        <span class="ico" aria-hidden="true">E</span>
+        <span><span class="who">Die Elfen&#8209;Gewerkschaft</span><span class="why">Streik zur Unzeit = Sabotage am Fest.</span><span class="tag">Ich bin TEAM CHEF</span></span>
+      </button>
+      <button class="choice chef" type="button" data-verdict="chef">
+        <span class="ico" aria-hidden="true">C</span>
+        <span><span class="who">Der Chef</span><span class="why">300 Jahre Nachtschicht, Lohn in Lebkuchen.</span><span class="tag">Ich bin TEAM ELFEN</span></span>
+      </button>
+    </div>
+    <button class="btn-text" type="button" data-verdict="mehr">Ich brauche mehr Beweise</button>
+    <p class="quote">„Ruhe im Saal, oder es schneit!“ – Frau Holle, Vorsitzende Richterin</p>
+    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+  </div>
+</section>
+
+<!-- ============ 5. RESULT ============ -->
+<section id="screen-result" class="screen" aria-labelledby="resultTitle" hidden>
+  <div class="wrap result-wrap">
+    <div class="topline"><b>Akte Weihnachten</b><span>Urteil protokolliert</span></div>
+    <h1 id="resultTitle" class="h" tabindex="-1">Ihr Jury-Ausweis</h1>
+    <p class="sub" id="resultSub">Vorläufiges Urteil gespeichert.</p>
+    <div class="cardview"><canvas id="idCanvas" width="1080" height="1920" role="img" aria-label="Jury-Ausweis"></canvas></div>
+    <div class="row">
+      <button class="btn btn-outline" type="button" id="btnSave">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Ausweis speichern</button>
+      <button class="btn btn-outline" type="button" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>Teilen</button>
+    </div>
+    <a class="btn btn-red ticket-cta" id="btnTicket" href="#" target="_blank" rel="noopener">
+      Platz auf der Geschworenenbank sichern – Tickets
+      <small>19.12.2026 &amp; 09.01.2027 · je 16:00 &amp; 18:30 Uhr · ab 39 € · via Fever</small>
+    </a>
+    <div class="reward" aria-labelledby="rewardLbl">
+      <div><div class="rl" id="rewardLbl">Belohnung fürs Beweise-Sichern</div><div class="code" id="rewardCode">BEWEIS5</div></div>
+      <button class="copy" type="button" id="btnCopy" aria-label="Code BEWEIS5 kopieren">Kopieren</button>
+      <p class="note"><b>Vorschlag – mit Colosseum/Fever abzustimmen.</b> Idee: Code an der Fever-Kasse für einen Vorteil (z. B. Glühwein-Gutschein im Foyer) einlösen.</p>
+    </div>
+    <section class="baro" aria-labelledby="baroTitle">
+      <div class="baro-head"><h2 id="baroTitle">Stimmungsbarometer</h2><span class="demo">Demo-Daten (Prototyp)</span></div>
+      <div class="bar" role="img" id="baroBar" aria-label="Stimmungsbarometer"><div class="be" id="baroE" style="width:50%"></div><div class="bc"></div></div>
+      <div class="baro-legend"><div class="l"><b>TEAM ELFEN</b><br><span id="baroEL">–</span></div><div class="r"><b>TEAM CHEF</b><br><span id="baroCL">–</span></div></div>
+      <p class="you" id="baroYou"></p>
+    </section>
+    <p class="live">Das echte Urteil fällt live im Colosseum.</p>
+    <p class="facts"><strong>THE JURY – Weihnachten vor Gericht</strong><br>Sa 19.12.2026 &amp; Sa 09.01.2027 · jeweils 16:00 &amp; 18:30 Uhr · ab 39 €<br>Einlass 30 Min vorher, kein Späteinlass<br>Colosseum Berlin, Schönhauser Allee 123 (Eingang Gleimstraße 31–33)<br>U2 Eberswalder Straße · S+U Schönhauser Allee · Tram M1</p>
+    <div style="text-align:center"><button class="btn-text" type="button" id="btnRestart">Fall neu aufrollen</button></div>
+    <p class="foot"><span>Prototyp · Hochschulprojekt · KI-gestützt erstellt</span></p>
+  </div>
+</section>
+
+<!-- ============ DIALOGS ============ -->
+<dialog class="dlg" id="cardDlg" aria-labelledby="cardTitle">
+  <div class="sheet paper" id="cardSheet" tabindex="-1"></div>
+</dialog>
+<dialog class="dlg" id="infoDlg" aria-labelledby="infoTitle">
+  <div class="sheet paper info">
+    <button class="x" type="button" data-close aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="stamp" style="font-size:13px;transform:rotate(-3deg)" id="infoStamp">Hinweis</p>
+    <h2 id="infoTitle">Hinweis</h2>
+    <div id="infoBody"></div>
+    <div class="dlg-actions"><button class="btn btn-gold" type="button" data-close>Verstanden</button></div>
+  </div>
+</dialog>
+
+<div id="arOverlay" hidden>
+  <div class="ar-top">
+    <div class="ar-msg glass" role="status" aria-live="polite"><b id="arHead">AR · Schlitten platzieren</b><span id="arText">Bewege dein Handy langsam über den Boden. Tippe, sobald der Rahmen erscheint.</span></div>
+    <button class="ibtn glass" type="button" id="btnARExit" aria-label="AR beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+</div>
+<div id="toast" class="toast glass" role="status" aria-live="polite"></div>
+<div id="texStore" hidden></div>
+
+<script>
+(() => {
+'use strict';
+/* =========================================================
+   KONFIGURATION
+   ========================================================= */
+const AFRAME_URL = 'https://cdn.jsdelivr.net/npm/aframe@1.6.0/dist/aframe-master.min.js';
+const CONFIG = {
+  // Platzhalter: durch die echte Fever-Event-URL ersetzen.
+  ticketBase: 'https://feverup.com/de/berlin',
+  utm: { utm_source: 'xr', utm_medium: 'webar', utm_campaign: 'akte_weihnachten' },
+  rewardCode: 'BEWEIS5',
+  demoVotes: { elfen: 1312, chef: 948 },   // Demo-Daten (Prototyp)
+  hashtags: '#IhrSeidDieJury #AkteWeihnachten'
+};
+const qs = new URLSearchParams(location.search);
+const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const store = {
+  get(k){ try { return sessionStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { sessionStorage.setItem(k,v); } catch(e){} }
+};
+
+/* =========================================================
+   ANALYTICS (dataLayer + Konsole)
+   ========================================================= */
+window.dataLayer = window.dataLayer || [];
+const ENTRY = qs.get('src') || qs.get('utm_source') || (/instagram/i.test(document.referrer + navigator.userAgent) ? 'instagram' : 'direct');
+let SID = store.get('akte_sid'); if (!SID) { SID = Math.random().toString(36).slice(2, 10); store.set('akte_sid', SID); }
+function track(event, params = {}) {
+  const payload = Object.assign({ event, entry: ENTRY, session_id: SID, ts: new Date().toISOString() }, params);
+  window.dataLayer.push(payload);
+  try { console.info('[AKTE-XR]', event, payload); } catch(e) {}
+}
+
+/* =========================================================
+   DATEN: DIE 5 BEWEISSTÜCKE
+   ========================================================= */
+const EV = {
+  1: { key:'stempelkarte', short:'Karte', title:'Die Stempelkarte', fact:'Elfe Nr. 0815 · 364 Schichten am Stück · 0 Urlaubstage',
+       text:'Gefunden in der Stechuhr neben dem Werkstatttor: die Stempelkarte von Elfe Mira, Personalnummer 0815. 364 Schichten ohne Unterbrechung, kein einziger Urlaubstag. Der letzte Stempel: 22.12., 23:59 Uhr – danach nichts mehr.',
+       elfen:'364 Schichten ohne freien Tag sind keine Liebe zum Job, sondern Ausbeutung. Der Streik war überfällig.',
+       chef:'Niemand hat Mira gezwungen. Hochsaison ist Hochsaison – und Überstunden wurden in Lebkuchen vergütet.',
+       alt:'Vergilbte Stempelkarte mit 364 Stempeln und rotem Vermerk „0 Urlaubstage“.' },
+  2: { key:'streikplakat', short:'Plakat', title:'Das Streikplakat', fact:'„Keine Geschenke ohne Gerechtigkeit!“ · Glitzer an allen Rändern',
+       text:'Handgemalt auf Geschenkkarton, Glitzer an allen Rändern: „KEINE GESCHENKE OHNE GERECHTIGKEIT!“. Es lehnte an Werkbank Nr. 3. Die Glitzerspur führt quer durch die Werkstatt – aber wer hat es gemalt?',
+       elfen:'Ein friedlicher Protest mit Glitzer statt Gewalt. Wer so ein Plakat malt, will verhandeln, nicht sabotieren.',
+       chef:'Der Glitzer stammt aus dem Geschenkpapier-Lager. Der Streik war von langer Hand geplant – auf Kosten des Nordpols.',
+       alt:'Pappschild mit der Aufschrift „Keine Geschenke ohne Gerechtigkeit!“ und Glitzerrand.' },
+  3: { key:'fahrtenschreiber', short:'Tacho', title:'Der Fahrtenschreiber', fact:'Letzte Position: über Prenzlauer Berg · 3 Std. Stillstand',
+       text:'Der Fahrtenschreiber des Schlittens zeigt die letzte Position: über Prenzlauer Berg, Höhe Schönhauser Allee. Danach 3 Stunden Stillstand. Kufen kalt, Rentiere ausgespannt. Streik oder Sabotage?',
+       elfen:'Stillstand ist kein Verbrechen. Ohne gewartete Kufen fliegt kein Schlitten – und am Steuer saß der Chef selbst.',
+       chef:'Drei Stunden Stillstand mitten über dem Kiez – das riecht nach gezielter Sabotage am Schlitten.',
+       alt:'Display eines Fahrtenschreibers mit Route über Prenzlauer Berg und der Anzeige „Stillstand 03:00:00“.' },
+  4: { key:'wunschzettel', short:'Kiste', title:'Die Wunschzettel-Kiste', fact:'2,1 Mio. unbearbeitete Briefe · gefunden im Büro des Chefs',
+       text:'Eine Holzkiste voller Wunschzettel: 2,1 Millionen unbearbeitete Briefe. Gefunden nicht in der Werkstatt, sondern im Büro des Chefs, hinter seinem Sessel. Ältester Poststempel: 1. Dezember.',
+       elfen:'Die Wünsche lagen beim Chef, nicht bei den Elfen. Wer hat hier eigentlich die Arbeit liegen lassen?',
+       chef:'Die Kiste wurde ihm erst nach Streikbeginn ins Büro gestellt – als Druckmittel der Gewerkschaft.',
+       alt:'Überquellende Holzkiste mit Briefen, Stempel „2,1 Mio. unbearbeitet“.' },
+  5: { key:'quittung', short:'Quittung', title:'Die Spesenquittung', fact:'40.000 Lebkuchen für „Rentier-Wellness“ · unterschrieben vom Chef',
+       text:'Eine Spesenquittung über 40.000 Lebkuchen für „Rentier-Wellness“ – unterschrieben vom Chef persönlich, drei Tage vor dem Streik. Zur Erinnerung: Die Elfen werden in Lebkuchen bezahlt.',
+       elfen:'Für Rentier-Wellness ist genug Lebkuchen da, für Elfen-Urlaub nicht? Diese Quittung erklärt den Streik.',
+       chef:'Ohne fitte Rentiere kein Weihnachten. Rudolph & Co. waren am Limit – das war Fürsorge, keine Verschwendung.',
+       alt:'Lange Kassenquittung: 40.000 Lebkuchen, Zweck Rentier-Wellness, Unterschrift des Chefs.' }
+};
+const VERDICTS = {
+  elfen: { label:'Die Elfen-Gewerkschaft', line:'Die Elfen-Gewerkschaft hat Weihnachten ruiniert.', team:'TEAM CHEF', short:'SCHULDIG: DIE ELFEN' },
+  chef:  { label:'Der Chef', line:'Der Chef hat Weihnachten ruiniert.', team:'TEAM ELFEN', short:'SCHULDIG: DER CHEF' },
+  vertagt:{ label:'Vertagt', line:'Urteil vertagt – ich entscheide live im Saal.', team:'UNENTSCHLOSSEN', short:'URTEIL VERTAGT' }
+};
+
+/* =========================================================
+   STATE
+   ========================================================= */
+const state = {
+  found: new Set(),
+  mode: null,           // '3d' | '2d'
+  lastScene: 'start',
+  verdict: null,
+  jurorNr: store.get('akte_nr') || String(Math.floor(1000 + Math.random() * 9000)),
+  sceneStart: 0,
+  allTracked: false,
+  t0: performance.now()
+};
+store.set('akte_nr', state.jurorNr);
+
+/* =========================================================
+   HILFSFUNKTIONEN: Zufall, Canvas, Text
+   ========================================================= */
+function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function mkCanvas(w, h, id){ const c = document.createElement('canvas'); c.width = w; c.height = h; if (id) c.id = id; return c; }
+const FH = (w, s) => `${w} ${s}px "League Spartan", "Arial Black", sans-serif`;
+const FB = (w, s, it) => `${it ? 'italic ' : ''}${w} ${s}px "Courier Prime", "Courier New", monospace`;
+function fitFont(ctx, text, maxW, size, fontFn, min = 10){ let s = size; ctx.font = fontFn(s); while (ctx.measureText(text).width > maxW && s > min) { s -= 2; ctx.font = fontFn(s); } return s; }
+function wrap(ctx, text, x, y, maxW, lh, draw = true){
+  const words = text.split(' '); let line = ''; let yy = y; const lines = [];
+  for (const w of words) { const test = line ? line + ' ' + w : w; if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; } else line = test; }
+  if (line) lines.push(line);
+  lines.forEach((l, i) => { if (draw) ctx.fillText(l, x, yy + i * lh); });
+  return y + lines.length * lh;
+}
+function paperBg(ctx, w, h, seed, base = '#efe9df'){
+  ctx.fillStyle = base; ctx.fillRect(0, 0, w, h);
+  const r = mulberry32(seed);
+  for (let i = 0; i < w * h / 90; i++) { ctx.fillStyle = `rgba(90,70,40,${r() * 0.05})`; ctx.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+  const g = ctx.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.2, w / 2, h / 2, Math.max(w, h) * 0.75);
+  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(110,80,40,0.22)'); ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+}
+function stampRect(ctx, text, cx, cy, size, rot, color = '#9C2113', pad = 18){
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); ctx.font = FH(800, size);
+  const tw = ctx.measureText(text).width; const w = tw + pad * 2, h = size + pad * 1.3;
+  ctx.globalAlpha = 0.86; ctx.strokeStyle = color; ctx.lineWidth = size * 0.09; ctx.strokeRect(-w / 2, -h / 2, w, h);
+  ctx.lineWidth = size * 0.035; ctx.strokeRect(-w / 2 + size * 0.16, -h / 2 + size * 0.16, w - size * 0.32, h - size * 0.32);
+  ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, size * 0.06);
+  // Stempel-Abrieb
+  ctx.globalCompositeOperation = 'destination-out'; const r = mulberry32(text.length * 99);
+  for (let i = 0; i < 160; i++) { ctx.globalAlpha = r() * 0.5; ctx.beginPath(); ctx.arc((r() - .5) * w, (r() - .5) * h, r() * 2.6, 0, 7); ctx.fill(); }
+  ctx.restore();
+}
+/* Fingerabdruck – als Canvas- und SVG-Pfade */
+function fingerprintArcs(seed){
+  const r = mulberry32(seed); const arcs = [];
+  for (let i = 0; i < 11; i++) {
+    const rx = 6 + i * 3.6, ry = 8 + i * 4.4; let a = -Math.PI * (0.05 + r() * 0.1);
+    while (a < Math.PI * 1.95) { const len = 0.5 + r() * 1.6; arcs.push([rx, ry, a, Math.min(a + len, Math.PI * 1.98)]); a += len + 0.12 + r() * 0.3; }
+  }
+  return arcs;
+}
+function fingerprintSVG(seed){
+  const parts = fingerprintArcs(seed).map(([rx, ry, a0, a1]) => { let d = ''; for (let t = a0; t <= a1; t += 0.12) { const x = 50 + Math.cos(t - Math.PI / 2) * rx, y = 60 + Math.sin(t - Math.PI / 2) * ry; d += (d ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1); } return `<path d="${d}"/>`; }).join('');
+  return `<svg viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">${parts}</svg>`;
+}
+function drawFingerprint(ctx, cx, cy, scale, seed, color){
+  ctx.save(); ctx.translate(cx, cy); ctx.scale(scale, scale); ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.lineCap = 'round';
+  for (const [rx, ry, a0, a1] of fingerprintArcs(seed)) { ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, a0 - Math.PI / 2, a1 - Math.PI / 2); ctx.stroke(); }
+  ctx.restore();
+}
+
+/* =========================================================
+   PROZEDURALE TEXTUREN (Canvas)
+   ========================================================= */
+const TEX = {};
+function texBrick(){
+  const c = mkCanvas(512, 512), x = c.getContext('2d'), r = mulberry32(3);
+  x.fillStyle = '#060a1e'; x.fillRect(0, 0, 512, 512);
+  const bh = 32, bw = 86;
+  for (let row = 0; row < 16; row++) for (let col = -1; col < 7; col++) {
+    const off = row % 2 ? bw / 2 : 0, l = 11 + r() * 8;
+    x.fillStyle = `hsl(${226 + r() * 12},${30 + r() * 16}%,${l}%)`;
+    x.fillRect(col * bw + off + 2, row * bh + 2, bw - 4, bh - 4);
+    if (r() < 0.25) { x.fillStyle = 'rgba(0,0,0,.25)'; x.fillRect(col * bw + off + 2, row * bh + 2 + r() * 20, bw - 4, 6); }
+  }
+  for (let i = 0; i < 2400; i++) { x.fillStyle = `rgba(255,255,255,${r() * 0.04})`; x.fillRect(r() * 512, r() * 512, 2, 2); }
+  return c;
+}
+function texWood(){
+  const c = mkCanvas(512, 512), x = c.getContext('2d'), r = mulberry32(5);
+  for (let i = 0; i < 8; i++) {
+    x.fillStyle = `hsl(${8 + r() * 10},${40 + r() * 15}%,${13 + r() * 6}%)`; x.fillRect(0, i * 64, 512, 64);
+    x.strokeStyle = 'rgba(0,0,0,.35)'; x.lineWidth = 3; x.beginPath(); x.moveTo(0, i * 64); x.lineTo(512, i * 64); x.stroke();
+    for (let g = 0; g < 14; g++) { x.strokeStyle = `rgba(${r() < .5 ? '0,0,0' : '255,200,150'},${0.04 + r() * 0.07})`; x.lineWidth = 1 + r() * 1.5; x.beginPath(); const yy = i * 64 + r() * 64; x.moveTo(0, yy); for (let xx = 0; xx <= 512; xx += 32) x.lineTo(xx, yy + Math.sin(xx * 0.02 + g) * 3); x.stroke(); }
+    const seam = r() * 512; x.fillStyle = 'rgba(0,0,0,.35)'; x.fillRect(seam, i * 64, 3, 64);
+  }
+  return c;
+}
+function texBanner(){
+  const c = mkCanvas(1024, 384), x = c.getContext('2d');
+  const g = x.createLinearGradient(0, 0, 1024, 0);
+  for (let i = 0; i <= 8; i++) g.addColorStop(i / 8, i % 2 ? '#8a1c10' : '#a82616');
+  x.fillStyle = g; x.fillRect(0, 0, 1024, 384);
+  x.strokeStyle = '#C7A065'; x.lineWidth = 8; x.strokeRect(22, 22, 980, 340); x.lineWidth = 2; x.strokeRect(36, 36, 952, 312);
+  x.fillStyle = '#C7A065'; x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+  x.font = FB(700, 30); x.fillText('A K T E   W E I H N A C H T E N', 512, 92);
+  fitFont(x, 'FALL 24/12', 900, 210, s => FH(900, s)); x.fillText('FALL 24/12', 512, 272);
+  x.fillStyle = '#EFEBE6'; fitFont(x, 'NORDPOL GEGEN DIE ELFEN-GEWERKSCHAFT', 880, 40, s => FB(700, s)); x.fillText('NORDPOL GEGEN DIE ELFEN-GEWERKSCHAFT', 512, 330);
+  return c;
+}
+function texStrike(){
+  const c = mkCanvas(768, 512), x = c.getContext('2d'), r = mulberry32(11);
+  const g = x.createLinearGradient(0, 0, 0, 512); g.addColorStop(0, '#d2b07e'); g.addColorStop(1, '#b8915e'); x.fillStyle = g; x.fillRect(0, 0, 768, 512);
+  for (let i = 0; i < 40; i++) { x.strokeStyle = 'rgba(90,60,30,.12)'; x.beginPath(); const yy = r() * 512; x.moveTo(0, yy); x.lineTo(768, yy + (r() - .5) * 20); x.stroke(); }
+  x.save(); x.translate(384, 260); x.rotate(-0.035); x.textAlign = 'center';
+  x.fillStyle = '#0A0F2B'; x.font = FH(900, 104); x.fillText('KEINE GESCHENKE', 0, -78);
+  x.fillStyle = '#9C2113'; x.font = FH(900, 82); x.fillText('OHNE', 0, 10);
+  x.fillStyle = '#0A0F2B'; fitFont(x, 'GERECHTIGKEIT!', 690, 112, s => FH(900, s)); x.fillText('GERECHTIGKEIT!', 0, 112);
+  x.restore();
+  // Glitzerrand
+  for (let i = 0; i < 1400; i++) {
+    const edge = r(); let px, py; const d = r() * 34;
+    if (edge < .25) { px = r() * 768; py = d; } else if (edge < .5) { px = r() * 768; py = 512 - d; } else if (edge < .75) { px = d; py = r() * 512; } else { px = 768 - d; py = r() * 512; }
+    x.fillStyle = ['#fff6c8', '#C7A065', '#ffd35a', '#e9e9ff', '#ff8a8a'][Math.floor(r() * 5)]; x.globalAlpha = .6 + r() * .4; x.fillRect(px, py, 2 + r() * 3, 2 + r() * 3);
+  }
+  x.globalAlpha = 1; return c;
+}
+function texStempelkarte(){
+  const c = mkCanvas(512, 720), x = c.getContext('2d'), r = mulberry32(15);
+  paperBg(x, 512, 720, 15, '#efe5cf');
+  x.fillStyle = '#0A0F2B'; x.font = FH(900, 54); x.fillText('STEMPELKARTE', 28, 74);
+  x.font = FB(700, 24); x.fillText('ELFE NR. 0815 · „MIRA“', 28, 112); x.fillText('WERKSTATT NORDPOL · ABT. 3', 28, 142);
+  x.strokeStyle = '#0A0F2B'; x.lineWidth = 2; x.strokeRect(28, 162, 456, 468);
+  x.font = FB(400, 15);
+  for (let row = 0; row < 26; row++) {
+    const y = 180 + row * 17.6; x.strokeStyle = 'rgba(10,15,43,.35)'; x.lineWidth = 1; x.beginPath(); x.moveTo(28, y + 4); x.lineTo(484, y + 4); x.stroke();
+    for (let col = 0; col < 14; col++) { if (r() < 0.96) { x.fillStyle = r() < .2 ? 'rgba(156,33,19,.75)' : 'rgba(30,30,60,.7)'; x.fillText(r() < .5 ? 'IN' : '✓', 36 + col * 32, y + 1); } }
+  }
+  stampRect(x, '364 SCHICHTEN', 290, 380, 46, -0.22);
+  x.fillStyle = '#9C2113'; x.font = FH(900, 40); x.fillText('URLAUB: 0 TAGE', 28, 680);
+  x.font = FB(700, 18); x.fillStyle = '#0A0F2B'; x.fillText('LETZTER STEMPEL 22.12. · 23:59', 230, 708);
+  return c;
+}
+function texTacho(){
+  const c = mkCanvas(512, 320), x = c.getContext('2d');
+  x.fillStyle = '#04130d'; x.fillRect(0, 0, 512, 320);
+  x.strokeStyle = 'rgba(124,255,178,.12)'; x.lineWidth = 1;
+  for (let i = 0; i < 512; i += 32) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, 320); x.stroke(); }
+  for (let i = 0; i < 320; i += 32) { x.beginPath(); x.moveTo(0, i); x.lineTo(512, i); x.stroke(); }
+  x.strokeStyle = 'rgba(124,255,178,.25)'; x.lineWidth = 10; x.beginPath(); x.moveTo(300, 0); x.lineTo(280, 140); x.lineTo(330, 320); x.stroke();
+  x.fillStyle = 'rgba(124,255,178,.45)'; x.font = FB(700, 13); x.fillText('SCHÖNHAUSER ALLEE', 336, 120);
+  x.strokeStyle = '#7CFFB2'; x.lineWidth = 4; x.setLineDash([10, 6]); x.beginPath(); x.moveTo(20, 300); x.bezierCurveTo(120, 260, 140, 120, 282, 150); x.stroke(); x.setLineDash([]);
+  x.fillStyle = '#ff4d3a'; x.beginPath(); x.arc(282, 150, 11, 0, 7); x.fill(); x.strokeStyle = 'rgba(255,77,58,.5)'; x.lineWidth = 3; x.beginPath(); x.arc(282, 150, 22, 0, 7); x.stroke();
+  x.fillStyle = '#7CFFB2'; x.font = FB(700, 20); x.fillText('FAHRTENSCHREIBER · SCHLITTEN 1', 16, 30);
+  x.font = FB(700, 18); x.fillText('LETZTE POS.: PRENZLAUER BERG', 16, 58);
+  x.fillStyle = '#ff4d3a'; x.font = FH(900, 46); x.fillText('STILLSTAND', 16, 250); x.font = FB(700, 38); x.fillText('03:00:00', 16, 292);
+  return c;
+}
+function texCrate(){
+  const c = mkCanvas(512, 384), x = c.getContext('2d'), r = mulberry32(21);
+  x.fillStyle = '#1a1030'; x.fillRect(0, 0, 512, 384);
+  for (let i = 0; i < 60; i++) { x.save(); x.translate(60 + r() * 392, 40 + r() * 140); x.rotate((r() - .5) * 1.4); x.fillStyle = r() < .3 ? '#f6e7c8' : '#f4f1ea'; x.fillRect(-34, -22, 68, 44); x.strokeStyle = 'rgba(0,0,0,.25)'; x.strokeRect(-34, -22, 68, 44); x.strokeStyle = 'rgba(156,33,19,.6)'; x.beginPath(); x.moveTo(-34, -22); x.lineTo(0, 4); x.lineTo(34, -22); x.stroke(); x.restore(); }
+  const wd = x.createLinearGradient(0, 150, 0, 384); wd.addColorStop(0, '#6b3a1f'); wd.addColorStop(1, '#3d1f10'); x.fillStyle = wd; x.fillRect(30, 160, 452, 210);
+  for (let i = 0; i < 4; i++) { x.fillStyle = 'rgba(0,0,0,.3)'; x.fillRect(30, 160 + i * 52, 452, 4); }
+  x.fillStyle = '#EFEBE6'; x.font = FH(900, 40); x.textAlign = 'center'; x.fillText('WUNSCHZETTEL', 256, 250);
+  x.font = FB(700, 24); x.fillText('UNBEARBEITET', 256, 284);
+  stampRect(x, '2,1 MIO.', 256, 336, 34, -0.08, '#C7A065', 14);
+  return c;
+}
+function texCrateLabel(){
+  const c = mkCanvas(512, 256), x = c.getContext('2d');
+  x.fillStyle = 'rgba(0,0,0,0)'; x.clearRect(0, 0, 512, 256);
+  x.fillStyle = '#EFEBE6'; x.textAlign = 'center'; x.font = FH(900, 64); x.fillText('WUNSCHZETTEL', 256, 110);
+  x.font = FB(700, 34); x.fillText('2,1 MIO. · UNBEARBEITET', 256, 165);
+  x.font = FB(700, 22); x.fillStyle = '#C7A065'; x.fillText('BÜRO DES CHEFS', 256, 210);
+  return c;
+}
+function texReceipt(){
+  const c = mkCanvas(320, 760), x = c.getContext('2d');
+  paperBg(x, 320, 760, 31, '#f7f4ee');
+  x.fillStyle = '#222'; x.textAlign = 'center'; x.font = FB(700, 22); x.fillText('NORDPOL SPA', 160, 50); x.font = FB(400, 16); x.fillText('& RENTIER-WELLNESS', 160, 74); x.fillText('Polarkreis 1 · 99999 Nordpol', 160, 96);
+  x.fillText('- - - - - - - - - - - - - - -', 160, 124);
+  x.textAlign = 'left'; x.font = FB(400, 17);
+  const L = [['Heu-Sauna 12x', '480 LBK'], ['Geweih-Massage', '1.200 LBK'], ['Huf-Pediküre', '860 LBK'], ['Moos-Smoothies', '2.460 LBK'], ['Wellness-Paket', '35.000 LBK']];
+  L.forEach((l, i) => { x.fillText(l[0], 22, 160 + i * 30); x.textAlign = 'right'; x.fillText(l[1], 298, 160 + i * 30); x.textAlign = 'left'; });
+  x.fillText('- - - - - - - - - - - - - - -', 22, 320);
+  x.font = FB(700, 24); x.fillText('SUMME', 22, 360); x.textAlign = 'right'; x.fillText('40.000', 298, 360);
+  x.font = FB(400, 15); x.fillText('LEBKUCHEN', 298, 382); x.textAlign = 'left';
+  x.font = FB(400, 16); x.fillText('Zweck: „Rentier-Wellness“', 22, 430); x.fillText('Datum: 19.12. · 16:04', 22, 456);
+  x.strokeStyle = '#1b2a6b'; x.lineWidth = 3; x.beginPath(); x.moveTo(30, 560);
+  for (let i = 0; i < 26; i++) x.quadraticCurveTo(40 + i * 9, 520 + (i % 2 ? 50 : -10), 46 + i * 9, 548 + Math.sin(i) * 12); x.stroke();
+  x.fillStyle = '#222'; x.font = FB(400, 15); x.fillText('gez. Der Chef (W. Mann)', 22, 600);
+  stampRect(x, 'GENEHMIGT', 180, 680, 30, -0.18);
+  return c;
+}
+function texGraffiti(lines, colors, seed, w = 1024, h = 384){
+  const c = mkCanvas(w, h), x = c.getContext('2d'), r = mulberry32(seed);
+  x.clearRect(0, 0, w, h); x.textAlign = 'center';
+  lines.forEach((l, i) => {
+    const size = fitFont(x, l, w * 0.92, i === 0 ? 150 : 96, s => FH(900, s));
+    const y = (i + 1) * h / (lines.length + 0.3) - (i === 0 ? 0 : 10);
+    x.save(); x.translate(w / 2, y); x.rotate((r() - .5) * 0.06);
+    x.shadowColor = colors[i % colors.length]; x.shadowBlur = 18; x.lineWidth = size * 0.09; x.strokeStyle = '#050816'; x.strokeText(l, 0, 0);
+    x.fillStyle = colors[i % colors.length]; x.fillText(l, 0, 0); x.shadowBlur = 0;
+    for (let d = 0; d < 7; d++) { const dx = (r() - .5) * size * 3; x.fillRect(dx, size * 0.1, 3, 20 + r() * 50); }
+    x.restore();
+  });
+  return c;
+}
+function texNum(n, found){
+  const c = mkCanvas(256, 256), x = c.getContext('2d');
+  x.beginPath(); x.arc(128, 128, 120, 0, 7); x.fillStyle = found ? '#EFEBE6' : '#C7A065'; x.fill();
+  x.lineWidth = 8; x.strokeStyle = found ? '#9C2113' : '#0A0F2B'; x.beginPath(); x.arc(128, 128, 104, 0, 7); x.stroke();
+  x.fillStyle = found ? '#9C2113' : '#0A0F2B'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  if (found) { x.lineWidth = 22; x.lineCap = 'round'; x.lineJoin = 'round'; x.strokeStyle = '#9C2113'; x.beginPath(); x.moveTo(78, 132); x.lineTo(114, 168); x.lineTo(182, 92); x.stroke(); }
+  else { x.font = FH(900, 150); x.fillText(String(n), 128, 140); }
+  return c;
+}
+function texGlow(){ const c = mkCanvas(64, 64), x = c.getContext('2d'); const g = x.createRadialGradient(32, 32, 0, 32, 32, 32); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(.25, 'rgba(255,255,255,.55)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, 64, 64); return c; }
+function texSnow(){ const c = mkCanvas(32, 32), x = c.getContext('2d'); const g = x.createRadialGradient(16, 16, 0, 16, 16, 16); g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(.5, 'rgba(255,255,255,.6)'); g.addColorStop(1, 'rgba(255,255,255,0)'); x.fillStyle = g; x.fillRect(0, 0, 32, 32); return c; }
+function texSmallSign(text, sub){
+  const c = mkCanvas(512, 320), x = c.getContext('2d');
+  x.fillStyle = '#EFEBE6'; x.fillRect(0, 0, 512, 320); x.strokeStyle = '#9C2113'; x.lineWidth = 10; x.strokeRect(10, 10, 492, 300);
+  x.fillStyle = '#9C2113'; x.textAlign = 'center'; fitFont(x, text, 450, 120, s => FH(900, s)); x.fillText(text, 256, 170);
+  x.fillStyle = '#0A0F2B'; fitFont(x, sub, 450, 34, s => FB(700, s)); x.fillText(sub, 256, 240);
+  return c;
+}
+function texVrClose(){ const c = mkCanvas(512, 136, 'tex-vrclose'), x = c.getContext('2d'); x.fillStyle = '#C7A065'; x.fillRect(0, 0, 512, 136); x.fillStyle = '#0A0F2B'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = FH(900, 54); x.fillText('SCHLIESSEN', 256, 72); return c; }
+
+function prepareTextures(){
+  if (TEX.ready) return;
+  TEX.brick = texBrick(); TEX.wood = texWood(); TEX.banner = texBanner(); TEX.strike = texStrike();
+  TEX.stempel = texStempelkarte(); TEX.tacho = texTacho(); TEX.crate = texCrate(); TEX.crateLabel = texCrateLabel(); TEX.receipt = texReceipt();
+  TEX.graf1 = texGraffiti(['LEBKUCHEN', 'IST KEIN LOHN'], ['#C7A065', '#ff6b57'], 41);
+  TEX.graf2 = texGraffiti(['1.200 ELFEN', '300 JAHRE NACHTSCHICHT'], ['#EFEBE6', '#C7A065'], 43);
+  TEX.sign2 = texSmallSign('STREIK!', 'ELFEN-GEWERKSCHAFT · SEKTION NORDPOL');
+  TEX.glow = texGlow(); TEX.snow = texSnow();
+  TEX.vrcard = mkCanvas(1024, 640, 'tex-vrcard'); TEX.vrclose = texVrClose();
+  const host = $('#texStore');
+  [['brick'], ['wood'], ['banner'], ['strike'], ['stempel'], ['tacho'], ['crateLabel'], ['receipt'], ['graf1'], ['graf2'], ['sign2']].forEach(([k]) => { TEX[k].id = 'tex-' + k; host.appendChild(TEX[k]); });
+  host.appendChild(TEX.vrcard); host.appendChild(TEX.vrclose);
+  TEX.photos = { 1: TEX.stempel.toDataURL('image/jpeg', .82), 2: TEX.strike.toDataURL('image/jpeg', .82), 3: TEX.tacho.toDataURL('image/jpeg', .85), 4: TEX.crate.toDataURL('image/jpeg', .82), 5: TEX.receipt.toDataURL('image/jpeg', .82) };
+  TEX.ready = true;
+}
+const fontsReady = (async () => {
+  try { await Promise.all([document.fonts.load(FH(900, 40)), document.fonts.load(FH(800, 40)), document.fonts.load(FH(600, 20)), document.fonts.load(FB(400, 20)), document.fonts.load(FB(700, 20)), document.fonts.load(FB(400, 20, true))]); } catch(e) {}
+  try { await Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]); } catch(e) {}
+})();
+
+/* =========================================================
+   UI: Fortschritt, Screens, Toast
+   ========================================================= */
+const screens = { start: $('#screen-start'), xr: $('#screen-xr'), akte: $('#screen-akte'), verdict: $('#screen-verdict'), result: $('#screen-result') };
+let current = 'start';
+function show(name, opts = {}){
+  if (!screens[name]) name = 'start';
+  if (current === 'xr' && name !== 'xr') leaveScene();
+  Object.entries(screens).forEach(([k, el]) => { el.hidden = k !== name; });
+  const prev = current; current = name; document.body.dataset.screen = name;
+  if (opts.push !== false && prev !== name) { try { history.pushState({ s: name }, ''); } catch(e) {} }
+  if (name !== 'xr') window.scrollTo(0, 0);
+  if (name === 'verdict') renderVerdict();
+  snowBg.toggle(name !== 'xr');
+  if (opts.focus !== false) { const h = screens[name].querySelector('h1[tabindex]'); if (h) setTimeout(() => h.focus({ preventScroll: true }), 30); }
+}
+window.addEventListener('popstate', e => { $$('dialog[open]').forEach(d => d.close()); const s = (e.state && e.state.s) || 'start'; if (s === 'xr') enter3D(false); else show(s, { push: false }); });
+let toastT;
+function toast(html, ms = 3800){ const t = $('#toast'); t.innerHTML = html; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), ms); }
+function updateProgress(){
+  const n = state.found.size;
+  $$('.foundN').forEach(e => e.textContent = n);
+  $$('.slots').forEach(s => $$('i', s).forEach((i, k) => i.classList.toggle('on', k < n)));
+  $$('.chip').forEach(c => { const id = +c.dataset.ev; const f = state.found.has(id); c.classList.toggle('found', f); c.setAttribute('aria-label', `Beweisstück ${id}: ${EV[id].title}${f ? ' – gesichert' : ' – noch nicht gesichert'}`); });
+  const vb = $('#btnVerdict'); const ready = n >= 3;
+  vb.setAttribute('aria-disabled', ready ? 'false' : 'true'); vb.classList.toggle('ready', n === 5);
+  $('#verdictHint').textContent = ready ? (n === 5 ? 'alle Beweise gesichert' : `${n}/5 – oder weiter ermitteln`) : `ab 3 Beweisen (${n}/3)`;
+  $$('.ev-card').forEach(a => { const id = +a.dataset.ev; const f = state.found.has(id); a.classList.toggle('found', f); const st = $('.st', a); if (st) st.textContent = f ? '✓ gesichert' : 'ungesichert'; });
+}
+function secure(id, mode){
+  const first = !state.found.has(id);
+  if (first) state.found.add(id);
+  track('evidence_opened', { id, key: EV[id].key, title: EV[id].title, mode, first, found: state.found.size });
+  if (first && state.found.size === 5 && !state.allTracked) {
+    state.allTracked = true;
+    track('all_evidence', { mode, seconds: Math.round((performance.now() - state.t0) / 1000) });
+  }
+  updateProgress(); if (sceneApi.markFound) sceneApi.markFound(id);
+  return first;
+}
+
+/* =========================================================
+   KARTE (HTML-Overlay im Gerichtsakten-Look)
+   ========================================================= */
+const ICON_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+function evidenceInner(id, hTag, idPrefix){
+  const e = EV[id];
+  return `<div class="ev-top">
+      <${hTag} class="h ev-h" id="${idPrefix}${id}"><span class="sr-only">Beweisstück ${id}: </span>${e.title}</${hTag}>
+      <p class="stamp" aria-hidden="true">Beweisstück #${id}</p>
+      <figure class="photo" style="margin:4px 0 0"><img src="${TEX.photos ? TEX.photos[id] : ''}" alt="${e.alt}" width="104" height="104"></figure>
+      <p class="fact">${e.fact}</p></div>
+    <p class="ev-text">${e.text}</p>
+    <div class="pro elfen"><h4>Für die Elfen spricht …</h4><p>${e.elfen}</p></div>
+    <div class="pro chef"><h4>Für den Chef spricht …</h4><p>${e.chef}</p></div>`;
+}
+function openCard(id){
+  const dlg = $('#cardDlg'), n = state.found.size, all = n === 5;
+  $('#cardSheet').innerHTML = `<button class="x" type="button" data-close aria-label="Akte schließen">${ICON_X}</button>
+    <div class="file-head"><span>Akte 24/12 · Blatt ${id}/5</span><span>Asservat</span></div>
+    ${evidenceInner(id, 'h2', 'cardTitle-')}
+    <div class="dlg-actions">
+      ${id === 3 ? '<button class="btn btn-red" type="button" data-act="ar">Den Schlitten in AR ansehen</button>' : ''}
+      ${all ? '<button class="btn btn-gold" type="button" data-act="verdict">Alle Beweise gesichert – zum Urteil</button><button class="btn btn-outline" type="button" data-close>Weiter umsehen</button>'
+            : `<button class="btn btn-gold" type="button" data-close>Beweis gesichert · weiter ermitteln</button>${n >= 3 ? '<button class="btn btn-outline" type="button" data-act="verdict">Schon jetzt zum Urteil</button>' : ''}`}
+    </div>
+    <p class="dlg-progress">Beweise gesichert: ${n}/5</p>`;
+  dlg.setAttribute('aria-labelledby', 'cardTitle-' + id);
+  if (!dlg.open) dlg.showModal();
+  dlg.scrollTop = 0; $('#cardSheet').scrollTop = 0;
+  $('#cardSheet').focus({ preventScroll: true });
+}
+$('#cardDlg').addEventListener('click', e => {
+  const d = $('#cardDlg');
+  if (e.target === d) { d.close(); return; }
+  if (e.target.closest('[data-close]')) d.close();
+  else if (e.target.closest('[data-act="verdict"]')) { d.close(); goVerdict(); }
+  else if (e.target.closest('[data-act="ar"]')) { d.close(); startAR('card'); }
+});
+$('#cardDlg').addEventListener('close', () => {
+  if (state.found.size === 5 && current === 'xr' && !state.allToastShown) { state.allToastShown = true; toast('<b>Alle 5 Beweise gesichert.</b> Zeit für Ihr Urteil. Psst … hinter Ihnen leuchtet noch etwas Rotes.', 5200); }
+});
+const infoDlg = $('#infoDlg');
+infoDlg.addEventListener('click', e => { if (e.target === infoDlg || e.target.closest('[data-close]')) infoDlg.close(); });
+function openInfo(kind){
+  const T = {
+    ar: ['AR auf dem Smartphone', 'AR',
+      '<p>Das AR-Beweisstück öffnet sich auf dem <strong>Smartphone</strong>: am <strong>iPhone/iPad</strong> per AR Quick Look (Safari oder Chrome), auf <strong>Android</strong> per Google Scene Viewer bzw. WebXR (Google Play Services for AR).</p><p>Scanne einfach den QR-Code auf dem Plakat mit der Handykamera und tippe auf „AR: Beweisstück #3“. Am Computer bleibt der 360°-Tatort: mit gedrückter Maus ziehen.</p>'],
+    arios: ['AR öffnet nicht?', 'iPhone', '<p>Falls sich AR nicht öffnet: Seite in <strong>Safari</strong> öffnen (Teilen → In Safari öffnen) und erneut auf „AR“ tippen. AR Quick Look braucht iOS 12 oder neuer.</p>'],
+    arfail: ['AR konnte nicht starten', 'Fehler', '<p>Die AR-Sitzung wurde abgelehnt oder abgebrochen. Prüfe die Kamera-Berechtigung und versuche es erneut – oder ermittle im 360°-Modus weiter.</p>'],
+    vr: ['Kein VR-Headset erkannt', 'VR', '<p>Der VR-Modus funktioniert mit Cardboard-Brillen (Smartphone) und Headsets wie Meta Quest. Am Desktop ohne Headset bleibt der 360°-Modus: Mit gedrückter Maus ziehen, um dich umzusehen.</p>'],
+    load: ['3D-Tatort nicht geladen', 'Offline?', '<p>Die 3D-Szene konnte nicht geladen werden (Netzwerk oder WebGL fehlt). Die komplette Beweisaufnahme gibt es auch als barrierearme <strong>2D-Akte</strong>.</p>']
+  }[kind];
+  $('#infoTitle').textContent = T[0]; $('#infoStamp').textContent = T[1]; $('#infoBody').innerHTML = T[2];
+  if (!infoDlg.open) infoDlg.showModal();
+  $('[data-close].btn', infoDlg).focus();
+}
+
+/* =========================================================
+   2D-AKTE
+   ========================================================= */
+function build2D(){
+  const list = $('#evList'); if (list.dataset.built) return; list.dataset.built = '1';
+  list.innerHTML = [1, 2, 3, 4, 5].map(id => `<li><article class="ev-card paper" data-ev="${id}" aria-labelledby="akteEv-${id}" id="blatt-${id}">
+      <div class="file-head"><span>Blatt ${id}/5</span><span class="st">ungesichert</span></div>
+      ${evidenceInner(id, 'h2', 'akteEv-')}</article></li>`).join('');
+  updateProgress();
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting && current === 'akte' && (en.intersectionRatio >= .35 || en.intersectionRect.height > innerHeight * .45)) { const id = +en.target.dataset.ev; if (!state.found.has(id)) secure(id, '2d'); io.unobserve(en.target); } });
+  }, { threshold: [0, .2, .35, .5, .75] }) : null;
+  $$('.ev-card').forEach(a => { if (io) io.observe(a); else secure(+a.dataset.ev, '2d'); });
+}
+async function enter2D(){
+  state.mode = '2d'; state.lastScene = 'akte';
+  track('mode_selected', { mode: '2d' });
+  await fontsReady; prepareTextures(); build2D(); show('akte');
+}
+
+/* =========================================================
+   VERDICT & RESULT
+   ========================================================= */
+function goVerdict(){
+  const n = state.found.size;
+  if (current === 'xr' && n < 3) { toast(`Noch zu wenig Beweise: <b>${n}/3</b>. Suchen Sie die goldenen Marker.`); return; }
+  show('verdict');
+}
+function renderVerdict(){
+  const n = state.found.size;
+  $('#verdictSub').textContent = `Sie haben ${n} von 5 Beweisen gesichert. Frau Holle bittet um Ruhe im Saal – oder es schneit.`;
+  $('#verdictBackLbl').textContent = state.lastScene === 'akte' ? 'Zurück zur Akte' : (state.lastScene === 'xr' ? 'Zurück zum Tatort' : 'Zur Vorladung');
+}
+$('#btnVerdictBack').addEventListener('click', () => { if (state.lastScene === 'xr') enter3D(false); else show(state.lastScene === 'akte' ? 'akte' : 'start'); });
+$$('[data-verdict]').forEach(b => b.addEventListener('click', () => {
+  const v = b.dataset.verdict;
+  if (v === 'mehr') {
+    const missing = 5 - state.found.size;
+    if (missing > 0) {
+      track('verdict_deferred', { found: state.found.size });
+      if (state.lastScene === 'akte') { show('akte'); const next = [1, 2, 3, 4, 5].find(i => !state.found.has(i)); const el = $('#blatt-' + next); if (el) el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' }); }
+      else enter3D(false);
+      setTimeout(() => toast(`Noch <b>${missing}</b> Beweis${missing > 1 ? 'e' : ''} offen. Die Akte ist nicht geschlossen.`), 400);
+      return;
+    }
+    finishVerdict('vertagt');
+  } else finishVerdict(v);
+}));
+function finishVerdict(v){
+  state.verdict = v;
+  track('verdict', { value: v, found: state.found.size, mode: state.mode });
+  show('result'); renderResult();
+}
+function ticketUrl(){
+  const u = new URL(CONFIG.ticketBase); Object.entries(CONFIG.utm).forEach(([k, val]) => u.searchParams.set(k, val));
+  u.searchParams.set('utm_content', 'verdict_' + (state.verdict || 'none')); return u.toString();
+}
+async function renderResult(){
+  const v = VERDICTS[state.verdict] || VERDICTS.vertagt;
+  $('#resultSub').textContent = `Geschworene*r Nr. ${state.jurorNr} · Urteil: ${v.line}`;
+  $('#btnTicket').href = ticketUrl();
+  $('#rewardCode').textContent = CONFIG.rewardCode;
+  // Stimmungsbarometer (Demo)
+  const e = CONFIG.demoVotes.elfen + (state.verdict === 'chef' ? 1 : 0), c = CONFIG.demoVotes.chef + (state.verdict === 'elfen' ? 1 : 0);
+  const pe = Math.round(e / (e + c) * 100);
+  $('#baroE').style.width = '50%'; requestAnimationFrame(() => setTimeout(() => $('#baroE').style.width = pe + '%', 60));
+  $('#baroEL').textContent = `${pe} % · ${e.toLocaleString('de-DE')}`; $('#baroCL').textContent = `${100 - pe} % · ${c.toLocaleString('de-DE')}`;
+  $('#baroBar').setAttribute('aria-label', `Demo-Daten: Team Elfen ${pe} Prozent, Team Chef ${100 - pe} Prozent`);
+  $('#baroYou').textContent = state.verdict === 'vertagt' ? 'Ihre Stimme: noch unentschlossen – zählt erst live im Saal.' : `Ihre Stimme zählt für ${v.team}.`;
+  await fontsReady; drawIdCard($('#idCanvas'));
+  $('#idCanvas').setAttribute('aria-label', `Jury-Ausweis. Geschworene*r Nr. ${state.jurorNr}. Fall 24/12, Nordpol gegen die Elfen-Gewerkschaft. Mein Urteil: ${v.line} Lager: ${v.team}. Beweise gesichert: ${state.found.size} von 5. THE JURY – Weihnachten vor Gericht, 19.12.2026 und 09.01.2027, Colosseum Berlin. Das echte Urteil fällt live im Colosseum. ${CONFIG.hashtags}`);
+}
+function drawIdCard(cv){
+  const x = cv.getContext('2d'), W = 1080, H = 1920, r = mulberry32(+state.jurorNr);
+  const v = VERDICTS[state.verdict] || VERDICTS.vertagt;
+  // Hintergrund
+  const bg = x.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#0A0F2B'); bg.addColorStop(.62, '#1a0f2a'); bg.addColorStop(1, '#2E0F0F'); x.fillStyle = bg; x.fillRect(0, 0, W, H);
+  const gl = x.createRadialGradient(W / 2, 140, 0, W / 2, 140, 700); gl.addColorStop(0, 'rgba(199,160,101,.28)'); gl.addColorStop(1, 'rgba(199,160,101,0)'); x.fillStyle = gl; x.fillRect(0, 0, W, H);
+  for (let i = 0; i < 220; i++) { x.globalAlpha = .15 + r() * .6; x.fillStyle = '#fff'; x.beginPath(); x.arc(r() * W, r() * H, .8 + r() * 3.2, 0, 7); x.fill(); }
+  x.globalAlpha = 1;
+  // Lichterkette
+  x.strokeStyle = '#05060f'; x.lineWidth = 3; x.beginPath(); x.moveTo(-20, 40); x.quadraticCurveTo(W / 2, 170, W + 20, 40); x.stroke();
+  for (let i = 0; i <= 18; i++) { const t = i / 18, px = -20 + t * (W + 40), py = (1 - t) * (1 - t) * 40 + 2 * (1 - t) * t * 170 + t * t * 40 + 12; const col = ['#C7A065', '#ff5a3c', '#EFEBE6', '#ffcf6b'][i % 4];
+    const g = x.createRadialGradient(px, py, 0, px, py, 34); g.addColorStop(0, col); g.addColorStop(1, 'rgba(0,0,0,0)'); x.globalAlpha = .55; x.fillStyle = g; x.fillRect(px - 34, py - 34, 68, 68); x.globalAlpha = 1; x.fillStyle = col; x.beginPath(); x.ellipse(px, py, 9, 13, 0, 0, 7); x.fill(); }
+  x.textAlign = 'center'; x.fillStyle = '#C7A065'; x.font = FB(700, 30); x.fillText('A K T E   W E I H N A C H T E N', W / 2, 250);
+  x.fillStyle = '#EFEBE6'; x.font = FH(900, 46); x.fillText('#IHRSEIDDIEJURY', W / 2, 310);
+  // Ausweis-Karte
+  x.save(); x.translate(W / 2, 980); x.rotate(-0.018);
+  const cw = 900, ch = 1200, cx0 = -cw / 2, cy0 = -ch / 2;
+  x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 50; x.shadowOffsetY = 24; x.fillStyle = '#efe9df'; x.fillRect(cx0, cy0, cw, ch); x.shadowColor = 'transparent'; x.shadowBlur = 0; x.shadowOffsetY = 0;
+  const pr = mulberry32(77); for (let i = 0; i < 9000; i++) { x.fillStyle = `rgba(90,70,40,${pr() * 0.06})`; x.fillRect(cx0 + pr() * cw, cy0 + pr() * ch, 2, 2); }
+  x.fillStyle = '#0A0F2B'; x.fillRect(cx0, cy0, cw, 150);
+  x.textAlign = 'left'; x.fillStyle = '#C7A065'; x.font = FB(700, 26); x.fillText('LANDGERICHT NORDPOL', cx0 + 50, cy0 + 58);
+  x.fillStyle = '#EFEBE6'; x.font = FH(900, 64); x.fillText('JURY-AUSWEIS', cx0 + 50, cy0 + 122);
+  x.textAlign = 'right'; x.fillStyle = '#C7A065'; x.font = FB(700, 26); x.fillText('FALL 24/12', cx0 + cw - 50, cy0 + 58);
+  x.fillStyle = 'rgba(239,235,230,.7)'; x.font = FB(400, 22); x.fillText('GESCHÄFTSSTELLE KIEZ', cx0 + cw - 50, cy0 + 120);
+  const L = cx0 + 50, R = cx0 + 500;
+  const label = (t, xx, yy) => { x.textAlign = 'left'; x.fillStyle = '#5a524a'; x.font = FB(700, 26); x.fillText(t, xx, yy); };
+  let y = cy0 + 222;
+  label('GESCHWORENE*R NR.', L, y); x.fillStyle = '#9C2113'; x.font = FH(900, 170); x.fillText(state.jurorNr, L - 6, y + 158);
+  drawFingerprint(x, cx0 + cw - 150, y + 78, 1.5, +state.jurorNr, 'rgba(17,17,17,.55)');
+  y += 222; x.strokeStyle = '#0A0F2B'; x.lineWidth = 3; x.beginPath(); x.moveTo(L, y); x.lineTo(cx0 + cw - 50, y); x.stroke();
+  y += 54; label('FALL', L, y); x.fillStyle = '#111'; x.font = FB(700, 34); x.fillText('24/12 · Nordpol gegen die', L, y + 44); x.fillText('Elfen-Gewerkschaft', L, y + 86);
+  y += 144; label('MEIN URTEIL', L, y);
+  x.fillStyle = '#0A0F2B'; x.font = FH(900, 66); y = wrap(x, v.line.toUpperCase(), L, y + 70, cw - 100, 66) - 66;
+  y += 70; label('LAGER', L, y); label('BEWEISE', R, y);
+  x.fillStyle = '#9C2113'; x.font = FH(900, 50); x.fillText(v.team, L, y + 54);
+  x.fillStyle = '#111'; x.font = FB(700, 34); x.fillText(`${state.found.size}/5 gesichert`, R, y + 50);
+  const ds = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  y += 104; label('AUSGESTELLT', L, y); x.fillStyle = '#111'; x.font = FB(700, 34); x.fillText(ds, L, y + 44);
+  stampRect(x, 'VEREIDIGT', cx0 + cw - 230, Math.min(y + 20, cy0 + ch - 80), 62, -0.2);
+  x.restore();
+  // Show-Infos
+  x.textAlign = 'center';
+  x.fillStyle = '#C7A065'; x.font = FH(900, 54); x.fillText('THE JURY – WEIHNACHTEN VOR GERICHT', W / 2, 1656, 980);
+  x.fillStyle = '#EFEBE6'; x.font = FH(800, 44); x.fillText('19.12.2026 & 09.01.2027 · COLOSSEUM BERLIN', W / 2, 1712, 980);
+  x.font = FB(700, 30); x.fillText('jeweils 16:00 & 18:30 Uhr · Schönhauser Allee 123 · ab 39 €', W / 2, 1756, 980);
+  x.font = FB(400, 36, true); x.fillText('Das echte Urteil fällt live im Colosseum.', W / 2, 1806);
+  x.fillStyle = '#C7A065'; x.font = FB(700, 34); x.fillText(CONFIG.hashtags, W / 2, 1850);
+  x.fillStyle = 'rgba(239,235,230,.6)'; x.font = FB(400, 22); x.fillText('Prototyp · Hochschulprojekt · KI-gestützt erstellt', W / 2, 1896);
+}
+function cardBlob(){ return new Promise(res => $('#idCanvas').toBlob(b => res(b), 'image/png')); }
+$('#btnSave').addEventListener('click', async () => {
+  const b = await cardBlob(); const url = URL.createObjectURL(b); const a = document.createElement('a');
+  a.href = url; a.download = `jury-ausweis-${state.jurorNr}.png`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000);
+  track('card_saved', { verdict: state.verdict }); toast('Jury-Ausweis gespeichert. <b>Teilen mit #AkteWeihnachten</b>');
+});
+$('#btnShare').addEventListener('click', async () => {
+  const v = VERDICTS[state.verdict] || VERDICTS.vertagt;
+  const shareUrl = location.origin + location.pathname + '?utm_source=share&utm_medium=social&utm_campaign=akte_weihnachten';
+  const text = `Ich bin Geschworene*r Nr. ${state.jurorNr} im Fall 24/12. Mein Urteil: ${v.line} Das echte Urteil fällt live im Colosseum Berlin (19.12. & 09.01.). ${CONFIG.hashtags}`;
+  let method = 'clipboard';
+  try {
+    const b = await cardBlob(); const file = new File([b], `jury-ausweis-${state.jurorNr}.png`, { type: 'image/png' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { method = 'web_share_file'; await navigator.share({ files: [file], title: 'Mein Jury-Ausweis', text }); }
+    else if (navigator.share) { method = 'web_share_link'; await navigator.share({ title: 'Akte Weihnachten – Ihr seid die Jury.', text, url: shareUrl }); }
+    else { await navigator.clipboard.writeText(text + ' ' + shareUrl); toast('Text &amp; Link kopiert – einfach in Story oder Chat einfügen.'); }
+    track('share', { method, verdict: state.verdict });
+  } catch (err) {
+    if (err && err.name === 'AbortError') { track('share', { method, verdict: state.verdict, cancelled: true }); return; }
+    try { await navigator.clipboard.writeText(text + ' ' + shareUrl); toast('Text &amp; Link kopiert.'); track('share', { method: 'clipboard', verdict: state.verdict }); }
+    catch(e2) { toast('Teilen nicht möglich – speichere den Ausweis und poste ihn mit <b>#AkteWeihnachten</b>.'); }
+  }
+});
+$('#btnTicket').addEventListener('click', () => track('ticket_click', { verdict: state.verdict, found: state.found.size, url: $('#btnTicket').href }));
+$('#btnCopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(CONFIG.rewardCode); toast(`Code <b>${CONFIG.rewardCode}</b> kopiert.`); } catch(e) { toast(`Code: <b>${CONFIG.rewardCode}</b>`); } track('code_copied', { code: CONFIG.rewardCode }); });
+$('#btnRestart').addEventListener('click', () => { location.href = location.pathname; });
+$$('[data-go]').forEach(b => b.addEventListener('click', () => { const g = b.dataset.go; if (g === 'verdict') { state.lastScene = 'akte'; goVerdict(); } else show(g); }));
+
+/* =========================================================
+   HINTERGRUND-SCHNEE (2D-Screens)
+   ========================================================= */
+const snowBg = (() => {
+  const cv = $('#bgSnow'), x = cv.getContext('2d'); let flakes = [], on = true, raf = 0, w = 0, h = 0;
+  function size(){ const dpr = Math.min(2, devicePixelRatio || 1); w = innerWidth; h = innerHeight; cv.width = w * dpr; cv.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const r = mulberry32(9); flakes = Array.from({ length: Math.round(Math.min(70, w * h / 9000)) }, () => ({ x: r() * w, y: r() * h, s: .6 + r() * 2.2, v: 12 + r() * 30, p: r() * 6 })); draw(0); }
+  function draw(dt){ x.clearRect(0, 0, w, h); for (const f of flakes) { if (dt) { f.y += f.v * dt; f.x += Math.sin(f.p += dt) * 0.25; if (f.y > h + 4) { f.y = -4; f.x = Math.random() * w; } } x.globalAlpha = .25 + f.s / 4; x.fillStyle = '#fff'; x.beginPath(); x.arc(f.x, f.y, f.s, 0, 7); x.fill(); } }
+  let last = 0; function loop(t){ const dt = Math.min(.05, (t - last) / 1000 || 0); last = t; draw(dt); raf = requestAnimationFrame(loop); }
+  addEventListener('resize', size); size();
+  return { toggle(v){ on = v; cv.style.display = v ? 'block' : 'none'; cancelAnimationFrame(raf); if (v && !REDUCED) { last = performance.now(); raf = requestAnimationFrame(loop); } } };
+})();
+$('#fpSmall').innerHTML = fingerprintSVG(815);
+
+/* =========================================================
+   3D / XR (A-Frame)
+   ========================================================= */
+let aframePromise = null, scene = null, sceneReady = false, gyroGranted = null, arSupported = false;
+const sceneApi = {};
+function loadAFrame(){
+  if (window.AFRAME) return Promise.resolve();
+  if (!aframePromise) aframePromise = new Promise((res, rej) => { const s = document.createElement('script'); s.src = AFRAME_URL; s.crossOrigin = 'anonymous'; s.onload = res; s.onerror = () => { aframePromise = null; rej(new Error('A-Frame load failed')); }; document.head.appendChild(s); });
+  return aframePromise;
+}
+function hasWebGL(){ try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch(e) { return false; } }
+function requestGyro(){
+  // iOS 13+: Erlaubnis MUSS synchron im Tap-Handler angefragt werden
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    const p = DeviceOrientationEvent.requestPermission().then(r => { gyroGranted = r === 'granted'; }).catch(() => { gyroGranted = false; });
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') DeviceMotionEvent.requestPermission().catch(() => {});
+    return p;
+  }
+  gyroGranted = 'n/a'; return Promise.resolve();
+}
+function applyGyro(){
+  if (!scene || gyroGranted !== true) return;
+  const c = scene.components['device-orientation-permission-ui']; if (c) c.permissionGranted = true;
+  scene.emit('deviceorientationpermissiongranted');
+}
+$('#btnEnter3D').addEventListener('click', () => { requestGyro().then(applyGyro); enter3D(true); });
+$('#btnEnter2D').addEventListener('click', enter2D);
+$('#btnAkteTo3D').addEventListener('click', () => { requestGyro().then(applyGyro); enter3D(true); });
+async function enter3D(fresh){
+  if (!hasWebGL()) { openInfo('load'); return; }
+  state.mode = '3d'; state.lastScene = 'xr';
+  if (fresh) track('mode_selected', { mode: '3d' });
+  show('xr');
+  $('#loader').hidden = sceneReady;
+  try {
+    await fontsReady; prepareTextures(); buildChips();
+    await loadAFrame();
+    if (!scene) await buildScene();
+    resumeScene();
+  } catch (err) {
+    console.error(err); $('#loader').hidden = true; show('start'); openInfo('load');
+  }
+}
+function buildChips(){
+  const box = $('#chips'); if (box.childElementCount) return;
+  box.innerHTML = [1, 2, 3, 4, 5].map(id => `<button class="chip glass" type="button" data-ev="${id}"><span class="n">${id}</span><span class="t">${EV[id].short}</span></button>`).join('');
+  $$('.chip', box).forEach(c => c.addEventListener('click', () => { const id = +c.dataset.ev; if (sceneApi.turnTo) sceneApi.turnTo(id, () => { secure(id, '3d'); openCard(id); }); else { secure(id, '3d'); openCard(id); } }));
+  updateProgress();
+}
+$('#btnExit').addEventListener('click', () => show('start'));
+$('#btnVerdict').addEventListener('click', goVerdict);
+const UA = navigator.userAgent || '';
+const IS_IOS = /iPad|iPhone|iPod/.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const IS_ANDROID = /Android/i.test(UA);
+const AR_GLB = new URL('ar/beweis_schlitten.glb', location.href).href;
+const AR_USDZ = new URL('ar/beweis_schlitten.usdz', location.href).href;
+function arQuickLook(origin){
+  // Apple AR Quick Look: <a rel="ar"> mit <img> als erstem Kind, Banner-Button „Zum Urteil“
+  const a = document.createElement('a'); a.rel = 'ar';
+  a.href = AR_USDZ + '#allowsContentScaling=1&checkoutTitle=' + encodeURIComponent('Beweisstück #3: Der Schlitten') +
+    '&checkoutSubtitle=' + encodeURIComponent('3 Std. Stillstand über Prenzlauer Berg') + '&callToAction=' + encodeURIComponent('Zum Urteil');
+  const img = document.createElement('img'); img.alt = ''; img.width = 1; img.height = 1; a.appendChild(img);
+  a.style.position = 'fixed'; a.style.left = '-9999px'; document.body.appendChild(a);
+  a.addEventListener('message', e => { if (e.data === '_apple_ar_quicklook_button_tapped') { track('ar_cta', { platform: 'ios' }); state.lastScene = state.lastScene || 'start'; show('verdict'); } }, false);
+  a.click();
+  if (!state.found.has(3)) secure(3, 'ar');
+  track('mode_selected', { mode: 'ar', platform: 'ios', origin });
+  setTimeout(() => { a.remove(); }, 60000);
+  setTimeout(() => { if (!document.hidden) toast('Kein AR-Fenster? <b>In Safari öffnen</b> und erneut tippen.', 6000); }, 2500);
+}
+function arSceneViewer(origin){
+  const fallback = location.href.split('#')[0];
+  const intent = 'intent://arvr.google.com/scene-viewer/1.0?file=' + encodeURIComponent(AR_GLB) + '&mode=ar_preferred&title=' + encodeURIComponent('Beweisstück #3: Der Schlitten') +
+    '#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=' + encodeURIComponent(fallback) + ';end;';
+  if (!state.found.has(3)) secure(3, 'ar');
+  track('mode_selected', { mode: 'ar', platform: 'android', origin });
+  location.href = intent;
+}
+function startAR(origin){
+  if (IS_IOS) { arQuickLook(origin); return; }
+  if (IS_ANDROID && arSupported && scene && current === 'xr') {
+    $('#arOverlay').hidden = false;
+    const p = scene.enterAR ? scene.enterAR() : scene.enterVR(true);
+    Promise.resolve(p).catch(err => { console.warn(err); $('#arOverlay').hidden = true; arSceneViewer(origin); });
+    return;
+  }
+  if (IS_ANDROID) { arSceneViewer(origin); return; }
+  openInfo('ar'); track('ar_unavailable', { origin });
+}
+$('#btnAR').addEventListener('click', () => startAR('xr_hud'));
+$('#btnStartAR').addEventListener('click', () => startAR('start'));
+$('#btnARExit').addEventListener('click', () => { if (scene) scene.exitVR(); });
+$('#arOverlay').addEventListener('beforexrselect', e => { if (e.target.closest('button')) e.preventDefault(); });
+
+function resumeScene(){
+  if (!scene) return;
+  state.sceneStart = performance.now();
+  if (scene.renderer && scene.render) scene.renderer.setAnimationLoop(scene.render);
+  scene.play();
+  setFov();
+  track('xr_start', { gyro: String(gyroGranted), webxr_ar: arSupported, found: state.found.size, reduced_motion: REDUCED });
+  if (!state.hintShown) { state.hintShown = true; setTimeout(() => toast('<b>Schau dich um:</b> Handy bewegen oder wischen. Tippe auf die <b>goldenen Marker</b>, um Beweise zu sichern.', 5200), 500); }
+}
+function leaveScene(){
+  if (!scene) return;
+  if (state.sceneStart) { track('time_in_scene', { seconds: Math.round((performance.now() - state.sceneStart) / 1000), found: state.found.size }); state.sceneStart = 0; }
+  try { scene.pause(); if (scene.renderer) scene.renderer.setAnimationLoop(null); } catch(e) {}
+}
+addEventListener('pagehide', () => { if (current === 'xr' && state.sceneStart) { track('time_in_scene', { seconds: Math.round((performance.now() - state.sceneStart) / 1000), found: state.found.size, reason: 'pagehide' }); state.sceneStart = 0; } });
+document.addEventListener('visibilitychange', () => { if (document.hidden && current === 'xr' && state.sceneStart) { track('time_in_scene', { seconds: Math.round((performance.now() - state.sceneStart) / 1000), found: state.found.size, reason: 'hidden' }); state.sceneStart = 0; } else if (!document.hidden && current === 'xr' && !state.sceneStart) state.sceneStart = performance.now(); });
+function setFov(){ const cam = document.getElementById('cam'); if (!cam) return; cam.setAttribute('camera', 'fov', innerHeight > innerWidth ? 82 : 62); }
+addEventListener('resize', setFov);
+
+/* Positionen (Weltkoordinaten) der Marker */
+const MARK = { 1: [-5.4, 2.65, -2.0], 2: [1.1, 2.3, -3.2], 3: [3.35, 2.0, -0.7], 4: [2.55, 1.75, 3.35], 5: [-3.1, 1.85, 3.0] };
+
+function registerComponents(){
+  const A = window.AFRAME, T = A.THREE;
+  if (A.components['ev-marker']) return;
+  const tmpQ = new T.Quaternion();
+
+  A.registerComponent('face-origin', { init(){ const o = this.el.object3D; o.lookAt(0, o.position.y, 0); } });
+
+  A.registerComponent('ev-marker', {
+    schema: { n: { type: 'int', default: 1 } },
+    init(){
+      const n = this.data.n, g = new T.Group();
+      this.ringMat = new T.MeshBasicMaterial({ color: 0xC7A065, transparent: true, opacity: .95, fog: false });
+      this.haloMat = new T.MeshBasicMaterial({ color: 0xC7A065, transparent: true, opacity: .3, fog: false, depthWrite: false, side: T.DoubleSide });
+      this.ring = new T.Mesh(new T.TorusGeometry(.27, .022, 8, 48), this.ringMat);
+      this.halo = new T.Mesh(new T.RingGeometry(.31, .37, 48), this.haloMat);
+      const mk = c => { const t = new T.CanvasTexture(c); t.colorSpace = T.SRGBColorSpace; return t; };
+      this.texN = mk(texNum(n, false)); this.texF = mk(texNum(n, true));
+      this.discMat = new T.MeshBasicMaterial({ map: this.texN, transparent: true, fog: false });
+      const disc = new T.Mesh(new T.CircleGeometry(.21, 40), this.discMat); disc.position.z = .005;
+      g.add(this.halo, this.ring, disc); this.g = g; this.el.setObject3D('marker', g);
+      this.phase = n * 1.3; this.found = false; this.baseY = this.el.object3D.position.y;
+    },
+    setFound(){ this.found = true; this.discMat.map = this.texF; this.discMat.needsUpdate = true; this.ringMat.color.set(0x9C2113); this.haloMat.opacity = 0; this.g.scale.setScalar(.8); },
+    tick(t){
+      const cam = this.el.sceneEl.camera; if (!cam) return;
+      cam.getWorldQuaternion(tmpQ); this.el.object3D.quaternion.copy(tmpQ);
+      if (REDUCED || this.found) return;
+      const s = Math.sin(t * .0035 + this.phase);
+      this.halo.scale.setScalar(1 + .28 * (s * .5 + .5)); this.haloMat.opacity = .38 - .28 * (s * .5 + .5);
+      this.el.object3D.position.y = this.baseY + Math.sin(t * .0016 + this.phase) * .05;
+    }
+  });
+
+  A.registerComponent('snowfall', {
+    schema: { count: { default: 320 } },
+    init(){
+      const n = REDUCED ? 140 : this.data.count, r = mulberry32(2), pos = new Float32Array(n * 3); this.sp = new Float32Array(n);
+      for (let i = 0; i < n; i++) { pos[i * 3] = (r() - .5) * 11.6; pos[i * 3 + 1] = r() * 5; pos[i * 3 + 2] = (r() - .5) * 11.6; this.sp[i] = .25 + r() * .45; }
+      const geo = new T.BufferGeometry(); geo.setAttribute('position', new T.BufferAttribute(pos, 3));
+      const tex = new T.CanvasTexture(TEX.snow);
+      const mat = new T.PointsMaterial({ size: .07, map: tex, transparent: true, depthWrite: false, opacity: .85, sizeAttenuation: true, color: 0xffffff });
+      this.pts = new T.Points(geo, mat); this.pts.frustumCulled = false; this.el.setObject3D('snow', this.pts); this.n = n;
+    },
+    tick(t, dt){
+      if (REDUCED || !dt) return; const d = Math.min(dt, 50) / 1000, p = this.pts.geometry.attributes.position, a = p.array;
+      for (let i = 0; i < this.n; i++) { a[i * 3 + 1] -= this.sp[i] * d; a[i * 3] += Math.sin(t * .001 + i) * .12 * d; if (a[i * 3 + 1] < 0) a[i * 3 + 1] = 5; }
+      p.needsUpdate = true;
+    }
+  });
+
+  A.registerComponent('string-lights', {
+    init(){
+      const strands = [[[-5.9, 4.35, -5.6], [5.9, 4.35, -5.6], .55], [[-5.9, 4.4, -2.2], [5.9, 4.4, 0.6], .8], [[-5.9, 4.4, 2.4], [5.9, 4.4, 3.4], .8], [[-4.2, 4.45, -5.9], [-2.6, 4.45, 5.9], .9], [[4.6, 4.45, -5.9], [3.2, 4.45, 5.9], .9]];
+      const pal = [0xC7A065, 0xff4a30, 0xffe2a8, 0xffb347, 0xd8ecff];
+      const pts = [], cols = [], line = [];
+      const c = new T.Color();
+      strands.forEach(([a, b, sag], si) => {
+        const N = 22; let prev = null;
+        for (let i = 0; i <= N; i++) { const t = i / N; const p = new T.Vector3(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t - Math.sin(Math.PI * t) * sag, a[2] + (b[2] - a[2]) * t);
+          if (prev) line.push(prev.x, prev.y, prev.z, p.x, p.y, p.z); prev = p;
+          if (i > 0 && i < N) { pts.push(p.clone().add(new T.Vector3(0, -.06, 0))); cols.push(pal[(i + si) % pal.length]); } }
+      });
+      const n = pts.length; this.n = n;
+      const bulbs = new T.InstancedMesh(new T.SphereGeometry(.045, 8, 6), new T.MeshBasicMaterial({ color: 0xffffff }), n);
+      const m = new T.Matrix4(); this.base = [];
+      const gpos = new Float32Array(n * 3), gcol = new Float32Array(n * 3);
+      pts.forEach((p, i) => { m.makeTranslation(p.x, p.y, p.z); bulbs.setMatrixAt(i, m); c.setHex(cols[i]); bulbs.setColorAt(i, c); this.base.push(c.clone()); gpos.set([p.x, p.y, p.z], i * 3); gcol.set([c.r, c.g, c.b], i * 3); });
+      bulbs.instanceMatrix.needsUpdate = true; if (bulbs.instanceColor) bulbs.instanceColor.needsUpdate = true;
+      const gg = new T.BufferGeometry(); gg.setAttribute('position', new T.BufferAttribute(gpos, 3)); gg.setAttribute('color', new T.BufferAttribute(gcol, 3));
+      const glow = new T.Points(gg, new T.PointsMaterial({ size: .55, map: new T.CanvasTexture(TEX.glow), vertexColors: true, transparent: true, depthWrite: false, blending: T.AdditiveBlending, opacity: .55, fog: false }));
+      const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(line, 3));
+      const wire = new T.LineSegments(lg, new T.LineBasicMaterial({ color: 0x0b0b12 }));
+      const grp = new T.Group(); grp.add(wire, bulbs, glow); this.el.setObject3D('lights', grp);
+      this.bulbs = bulbs; this.glow = glow; this.acc = 0;
+    },
+    tick(t, dt){
+      if (REDUCED || !dt) return; this.acc += dt; if (this.acc < 110) return; this.acc = 0;
+      const col = this.glow.geometry.attributes.color, c = new T.Color();
+      for (let k = 0; k < 6; k++) { const i = Math.floor(Math.random() * this.n); const f = Math.random() < .25 ? .25 : 1; c.copy(this.base[i]).multiplyScalar(f); this.bulbs.setColorAt(i, c); col.setXYZ(i, c.r, c.g, c.b); }
+      this.bulbs.instanceColor.needsUpdate = true; col.needsUpdate = true;
+    }
+  });
+
+  A.registerComponent('gift-pile', {
+    schema: { count: { default: 28 }, seed: { default: 7 } },
+    init(){
+      const r = mulberry32(this.data.seed), n = this.data.count;
+      const box = new T.BoxGeometry(1, 1, 1);
+      const boxes = new T.InstancedMesh(box, new T.MeshStandardMaterial({ roughness: .55, metalness: .1 }), n);
+      const ribs = new T.InstancedMesh(box, new T.MeshStandardMaterial({ roughness: .3, metalness: .7 }), n * 2);
+      const pal = [0x9C2113, 0xb3291a, 0xC7A065, 0x2E0F0F, 0xEFEBE6, 0x1b2a6b, 0x9C2113];
+      const avoid = [[-5, -2], [1.1, -3.2], [4, -0.6], [2.6, 3.4], [-3.2, 3], [0, -3.4], [-0.5, 5.2]];
+      const m = new T.Matrix4(), q = new T.Quaternion(), s = new T.Vector3(), p = new T.Vector3(), e = new T.Euler(), c = new T.Color();
+      let i = 0, tries = 0;
+      while (i < n && tries < 800) {
+        tries++; const a = r() * Math.PI * 2, rad = 1.7 + r() * 4.1, x = Math.sin(a) * rad, z = Math.cos(a) * rad;
+        if (Math.abs(x) > 5.5 || Math.abs(z) > 5.5) continue;
+        if (avoid.some(([ax, az]) => Math.hypot(ax - x, az - z) < 1.05)) continue;
+        const w = .26 + r() * .42, h = .2 + r() * .36, d = .26 + r() * .42, fallen = r() < .22;
+        e.set(0, r() * Math.PI, fallen ? (r() - .5) * 1.2 : 0); q.setFromEuler(e); p.set(x, fallen ? Math.max(w, h) * .42 : h / 2, z);
+        s.set(w, h, d); m.compose(p, q, s); boxes.setMatrixAt(i, m);
+        const col = pal[Math.floor(r() * pal.length)]; boxes.setColorAt(i, c.setHex(col));
+        const rc = (col === 0xC7A065 || col === 0xEFEBE6) ? 0x9C2113 : 0xC7A065;
+        s.set(w + .012, h + .012, d * .16); m.compose(p, q, s); ribs.setMatrixAt(i * 2, m); ribs.setColorAt(i * 2, c.setHex(rc));
+        s.set(w * .16, h + .014, d + .012); m.compose(p, q, s); ribs.setMatrixAt(i * 2 + 1, m); ribs.setColorAt(i * 2 + 1, c.setHex(rc));
+        i++;
+      }
+      boxes.count = i; ribs.count = i * 2;
+      const g = new T.Group(); g.add(boxes, ribs); this.el.setObject3D('gifts', g);
+    }
+  });
+
+  A.registerComponent('letter-pile', {
+    init(){
+      const r = mulberry32(19), n = 46;
+      const im = new T.InstancedMesh(new T.BoxGeometry(.17, .006, .115), new T.MeshStandardMaterial({ roughness: .9 }), n);
+      const m = new T.Matrix4(), q = new T.Quaternion(), e = new T.Euler(), p = new T.Vector3(), s = new T.Vector3(1, 1, 1), c = new T.Color();
+      for (let i = 0; i < n; i++) {
+        const inCrate = i < 26;
+        if (inCrate) p.set((r() - .5) * .8, .72 + r() * .12, (r() - .5) * .5); else p.set((r() - .5) * 1.6, .01 + r() * .02, .45 + r() * .7);
+        e.set((r() - .5) * (inCrate ? 1.2 : .1), r() * 3.14, (r() - .5) * (inCrate ? 1.2 : .1)); q.setFromEuler(e); m.compose(p, q, s); im.setMatrixAt(i, m);
+        im.setColorAt(i, c.setHex(r() < .3 ? 0xf3e3c3 : 0xf6f3ec));
+      }
+      this.el.setObject3D('letters', im);
+    }
+  });
+
+  A.registerComponent('sleigh', {
+    init(){
+      const g = new T.Group();
+      const red = new T.MeshStandardMaterial({ color: 0x9C2113, roughness: .42, metalness: .15 });
+      const gold = new T.MeshStandardMaterial({ color: 0xC7A065, roughness: .28, metalness: .85 });
+      const dark = new T.MeshStandardMaterial({ color: 0x2E0F0F, roughness: .7 });
+      const seat = new T.MeshStandardMaterial({ color: 0x0A0F2B, roughness: .8 });
+      const add = (geo, mat, x, y, z, rx = 0, ry = 0, rz = 0) => { const m = new T.Mesh(geo, mat); m.position.set(x, y, z); m.rotation.set(rx, ry, rz); g.add(m); return m; };
+      add(new T.BoxGeometry(1.9, .5, 1.05), red, 0, .78, 0);                    // Wanne
+      add(new T.BoxGeometry(.5, .75, 1.05), red, -.72, 1.25, 0);                // Rückenlehne
+      add(new T.CylinderGeometry(.53, .53, 1.05, 20, 1, false, 0, Math.PI), red, .95, .78, 0, Math.PI / 2, 0, -Math.PI / 2); // Bug rund
+      add(new T.BoxGeometry(1.25, .14, .9), seat, -.1, 1.08, 0);                 // Sitzpolster
+      add(new T.BoxGeometry(1.95, .05, 1.1), gold, 0, 1.04, 0);                  // Zierleiste
+      add(new T.BoxGeometry(.54, .05, 1.1), gold, -.72, 1.64, 0);
+      [-.45, .45].forEach(z => {
+        add(new T.BoxGeometry(2.3, .05, .07), gold, -.05, .1, z);               // Kufe
+        add(new T.TorusGeometry(.32, .035, 8, 18, Math.PI * .9), gold, 1.1, .42, z, 0, 0, -Math.PI * .45); // Kufen-Locke
+        [-.7, .55].forEach(x => add(new T.CylinderGeometry(.03, .03, .45, 8), gold, x, .32, z));
+      });
+      add(new T.SphereGeometry(.42, 16, 12), dark, -.25, 1.42, .05).scale.set(1.1, .9, 1);   // Geschenksack
+      add(new T.BoxGeometry(.32, .3, .32), gold, .32, 1.28, -.2, 0, .4, 0);
+      add(new T.BoxGeometry(.26, .22, .26), new T.MeshStandardMaterial({ color: 0xEFEBE6, roughness: .6 }), .42, 1.24, .25, 0, -.3, 0);
+      this.el.setObject3D('sleigh', g);
+    }
+  });
+}
+
+function sceneMarkup(){
+  const anim = !REDUCED;
+  return `
+<a-scene id="scene" embedded
+  renderer="antialias: true; colorManagement: true; maxCanvasWidth: 1600; maxCanvasHeight: 1600; highRefreshRate: false"
+  xr-mode-ui="enabled: true; enterVRButton: #btnVR; enterAREnabled: false; cardboardModeEnabled: true"
+  webxr="requiredFeatures: local-floor; optionalFeatures: hit-test, anchors, dom-overlay; overlayElement: #arOverlay"
+  device-orientation-permission-ui="enabled: false"
+  loading-screen="enabled: false"
+  background="color: #04061a"
+  fog="type: exponential; color: #070b22; density: 0.06"
+  cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .clickable; far: 30; interval: 80"
+  ar-hit-test="target: #arSleigh; type: footprint; enabled: true">
+
+  <a-entity id="rig">
+    <a-entity id="cam" camera="fov: 80" position="0 1.6 0" look-controls="magicWindowTrackingEnabled: true; touchEnabled: true" wasd-controls="enabled: false">
+      <a-entity id="gaze" position="0 0 -1" visible="false"
+        geometry="primitive: ring; radiusInner: 0.013; radiusOuter: 0.022" material="color: #C7A065; shader: flat; transparent: true; opacity: 0.95; depthTest: false"
+        cursor="fuse: true; fuseTimeout: 1400" raycaster="objects: .clickable; far: 25; enabled: false"
+        animation__fuse="property: scale; startEvents: fusing; from: 1.9 1.9 1.9; to: 0.7 0.7 0.7; dur: 1400; easing: linear"
+        animation__reset="property: scale; startEvents: mouseleave, click; to: 1 1 1; dur: 120"></a-entity>
+    </a-entity>
+  </a-entity>
+
+  <a-entity light="type: ambient; color: #5b5486; intensity: 0.32"></a-entity>
+  <a-entity light="type: hemisphere; color: #3a4a9a; groundColor: #2E0F0F; intensity: 0.42"></a-entity>
+  <a-entity light="type: directional; color: #9fb2ff; intensity: 0.3" position="1.5 6 2"></a-entity>
+
+  <a-entity id="room">
+    <a-entity light="type: point; color: #ffb56b; intensity: 1.5; distance: 9; decay: 1.4" position="0 3.0 -2.6"></a-entity>
+    <a-entity light="type: point; color: #ff5040; intensity: 1.2; distance: 7; decay: 1.4" position="3 2.6 0.4"></a-entity>
+    <a-entity light="type: point; color: #ffd18a; intensity: 1.1; distance: 6; decay: 1.4" position="-2.6 2.2 2.4"></a-entity>
+
+    <!-- Raum -->
+    <a-plane width="12" height="12" rotation="-90 0 0" material="src: #tex-wood; repeat: 5 5; roughness: 0.85; color: #c9a8a0"></a-plane>
+    <a-plane width="12" height="12" rotation="90 0 0" position="0 5 0" material="color: #05071a; roughness: 1"></a-plane>
+    <a-plane width="12" height="5" position="0 2.5 -6" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
+    <a-plane width="12" height="5" position="0 2.5 6" rotation="0 180 0" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
+    <a-plane width="12" height="5" position="-6 2.5 0" rotation="0 90 0" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
+    <a-plane width="12" height="5" position="6 2.5 0" rotation="0 -90 0" material="src: #tex-brick; repeat: 4 2; roughness: 0.95"></a-plane>
+    <a-plane width="3.2" height="1.6" position="0 4.99 0" rotation="90 0 0" material="color: #1a2a6a; shader: flat; opacity: 0.9; transparent: true"></a-plane>
+
+    <!-- Banner FALL 24/12 -->
+    <a-plane width="4.0" height="1.5" position="0 3.3 -5.95" material="src: #tex-banner; roughness: 0.8; emissive: #3a0a05; emissiveIntensity: 0.35"></a-plane>
+    <a-entity graffiti-1 position="5.95 2.5 2.6" rotation="0 -90 0"><a-plane width="4.2" height="1.58" material="src: #tex-graf1; transparent: true; alphaTest: 0.08; shader: flat; opacity: 0.92"></a-plane></a-entity>
+    <a-plane width="4.4" height="1.65" position="-1.4 2.7 5.95" rotation="0 180 0" material="src: #tex-graf2; transparent: true; alphaTest: 0.08; shader: flat; opacity: 0.85"></a-plane>
+    <a-plane width="0.9" height="0.56" position="-4.6 1.0 4.2" rotation="-8 140 4" material="src: #tex-sign2; roughness: 0.9"></a-plane>
+    <a-cylinder radius="0.025" height="1.0" position="-4.62 0.5 4.22" material="color: #5a3a22"></a-cylinder>
+
+    <a-entity string-lights></a-entity>
+    <a-entity snowfall></a-entity>
+    <a-entity gift-pile></a-entity>
+
+    <!-- Werkbank -->
+    <a-entity position="-0.7 0 -3.7" face-origin>
+      <a-box width="2.6" height="0.12" depth="1.0" position="0 0.95 0" material="src: #tex-wood; repeat: 2 1; color: #d6b9a0; roughness: 0.8"></a-box>
+      <a-box width="0.1" height="0.9" depth="0.1" position="-1.2 0.45 -0.4" material="color: #2a140c"></a-box>
+      <a-box width="0.1" height="0.9" depth="0.1" position="1.2 0.45 -0.4" material="color: #2a140c"></a-box>
+      <a-box width="0.1" height="0.9" depth="0.1" position="-1.2 0.45 0.4" material="color: #2a140c"></a-box>
+      <a-box width="0.1" height="0.9" depth="0.1" position="1.2 0.45 0.4" material="color: #2a140c"></a-box>
+      <a-box width="2.4" height="0.06" depth="0.8" position="0 0.3 0" material="color: #2a140c"></a-box>
+      <a-box width="0.5" height="0.22" depth="0.26" position="-0.75 1.12 0.05" material="color: #9C2113; roughness: 0.4"></a-box>
+      <a-box width="0.22" height="0.18" depth="0.22" position="-0.42 1.1 0.05" material="color: #1b2a6b"></a-box>
+      <a-cylinder radius="0.07" height="0.04" rotation="90 0 0" position="-0.85 1.02 0.19" material="color: #C7A065; metalness: 0.8; roughness: 0.3"></a-cylinder>
+      <a-cylinder radius="0.07" height="0.04" rotation="90 0 0" position="-0.6 1.02 0.19" material="color: #C7A065; metalness: 0.8; roughness: 0.3"></a-cylinder>
+      <a-box width="0.36" height="0.3" depth="0.36" position="0.35 1.16 -0.1" rotation="0 25 0" material="color: #EFEBE6"></a-box>
+      <a-box width="0.38" height="0.04" depth="0.08" position="0.35 1.32 -0.1" rotation="0 25 0" material="color: #9C2113"></a-box>
+      <a-cylinder radius="0.018" height="0.36" rotation="0 0 80" position="0.85 1.04 0.2" material="color: #6b3a1f"></a-cylinder>
+      <a-box width="0.07" height="0.07" depth="0.16" position="1.02 1.06 0.2" material="color: #444; metalness: 0.9; roughness: 0.4"></a-box>
+      <a-cylinder radius="0.08" height="0.03" position="-1.05 1.03 -0.25" material="color: #C7A065; metalness: 0.8"></a-cylinder>
+      <a-cylinder radius="0.012" height="0.42" position="-1.05 1.24 -0.25" material="color: #C7A065; metalness: 0.8"></a-cylinder>
+      <a-cone radius-bottom="0.13" radius-top="0.05" height="0.14" position="-1.0 1.45 -0.2" rotation="25 0 -20" material="color: #9C2113; side: double"></a-cone>
+      <a-sphere radius="0.04" position="-0.98 1.4 -0.17" material="color: #ffe2a8; shader: flat"></a-sphere>
+    </a-entity>
+
+    <!-- #1 Stechuhr + Stempelkarte -->
+    <a-entity position="-5.85 -0.55 -2.0" rotation="0 90 0" scale="1.5 1.5 1.5">
+      <a-box class="clickable" data-ev="1" width="0.56" height="0.74" depth="0.24" position="0 1.45 0.12" material="color: #2b1a14; roughness: 0.5; metalness: 0.3"></a-box>
+      <a-circle radius="0.17" position="0 1.62 0.245" material="color: #EFEBE6; shader: flat"></a-circle>
+      <a-box width="0.012" height="0.13" depth="0.01" position="0 1.67 0.25" material="color: #111; shader: flat"></a-box>
+      <a-box width="0.1" height="0.012" depth="0.01" position="0.04 1.62 0.25" rotation="0 0 -20" material="color: #9C2113; shader: flat"></a-box>
+      <a-plane class="clickable" data-ev="1" width="0.34" height="0.48" position="0.56 1.35 0.03" rotation="0 0 -4" material="src: #tex-stempel; roughness: 0.9"></a-plane>
+      <a-box width="0.44" height="0.62" depth="0.03" position="0.56 1.33 0.01" material="color: #3d2418"></a-box>
+      <a-plane width="0.3" height="0.42" position="-0.55 1.3 0.02" rotation="0 0 3" material="color: #d9cfbb"></a-plane>
+      <a-plane width="0.3" height="0.42" position="-0.62 1.26 0.015" rotation="0 0 -5" material="color: #cbbfa8"></a-plane>
+    </a-entity>
+
+    <!-- #2 Streikplakat -->
+    <a-entity position="1.1 0 -3.2" face-origin>
+      <a-cylinder radius="0.035" height="1.7" position="0 0.85 -0.04" rotation="6 0 0" material="color: #6b3a1f"></a-cylinder>
+      <a-plane class="clickable" data-ev="2" width="1.15" height="0.77" position="0 1.5 0" rotation="0 0 -4" material="src: #tex-strike; roughness: 0.9; side: double"></a-plane>
+    </a-entity>
+
+    <!-- #3 Schlitten + Fahrtenschreiber -->
+    <a-entity position="4.1 0 -0.6" rotation="0 90 0"><a-entity sleigh class="clickable" data-ev="3"></a-entity></a-entity>
+    <a-entity position="3.45 1.28 -0.6" face-origin>
+      <a-box class="clickable" data-ev="3" width="0.5" height="0.34" depth="0.12" material="color: #111; metalness: 0.6; roughness: 0.4"></a-box>
+      <a-plane class="clickable" data-ev="3" width="0.44" height="0.275" position="0 0 0.062" material="src: #tex-tacho; shader: flat"></a-plane>
+    </a-entity>
+
+    <!-- #4 Wunschzettel-Kiste -->
+    <a-entity position="2.55 0 3.35" face-origin>
+      <a-box class="clickable" data-ev="4" width="1.0" height="0.7" depth="0.7" position="0 0.35 0" material="src: #tex-wood; repeat: 1 1; color: #e0a070; roughness: 0.9"></a-box>
+      <a-plane width="0.92" height="0.46" position="0 0.38 0.352" material="src: #tex-crateLabel; transparent: true; alphaTest: 0.1; shader: flat"></a-plane>
+      <a-entity letter-pile></a-entity>
+    </a-entity>
+
+    <!-- #5 Schreibtisch des Chefs + Spesenquittung -->
+    <a-entity position="-3.1 0 3.0" face-origin>
+      <a-box width="1.6" height="0.08" depth="0.8" position="0 0.78 0" material="color: #3d1f10; roughness: 0.5"></a-box>
+      <a-box width="0.6" height="0.74" depth="0.74" position="-0.48 0.37 0" material="color: #2e170c"></a-box>
+      <a-box width="0.06" height="0.74" depth="0.06" position="0.74 0.37 0.34" material="color: #2e170c"></a-box>
+      <a-box width="0.06" height="0.74" depth="0.06" position="0.74 0.37 -0.34" material="color: #2e170c"></a-box>
+      <a-box width="0.5" height="0.12" depth="0.04" position="-0.3 0.88 0.3" material="color: #C7A065; metalness: 0.8; roughness: 0.3"></a-box>
+      <a-plane class="clickable" data-ev="5" width="0.24" height="0.57" position="0.2 1.08 0.05" rotation="-14 0 6" material="src: #tex-receipt; roughness: 0.9; side: double"></a-plane>
+      <a-cylinder radius="0.11" height="0.03" position="0.55 0.83 -0.15" material="color: #C7A065; metalness: 0.8"></a-cylinder>
+      <a-cylinder radius="0.015" height="0.4" position="0.55 1.02 -0.15" material="color: #C7A065; metalness: 0.8"></a-cylinder>
+      <a-cone radius-bottom="0.15" radius-top="0.07" height="0.16" position="0.55 1.24 -0.08" rotation="20 0 0" material="color: #1b5e3a; side: double"></a-cone>
+      <a-box width="0.9" height="1.1" depth="0.7" position="0 0.55 -0.85" material="color: #5a0f0a; roughness: 0.7"></a-box>
+      <a-box width="0.9" height="0.9" depth="0.18" position="0 1.4 -1.15" material="color: #5a0f0a; roughness: 0.7"></a-box>
+    </a-entity>
+
+    <!-- Bonus: Rudolph -->
+    <a-entity position="0.7 0 5.3" face-origin>
+      <a-sphere radius="0.32" position="0 1.25 0" scale="1 0.9 1.1" material="color: #4a2a18; roughness: 0.9"></a-sphere>
+      <a-sphere radius="0.17" position="0 1.17 0.3" material="color: #5a3420; roughness: 0.9"></a-sphere>
+      <a-sphere class="clickable" data-ev="R" radius="0.075" position="0 1.19 0.47" material="color: #ff2a1a; emissive: #ff2a1a; emissiveIntensity: 1.2; shader: standard"
+        ${anim ? 'animation="property: material.emissiveIntensity; from: 0.4; to: 2.2; dir: alternate; loop: true; dur: 1100; easing: easeInOutSine"' : ''}></a-sphere>
+      <a-sphere radius="0.03" position="-0.12 1.33 0.26" material="color: #111"></a-sphere>
+      <a-sphere radius="0.03" position="0.12 1.33 0.26" material="color: #111"></a-sphere>
+      <a-cylinder radius="0.025" height="0.45" position="-0.18 1.65 -0.05" rotation="0 0 25" material="color: #8a6a4a"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.45" position="0.18 1.65 -0.05" rotation="0 0 -25" material="color: #8a6a4a"></a-cylinder>
+      <a-cylinder radius="0.02" height="0.22" position="-0.32 1.78 -0.05" rotation="0 0 70" material="color: #8a6a4a"></a-cylinder>
+      <a-cylinder radius="0.02" height="0.22" position="0.32 1.78 -0.05" rotation="0 0 -70" material="color: #8a6a4a"></a-cylinder>
+      <a-cylinder radius="0.18" height="0.95" position="0 0.48 0" material="color: #3a2010"></a-cylinder>
+      <a-sphere class="clickable" data-ev="R" radius="0.5" position="0 1.2 0.2" material="opacity: 0; transparent: true; depthWrite: false; shader: flat"></a-sphere>
+    </a-entity>
+
+    <!-- Beweis-Marker -->
+    ${[1, 2, 3, 4, 5].map(n => `<a-entity class="marker" ev-marker="n: ${n}" position="${MARK[n].join(' ')}">
+      <a-circle class="clickable" data-ev="${n}" radius="0.46" material="opacity: 0; transparent: true; depthWrite: false; shader: flat"></a-circle></a-entity>`).join('')}
+  </a-entity>
+
+  <!-- AR-Schlitten (nur im AR-Modus sichtbar) -->
+  <a-entity id="arSleigh" visible="false" scale="0.5 0.5 0.5"><a-entity sleigh></a-entity></a-entity>
+  <a-entity id="arLight" visible="false" light="type: directional; intensity: 2" position="1 3 2"></a-entity>
+
+  <!-- VR-Karte (nur im VR-Modus) -->
+  <a-entity id="vrCard" position="0 -100 0">
+    <a-plane id="vrCardPlane" width="1.6" height="1.0" material="src: #tex-vrcard; shader: flat; side: double"></a-plane>
+    <a-plane class="clickable" data-action="vr-close" width="0.62" height="0.165" position="0 -0.63 0.01" material="src: #tex-vrclose; shader: flat"></a-plane>
+  </a-entity>
+</a-scene>`;
+}
+
+function drawVrCard(id){
+  const c = TEX.vrcard, x = c.getContext('2d'), W = 1024, H = 640;
+  paperBg(x, W, H, 101);
+  x.fillStyle = '#4a443e'; x.font = FB(700, 22); x.textAlign = 'left';
+  if (id === 'R') {
+    x.fillText('AKTE 24/12 · JOKER', 48, 56);
+    x.fillStyle = '#0A0F2B'; x.font = FH(900, 64); x.fillText('ZEUGENAUSSAGE RUDOLPH', 48, 150);
+    x.fillStyle = '#111'; x.font = FB(400, 40); x.fillText('„…“', 48, 250);
+    x.font = FB(400, 32); wrap(x, 'Rudolph schweigt. Die rote Nase leuchtet. Was weiß er über die 3 Stunden Stillstand?', 48, 320, W - 96, 44);
+    stampRect(x, 'JOKER', W - 190, 110, 48, .15); return;
+  }
+  const e = EV[id];
+  x.fillText(`AKTE 24/12 · BLATT ${id}/5`, 48, 56); x.textAlign = 'right'; x.fillText(`BEWEISE GESICHERT: ${state.found.size}/5`, W - 48, 56); x.textAlign = 'left';
+  stampRect(x, `BEWEISSTÜCK #${id}`, 205, 112, 34, -.06);
+  x.fillStyle = '#0A0F2B'; fitFont(x, e.title.toUpperCase(), W - 96, 64, s => FH(900, s)); x.fillText(e.title.toUpperCase(), 48, 210);
+  x.fillStyle = '#9C2113'; x.font = FB(700, 26); x.fillText(e.fact, 48, 250, W - 96);
+  x.fillStyle = '#111'; x.font = FB(400, 26); let y = wrap(x, e.text, 48, 300, W - 96, 33);
+  y += 12; x.fillStyle = '#9C2113'; x.fillRect(48, y - 4, 6, 92); x.fillStyle = '#9C2113'; x.font = FH(800, 24); x.fillText('FÜR DIE ELFEN SPRICHT …', 68, y + 18);
+  x.fillStyle = '#111'; x.font = FB(400, 22); y = wrap(x, e.elfen, 68, y + 48, W - 130, 27);
+  y += 12; x.fillStyle = '#0A0F2B'; x.fillRect(48, y - 4, 6, 92); x.font = FH(800, 24); x.fillText('FÜR DEN CHEF SPRICHT …', 68, y + 18);
+  x.fillStyle = '#111'; x.font = FB(400, 22); wrap(x, e.chef, 68, y + 48, W - 130, 27);
+  if (state.found.size === 5) { x.fillStyle = 'rgba(10,15,43,.92)'; x.fillRect(0, H - 50, W, 50); x.fillStyle = '#C7A065'; x.font = FH(800, 26); x.textAlign = 'center'; x.fillText('ALLE BEWEISE GESICHERT – VERLASSE VR FÜR DEIN URTEIL', W / 2, H - 16); }
+}
+
+function buildScene(){
+  return new Promise((resolve, reject) => {
+    registerComponents();
+    $('#loaderMsg').textContent = 'Beweisstücke werden platziert …';
+    $('#sceneHost').innerHTML = sceneMarkup();
+    scene = $('#scene');
+    const T = AFRAME.THREE, cam = $('#cam'), gaze = $('#gaze'), room = $('#room'), vrCard = $('#vrCard');
+    let lastClick = { id: null, t: 0 }, drag = { x: 0, y: 0, moved: false, t: 0 };
+
+    const timeout = setTimeout(() => reject(new Error('Scene timeout')), 25000);
+    scene.addEventListener('loaded', () => {
+      clearTimeout(timeout);
+      sceneReady = true; $('#loader').hidden = true;
+      applyGyro();
+      const cv = scene.canvas;
+      cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, moved: false, t: performance.now() }; });
+      cv.addEventListener('pointermove', e => { if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 12) drag.moved = true; });
+      if (navigator.xr && navigator.xr.isSessionSupported) navigator.xr.isSessionSupported('immersive-ar').then(s => { arSupported = !!s; }).catch(() => {});
+      if (state.found.size) state.found.forEach(id => sceneApi.markFound(id));
+      const lc0 = cam.components['look-controls']; if (lc0) lc0.yawObject.rotation.y = 0;
+      resolve();
+    }, { once: true });
+
+    // Klick / Tap / Gaze auf Beweisstücke
+    scene.addEventListener('click', ev => {
+      let el = (ev.detail && ev.detail.intersectedEl) || ev.target;
+      if (!el || !el.closest) return;
+      if (!scene.is('vr-mode') && drag.moved && performance.now() - drag.t < 4000) return;
+      const act = el.closest('[data-action]');
+      if (act && act.dataset.action === 'vr-close') { vrCard.object3D.position.set(0, -100, 0); return; }
+      const holder = el.closest('[data-ev]'); if (!holder) return;
+      const raw = holder.dataset.ev, now = performance.now();
+      if (lastClick.id === raw && now - lastClick.t < 600) return; lastClick = { id: raw, t: now };
+      if (raw === 'R') { track('evidence_opened', { id: 'bonus_rudolph', mode: scene.is('vr-mode') ? 'vr' : '3d', bonus: true });
+        if (scene.is('vr-mode')) { drawVrCard('R'); showVrCard(); } else toast('<b>Zeugenaussage Rudolph:</b> „…“ – Rudolph schweigt. Die rote Nase leuchtet.', 5000); return; }
+      const id = +raw; const vr = scene.is('vr-mode');
+      secure(id, vr ? 'vr' : '3d');
+      if (vr) { drawVrCard(id); showVrCard(); } else openCard(id);
+    });
+
+    function showVrCard(){
+      const mesh = $('#vrCardPlane').getObject3D('mesh'); if (mesh && mesh.material.map) mesh.material.map.needsUpdate = true;
+      const c3 = scene.camera, p = new T.Vector3(), d = new T.Vector3();
+      c3.getWorldPosition(p); c3.getWorldDirection(d); d.y = 0; if (d.lengthSq() < 1e-4) d.set(0, 0, -1); d.normalize();
+      const pos = p.clone().addScaledVector(d, 1.5); pos.y = p.y - .05;
+      vrCard.object3D.position.copy(pos); vrCard.object3D.lookAt(p.x, pos.y, p.z);
+    }
+
+    sceneApi.markFound = id => { const m = room.querySelector(`.marker[ev-marker="n: ${id}"]`) || $$('.marker', room).find(e => e.getAttribute('ev-marker').n === id); if (m && m.components['ev-marker']) m.components['ev-marker'].setFound(); };
+    sceneApi.turnTo = (id, cb) => {
+      const lc = cam.components['look-controls']; if (!lc) { cb && cb(); return; }
+      const [x, y, z] = MARK[id];
+      const md = lc.magicWindowDeltaEuler || { x: 0, y: 0 };
+      let ty = Math.atan2(-x, -z) - (md.y || 0), tp = Math.atan2(y - 1.75, Math.hypot(x, z)) - (md.x || 0);
+      const y0 = lc.yawObject.rotation.y, p0 = lc.pitchObject.rotation.x;
+      let dy = ((ty - y0) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
+      tp = Math.max(-1.2, Math.min(1.2, tp));
+      if (REDUCED) { lc.yawObject.rotation.y = y0 + dy; lc.pitchObject.rotation.x = tp; setTimeout(() => cb && cb(), 120); return; }
+      const t0 = performance.now(), dur = 650;
+      const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        lc.yawObject.rotation.y = y0 + dy * e; lc.pitchObject.rotation.x = p0 + (tp - p0) * e;
+        if (k < 1) requestAnimationFrame(step); else setTimeout(() => cb && cb(), 180); };
+      requestAnimationFrame(step);
+    };
+
+    scene.addEventListener('enter-vr', () => {
+      if (scene.is('ar-mode')) {
+        track('mode_selected', { mode: 'ar' });
+        room.object3D.visible = false; scene.object3D.background = null; scene.object3D.fog = null;
+        $('#arLight').object3D.visible = true;
+        scene.setAttribute('raycaster', 'enabled', false);
+        $('#arHead').textContent = 'AR · Schlitten platzieren';
+        $('#arText').textContent = 'Bewege dein Handy langsam über den Boden. Tippe, sobald der Rahmen erscheint.';
+      } else {
+        track('mode_selected', { mode: 'vr' });
+        document.body.classList.add('in-vr');
+        gaze.setAttribute('visible', true); gaze.setAttribute('raycaster', 'enabled', true);
+      }
+    });
+    scene.addEventListener('exit-vr', () => {
+      document.body.classList.remove('in-vr');
+      gaze.setAttribute('visible', false); gaze.setAttribute('raycaster', 'enabled', false);
+      vrCard.object3D.position.set(0, -100, 0);
+      room.object3D.visible = true; $('#arLight').object3D.visible = false; $('#arSleigh').object3D.visible = false;
+      scene.setAttribute('background', 'color', '#04061a'); scene.object3D.background = new T.Color('#04061a');
+      scene.setAttribute('fog', 'density', 0.06); scene.setAttribute('raycaster', 'enabled', true);
+      $('#arOverlay').hidden = true; updateProgress();
+      if (state.found.size >= 3) toast(`<b>${state.found.size}/5 Beweise gesichert.</b> Bereit für Ihr Urteil?`);
+    });
+    scene.addEventListener('ar-hit-test-select', () => {
+      $('#arHead').textContent = 'Schlitten sichergestellt';
+      $('#arText').textContent = 'Fahrtenschreiber: 3 Std. Stillstand über Prenzlauer Berg. Screenshot machen & mit #AkteWeihnachten posten!';
+      track('ar_placed', {}); if (!state.found.has(3)) secure(3, 'ar');
+    });
+  });
+}
+
+/* =========================================================
+   DEMO-/SCREENSHOT-ZUSTÄNDE  (?state=xr|evidence|verdict|result|akte)
+   ========================================================= */
+(async function init(){
+  track('landing', { referrer: document.referrer ? new URL(document.referrer).hostname : '', reduced_motion: REDUCED });
+  try { history.replaceState({ s: 'start' }, ''); } catch(e) {}
+  const st = qs.get('state'); if (!st) { setTimeout(() => { const l = document.createElement('link'); l.rel = 'prefetch'; l.as = 'script'; l.href = AFRAME_URL; document.head.appendChild(l); }, 1500); return; }
+  const nFound = Math.max(0, Math.min(5, +(qs.get('found') || 0)));
+  for (let i = 1; i <= nFound; i++) state.found.add(i);
+  if (st === 'akte') { await enter2D(); return; }
+  if (st === 'verdict') { state.lastScene = 'xr'; await fontsReady; show('verdict'); updateProgress(); return; }
+  if (st === 'result') { await fontsReady; prepareTextures(); state.verdict = qs.get('verdict') || 'chef'; if (!nFound) [1, 2, 3, 4, 5].forEach(i => state.found.add(i)); show('result'); renderResult(); return; }
+  if (st === 'xr' || st === 'evidence') {
+    await enter3D(true);
+    const yaw = qs.get('yaw'); if (yaw && scene) { const lc = $('#cam').components['look-controls']; if (lc) lc.yawObject.rotation.y = +yaw * Math.PI / 180; }
+    if (st === 'evidence') { const id = +(qs.get('id') || 3); setTimeout(() => { secure(id, '3d'); openCard(id); }, 400); }
+    else if (qs.get('toast') === '0') { clearTimeout(toastT); $('#toast').classList.remove('show'); }
+    else setTimeout(() => toast('<b>Schau dich um:</b> Handy bewegen oder wischen. Tippe auf die <b>goldenen Marker</b>, um Beweise zu sichern.', 9000), 700);
+  }
+})();
+})();
+</script>
+</body>
+</html>
